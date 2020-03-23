@@ -7,7 +7,7 @@ interface Props {
     
 }
 
-const Main = (props: Props) => {
+const Dashboard = (props: Props) => {
     return (
         <div>
             
@@ -15,4 +15,4 @@ const Main = (props: Props) => {
     )
 }
 
-export default Main
+export default Dashboard
