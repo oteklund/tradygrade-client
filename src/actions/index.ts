@@ -5,7 +5,7 @@ import { Dispatch } from 'redux';
 import { ActionTypes } from './types';
 import { ThunkDispatch } from "redux-thunk"
 import * as constants from "../models/constants"
-import { Authorization } from "../models/types"
+// import { Authorization } from "../models/types"
 
 export interface IItem {
   id: string;
@@ -71,7 +71,7 @@ export function logIn() {
 export function logOut() {
   return async (dispatch: ThunkDispatch<AuthenticationAction, {}, any>) =>
   {
-    await window.localStorage.setItem("token", "null")
+    await window.localStorage.setItem("token", "")
     dispatch(unauthenticate())
   }
 }
@@ -81,7 +81,7 @@ export function checkAuthentication() {
   {
     const token = await window.localStorage.getItem("token")
     const formattedToken = typeof token === "string" ?
-    JSON.parse(token) :
+    token :
     null
 
     formattedToken ? dispatch(authenticate()) : dispatch(unauthenticate())
