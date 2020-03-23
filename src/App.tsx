@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
-import { HashRouter as Router, Route, Link } from "react-router-dom"
+import { Provider } from 'react-redux';
+import store from './store';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        
-      </Router>
-    </div>
+    <Provider store={store}>
+      <div className='App'>
+        <Router></Router>
+      </div>
+    </Provider>
   );
 }
 
