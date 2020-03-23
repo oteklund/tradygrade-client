@@ -10,7 +10,7 @@ interface Props {
 const Navigation = (props: Props) => {
     return (
         <div>
-            
+            Navigation works!
         </div>
     )
 }
