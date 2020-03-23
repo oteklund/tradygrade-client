@@ -10,7 +10,7 @@ interface Props {
 const Landing = (props: Props) => {
     return (
         <div>
-            
+            Landing works!
         </div>
     )
 }

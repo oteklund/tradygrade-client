@@ -1,12 +1,14 @@
 import React from 'react';
 import './App.css';
-import { HashRouter as Router, Route, Link } from "react-router-dom"
+import { Router, Route } from "react-router-dom"
+import Pages from './components/Pages';
+import history from './history';
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        
+      <Router history={history}>
+        <Route component={Pages} />
       </Router>
     </div>
   );

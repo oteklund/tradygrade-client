@@ -10,7 +10,7 @@ interface Props {
 const Dashboard = (props: Props) => {
     return (
         <div>
-            
+            Dashboard works!
         </div>
     )
 }
