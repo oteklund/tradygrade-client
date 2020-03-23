@@ -1,3 +1,6 @@
+/*
+This component displays users that are online at the moment
+*/
 import React from 'react'
 
 interface Props {
