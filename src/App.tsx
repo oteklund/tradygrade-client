@@ -5,7 +5,7 @@ import { Router, Route } from 'react-router-dom';
 import Pages from './components/Pages';
 import history from './history';
 import { checkAuthentication } from './actions'
-import { Authorization } from './models/types'
+import { StoreState } from './models/types'
 
 interface IProps {
   checkAuthenticationConnect: () => void
@@ -18,7 +18,7 @@ const App = ({
 }: IProps) => {
   React.useEffect(() => {
     checkAuthenticationConnect()
-  }, [checkAuthenticationConnect])
+  }, [])
   const app = isAuthenticated !== null ? (
     <Router history={history}>
       <Route component={Pages} />
@@ -32,8 +32,8 @@ const App = ({
   )
 }
 
-const mapStateToProps = (state: Authorization) => ({
-  isAuthenticated: state.isAuthenticated
+const mapStateToProps = (state: StoreState) => ({
+  isAuthenticated: state.auth.isAuthenticated
 })
 
 const mapDispatchToProps = {
@@ -44,18 +44,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App)
-
-
-// function App() {
-//   return (
-//     <Provider store={store}>
-//       <div className='App'>
-//         <Router history={history}>
-//           <Route component={Pages} />
-//         </Router>
-//       </div>
-//     </Provider>
-//   );
-// }
-
-// export default App;

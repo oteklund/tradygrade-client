@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { Route } from "react-router-dom"
 import history from '../history'
 import { Authorization } from '../models/types'
+import Navigation from "./Navigation"
 
 interface Props {
     exact?: boolean
@@ -19,16 +20,18 @@ const LoggedOutRoute = ({
     if (isAuthenticated === true) {
         history.push("/home")
         console.log("Attempted to access a route that is available only if you are logged out, please log out to proceed.");
-
     }
+
     return (
-        <>
+        <>  
+        
             <header>
                 <span>Logged out header</span>
             </header>
             <Route
                 render={otherProps => (
                     <>
+                        <Navigation />
                         <Component {...otherProps} />
                     </>
                 )}
