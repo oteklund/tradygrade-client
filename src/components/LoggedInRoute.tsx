@@ -24,12 +24,10 @@ const LoggedInRoute = ({
 
     return (
         <>
-            <header>
-                <Navigation />
-            </header>
             <Route
                 render={otherProps => (
                     <>
+                        <Navigation />
                         <Component {...otherProps} />
                     </>
                 )}

@@ -71,7 +71,7 @@ export function logIn() {
 export function logOut() {
   return async (dispatch: ThunkDispatch<AuthenticationAction, {}, any>) =>
   {
-    await window.localStorage.setItem("token", "")
+    await window.localStorage.setItem("token", "null")
     dispatch(unauthenticate())
   }
 }
