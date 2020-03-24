@@ -5,20 +5,9 @@ import { Dispatch } from 'redux';
 import { ActionTypes } from './types';
 import { ThunkDispatch } from "redux-thunk"
 import * as constants from "../models/constants"
+import { IItem } from "../models/types"
 // import { Authorization } from "../models/types"
 
-export interface IItem {
-  id: string;
-  title: string;
-  description: string;
-  sold: boolean;
-  seller: string;
-  category: string;
-  price: number;
-  listedAt: Date;
-  expires: Date;
-  condition: string;
-}
 
 export interface IFetchItemActions {
   type: ActionTypes.fetchItems;

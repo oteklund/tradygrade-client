@@ -3,7 +3,6 @@ This component is displayed when the user first visits the website. Subsequent v
 */
 import React from 'react'
 import LogIn from '../landing/LogIn'
-import LogOut from "../landing/LogOut"
 interface Props {
 
 }
@@ -15,7 +14,6 @@ const Landing = (props: Props) => {
                 Landing works!
             </div>
             <LogIn />
-            <LogOut />
         </>
     )
 }
