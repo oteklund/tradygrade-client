@@ -1,4 +1,5 @@
-import { IItem, IFetchItemActions } from '../actions';
+import { IFetchItemActions } from '../actions';
+import { IItem } from "../models/types"
 import { ActionTypes } from '../actions/types';
 
 export const itemsReducer = (

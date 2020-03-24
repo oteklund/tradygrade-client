@@ -1,5 +1,8 @@
 export type User = {
-    //logic
+    username: string
+    email?: string
+    password?: string
+    image_url?: string
 }
 
 export type IItem = {
@@ -18,6 +21,7 @@ export type IItem = {
 export type Authorization = {
     isAuthenticated : boolean | null
     token : string | null
+    user: User | null
 }
 
 export type StoreState = {

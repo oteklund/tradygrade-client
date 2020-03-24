@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import { connect } from "react-redux"
 import Navigation from './Navigation'
 import history from '../history'
-import { Authorization } from '../models/types'
+import { StoreState } from '../models/types'
 
 interface Props {
     exact?: boolean
@@ -15,16 +15,16 @@ interface Props {
 const LoggedInRoute = ({
     component: Component,
     isAuthenticated,
-    ...otherProps //why is this unused?
+    ...otherProps
 }: Props) => {
     if (isAuthenticated === false) {
-        history.push("/landing")
+        history.push("/")
         console.log("attempted to access a page that requires authorization, please log in to proceed.")
     }
 
     return (
         <>
-            <Route
+            <Route {...otherProps}
                 render={otherProps => (
                     <>
                         <Navigation />
@@ -32,15 +32,12 @@ const LoggedInRoute = ({
                     </>
                 )}
             />
-            <footer>
-                <span>Logged in footer</span>
-            </footer>
         </>
     )
 }
 
-const mapStateToProps = (state: Authorization) => ({
-    isAuthenticated: state.isAuthenticated
+const mapStateToProps = (state: StoreState) => ({
+    isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(

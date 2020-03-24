@@ -24,10 +24,6 @@ const LoggedOutRoute = ({
 
     return (
         <>  
-        
-            <header>
-                <span>Logged out header</span>
-            </header>
             <Route
                 render={otherProps => (
                     <>

@@ -12,7 +12,6 @@ interface Props {
 const LogIn = ({logInConnect}: Props) => {
     return (
         <>
-           <p>Login component</p>
            <button onClick={logInConnect}>log in</button>
         </>
     )
