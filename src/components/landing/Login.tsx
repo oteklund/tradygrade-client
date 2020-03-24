@@ -2,17 +2,27 @@
 This component allows the user to log in.
 */
 import React from 'react'
+import { logIn } from "../../actions"
+import { connect } from 'react-redux'
 
 interface Props {
-    
+    logInConnect: () => void
 }
 
-const Login = (props: Props) => {
+const LogIn = ({logInConnect}: Props) => {
     return (
-        <div>
-            
-        </div>
+        <>
+           <p>Login component</p>
+           <button onClick={logInConnect}>log in</button>
+        </>
     )
 }
 
-export default Login
+const mapDispatchToProps = {
+    logInConnect: logIn
+}
+
+export default connect(
+    null,
+    mapDispatchToProps,
+) (LogIn)
