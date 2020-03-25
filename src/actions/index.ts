@@ -1,9 +1,9 @@
 // Action creators will be here!
 
 import axios from 'axios';
-import { Dispatch, ActionCreator } from 'redux';
+import { Dispatch } from 'redux';
 import { ActionTypes } from './types';
-import { ThunkDispatch, ThunkAction } from 'redux-thunk';
+import { ThunkDispatch } from 'redux-thunk';
 import * as constants from '../models/constants';
 import { IItem, IItem2 } from '../models/types';
 // import { Authorization } from "../models/types"
