@@ -10,22 +10,26 @@ import io from 'socket.io-client';
 const socket = io("http://localhost:9000")
 
 interface Props {
-
+    chatID:number;
 }
 
 
 const ChatTesting = (props: Props) => {
     const [messageField, setMessageField] = useState<string>("");
     const [userField, setUserField] = useState<string>("Maisa");
-    const [chatIDField, setChatIDField] = useState<number>(19);
+    const [chatIDField, setChatIDField] = useState<number>(props.chatID);
     const [messageHistory, setMessageHistory] = useState<ChatMessage[]>([]);
 
     const timeStamp = new Date()
-
+    
+    // useEffect(() => {
+    //     setChatIDField(chatIDField => props.chatID)
+    // }, [props])
+    
     useEffect(() => {
         // socket
         socket
-
+        
             // Join chat
             .emit('joinChat', userField , chatIDField)
 
@@ -66,7 +70,7 @@ const ChatTesting = (props: Props) => {
         return () => {
             socket.off('disconnet');
         };
-    }, [setMessageHistory])
+    }, [])
 
 
 
@@ -96,7 +100,7 @@ const ChatTesting = (props: Props) => {
                     <ul id="output"></ul>
                 </div>
                 <input id="user" type="text" placeholder="User" value={userField} onChange={e => setUserField(e.target.value)} />
-                <input id="chatID" type="text" placeholder="chatID" value={chatIDField} onChange={e => setChatIDField(parseInt(e.target.value))} />
+                {/* <input id="chatID" type="text" placeholder="chatID" value={chatIDField} onChange={e => setChatIDField(parseInt(e.target.value))} /> */}
                 <input id="message" type="text" placeholder="Message" value={messageField} onChange={typingMessage} />
                 <button id="send" onClick={() => sendMessage()}>Send</button>
             </div>
