@@ -1,38 +1,46 @@
 import React from 'react';
 import './App.css';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import Pages from './components/Pages';
 import SelectChat from './components/laura-test-area/SelectChat';
 import history from './history';
-import { checkAuthentication } from './actions'
+import { checkAuthentication, fetchItems } from './actions';
+import { StoreState, IItem } from './models/types';
 
 interface IProps {
-  checkAuthenticationConnect: () => void
+  checkAuthenticationConnect: () => void;
+  fetchItems: () => void;
+  items: IItem[];
 }
 
-const App = ({
-  checkAuthenticationConnect
-}: IProps) => {
+const App = ({ checkAuthenticationConnect, fetchItems, items }: IProps) => {
   React.useEffect(() => {
-    checkAuthenticationConnect()
-  }, [])
+    checkAuthenticationConnect();
+  }, []);
+
+  React.useEffect(() => {
+    fetchItems();
+    //eslint-disable-next-line
+  }, []);
 
   return (
-    <div className="App">
+    <div className='App'>
       <Router history={history}>
         <Route component={Pages} />
         <Route path="/laura" component={SelectChat}/>
       </Router>
     </div>
-  )
-}
+  );
+};
 
 const mapDispatchToProps = {
-  checkAuthenticationConnect: checkAuthentication
-}
+  checkAuthenticationConnect: checkAuthentication,
+  fetchItems
+};
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(App)
+const mapStateToProps = (state: StoreState) => ({
+  items: state.items
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

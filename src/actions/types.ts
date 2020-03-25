@@ -1,3 +1,6 @@
 export enum ActionTypes {
-  fetchItems
+  fetchItems,
+  deleteItem,
+  createItem,
+  updateItem
 }
