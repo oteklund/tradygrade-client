@@ -7,7 +7,6 @@ import moment from 'moment';
 import { ChatMessage } from './types';
 
 import io from 'socket.io-client';
-import { stringify } from 'querystring';
 const socket = io("http://localhost:9000")
 
 interface Props {
@@ -17,18 +16,23 @@ interface Props {
 
 const ChatTesting = (props: Props) => {
     const [messageField, setMessageField] = useState<string>("");
-    const [userField, setUserField] = useState<string>("Mauri");
+    const [userField, setUserField] = useState<string>("Maisa");
+    const [chatIDField, setChatIDField] = useState<number>(19);
     const [messageHistory, setMessageHistory] = useState<ChatMessage[]>([]);
 
     const timeStamp = new Date()
-    const chatID = 1345
 
     useEffect(() => {
+        // socket
         socket
-            .emit('joinChat', { userField, chatID })
-            // .on('join', (message: string) => {
-            //     console.log(message)
-            // })
+
+            // Join chat
+            .emit('joinChat', userField , chatIDField)
+
+            //send welcome message
+            .on('message', (message: string) => {
+                console.log(message)
+            })
 
             .on('user online', (message: string) => {
                 console.log(message)
@@ -52,8 +56,8 @@ const ChatTesting = (props: Props) => {
                 chatWindow.scrollTop = element.scrollHeight;
                 const feedback: HTMLElement = document.getElementById('feedback') as HTMLElement
                 feedback.innerHTML = ``
+                // setUserField('');
                 setMessageField('');
-                setUserField('');
             })
 
             .on('user disconnect', (message: string) => {
@@ -70,7 +74,7 @@ const ChatTesting = (props: Props) => {
     const sendMessage = () => {
         //Emmiting a chat message to server 
         socket.emit('chatMessage', {
-            chat: chatID,
+            chat: chatIDField,
             user: userField,
             message: messageField,
             time: timeStamp
@@ -79,7 +83,7 @@ const ChatTesting = (props: Props) => {
 
     const typingMessage = (e: any) => {
         setMessageField(e.target.value)
-        socket.emit('typing', userField, chatID);
+        socket.emit('typing', userField, chatIDField);
     }
 
     return (
@@ -92,6 +96,7 @@ const ChatTesting = (props: Props) => {
                     <ul id="output"></ul>
                 </div>
                 <input id="user" type="text" placeholder="User" value={userField} onChange={e => setUserField(e.target.value)} />
+                <input id="chatID" type="text" placeholder="chatID" value={chatIDField} onChange={e => setChatIDField(parseInt(e.target.value))} />
                 <input id="message" type="text" placeholder="Message" value={messageField} onChange={typingMessage} />
                 <button id="send" onClick={() => sendMessage()}>Send</button>
             </div>
