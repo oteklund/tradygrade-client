@@ -5,7 +5,7 @@ import { Dispatch, ActionCreator } from 'redux';
 import { ActionTypes } from './types';
 import { ThunkDispatch, ThunkAction } from 'redux-thunk';
 import * as constants from '../models/constants';
-import { IItem } from '../models/types';
+import { IItem, IItem2 } from '../models/types';
 // import { Authorization } from "../models/types"
 
 export interface IFetchItemActions {
@@ -15,17 +15,22 @@ export interface IFetchItemActions {
 
 export interface IDeleteItemActions {
   type: ActionTypes.deleteItem;
-  payload: number;
+  payload: string;
 }
 
 export interface ICreateItemActions {
   type: ActionTypes.createItem;
-  payload: IItem;
+  payload: IItem2;
+}
+
+export interface IUpdateItemActions {
+  type: ActionTypes.updateItem;
+  payload: IItem2;
 }
 
 const ItemUrl = 'http://localhost:4000/api/marketplace/items';
 
-export const fetchItems: ActionCreator<ThunkAction<
+/* : ActionCreator<ThunkAction<
   // The type of the last action to be dispatched - will always be promise<T> for async actions
   Promise<void>,
   // The type for the data within the last action
@@ -34,7 +39,10 @@ export const fetchItems: ActionCreator<ThunkAction<
   null,
   // The type of the last action to be dispatched
   IFetchItemActions
->> = () => {
+>>
+*/
+
+export const fetchItems = () => {
   return async (dispatch: Dispatch) => {
     const response = await axios.get<IItem[]>(ItemUrl);
 
@@ -45,7 +53,7 @@ export const fetchItems: ActionCreator<ThunkAction<
   };
 };
 
-export const deleteItem = (id: number) => {
+export const deleteItem = (id: string) => {
   return async (dispatch: Dispatch) => {
     const response = await axios.delete(`${ItemUrl}/${id}`);
     if (response.status === 200) {
@@ -58,14 +66,27 @@ export const deleteItem = (id: number) => {
     }
   };
 };
-export const createItem = (item: IItem) => {
+export const createItem = (item: IItem2) => {
   return async (dispatch: Dispatch) => {
-    const response = await axios.post(ItemUrl);
+    const response = await axios.post(ItemUrl, item);
     if (response.status === 201) {
       const item = await axios.get(`${ItemUrl}/${response.data.id}`);
       dispatch<ICreateItemActions>({
         type: ActionTypes.createItem,
         payload: item.data
+      });
+    } else {
+      console.log('Create not successful!');
+    }
+  };
+};
+export const updateItem = (item: IItem2) => {
+  return async (dispatch: Dispatch) => {
+    const response = await axios.put(`${ItemUrl}/${item.id}`, item);
+    if (response.status === 200) {
+      dispatch<IUpdateItemActions>({
+        type: ActionTypes.updateItem,
+        payload: item
       });
     } else {
       console.log('Create not successful!');

@@ -10,7 +10,7 @@ import { StoreState, IItem } from './models/types';
 
 interface IProps {
   checkAuthenticationConnect: () => void;
-  fetchItems: any;
+  fetchItems: () => void;
   items: IItem[];
 }
 
@@ -21,13 +21,14 @@ const App = ({ checkAuthenticationConnect, fetchItems, items }: IProps) => {
 
   React.useEffect(() => {
     fetchItems();
+    //eslint-disable-next-line
   }, []);
 
   return (
     <div className='App'>
       <Router history={history}>
         <Route component={Pages} />
-        <Route path="/laura" component={ChatTesting}/>
+        <Route path='/laura' component={ChatTesting} />
       </Router>
     </div>
   );
