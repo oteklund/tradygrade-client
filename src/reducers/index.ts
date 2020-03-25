@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { itemsReducer } from './items';
 import { authReducer } from './auth';
-import { StoreState } from "../models/types"
+import { StoreState } from '../models/types';
 
-export const reducers = combineReducers<StoreState>({
+export const rootReducer = combineReducers<StoreState>({
   items: itemsReducer,
   auth: authReducer
 });
