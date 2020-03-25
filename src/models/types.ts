@@ -5,9 +5,9 @@ export type User = {
   image_url?: string;
 };
 
-export type IItem = {
+export type IItem2 = {
   id?: string;
-  title: string;
+  name: string;
   description: string;
   sold: boolean;
   seller: string;
@@ -16,6 +16,26 @@ export type IItem = {
   listedAt: Date;
   expires: Date;
   condition: string;
+  pictureURL: string;
+};
+
+export type IItem = {
+  item: {
+    id: string;
+    name: string;
+    description: string;
+    sold: boolean;
+    category: string;
+    price: number;
+    listedAt: Date;
+    expires: Date;
+    condition: string;
+    pictureURL: string;
+  };
+  seller: {
+    name: string;
+    id: number;
+  };
 };
 
 export type Authorization = {
