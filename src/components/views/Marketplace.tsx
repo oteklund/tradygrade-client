@@ -1,3 +1,6 @@
+/*
+This component is the main view of the marketplace. 
+*/
 import React from 'react'
 
 interface Props {
