@@ -3,6 +3,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import Pages from './components/Pages';
+import ChatTesting from './components/laura-test-area/ChatTesting';
 import history from './history';
 import { checkAuthentication, fetchItems } from './actions';
 import { StoreState, IItem } from './models/types';
@@ -26,6 +27,7 @@ const App = ({ checkAuthenticationConnect, fetchItems, items }: IProps) => {
     <div className='App'>
       <Router history={history}>
         <Route component={Pages} />
+        <Route path="/laura" component={ChatTesting}/>
       </Router>
     </div>
   );
