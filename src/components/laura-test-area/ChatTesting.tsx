@@ -25,7 +25,7 @@ const ChatTesting = (props: Props) => {
 
     useEffect(() => {
         socket
-            .emit('joinChat', userField, chatID)
+            .emit('joinChat', { userField, chatID })
             // .on('join', (message: string) => {
             //     console.log(message)
             // })

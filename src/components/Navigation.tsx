@@ -4,17 +4,17 @@ This component is the navigation bar.
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Authorization } from "../models/types";
+import { StoreState, User } from "../models/types";
 import { logOut } from '../actions';
 
 interface Props {
     isAuthenticated: boolean | null
     token: string | null
-    // user: User | null
+    user: User | null
     logOutConnect: () => void
 }
 
-const Navigation = ({ isAuthenticated, token, logOutConnect }: Props) => {
+const Navigation = ({ isAuthenticated, user, logOutConnect }: Props) => {
     const links = isAuthenticated ? (
         <>
             <li>
@@ -66,7 +66,7 @@ const Navigation = ({ isAuthenticated, token, logOutConnect }: Props) => {
 
     return (
         <>
-            <p>{isAuthenticated ? `Logged in user: Bob` : `Logged out`}</p>
+            <p>{isAuthenticated ? `Logged in user: ${user ? user.username : "Bob"}` : `Logged out`}</p>
             <div>
                 <ul>
                     {links}
@@ -80,10 +80,10 @@ const Navigation = ({ isAuthenticated, token, logOutConnect }: Props) => {
 
 }
 
-const mapStateToProps = (state: Authorization) => ({
-    isAuthenticated: state.isAuthenticated,
-    token: state.token,
-    // user: state.user
+const mapStateToProps = (state: StoreState) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    token: state.auth.token,
+    user: state.auth.user
 })
 
 const mapDispatchToProps = {
