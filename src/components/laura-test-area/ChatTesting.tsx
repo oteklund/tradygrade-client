@@ -17,7 +17,7 @@ interface Props {
 
 const ChatTesting = (props: Props) => {
     const [messageField, setMessageField] = useState<string>("");
-    const [userField, setUserField] = useState<string>("");
+    const [userField, setUserField] = useState<string>("Mauri");
     const [messageHistory, setMessageHistory] = useState<ChatMessage[]>([]);
 
     const timeStamp = new Date()
@@ -25,9 +25,10 @@ const ChatTesting = (props: Props) => {
 
     useEffect(() => {
         socket
-            .on('join', (message: string) => {
-                console.log(message)
-            })
+            .emit('joinChat', userField, chatID)
+            // .on('join', (message: string) => {
+            //     console.log(message)
+            // })
 
             .on('user online', (message: string) => {
                 console.log(message)
@@ -45,7 +46,6 @@ const ChatTesting = (props: Props) => {
                     message: message.message,
                     time: message.time
                 }])
-                console.log(message)
                 const element: HTMLElement = document.getElementById('output') as HTMLElement
                 element.innerHTML += `<li><i id="timeStamp">${moment(message.time).format('h:mm:ss')}</i> <b>${message.user}: </b>${message.message}</li>`
                 const chatWindow: HTMLElement = document.getElementById('chatWindow') as HTMLElement
