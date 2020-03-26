@@ -117,13 +117,11 @@ export type AuthenticationAction = IAuthenticate | IUnauthenticate;
 
 export function logIn(name: string, password: string) {
   return async (dispatch: ThunkDispatch<AuthenticationAction, {}, any>) => {
-    let token: string
     let body = {name: name, password: password}
     await fetch("http://localhost:4000/api/auth/login", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUm9uYWxkIE1jRG9uYWxkIiwicGFzc3dvcmQiOiIkMmEkMTAkdHdobjdWdjZ1THpsNTFPYTZkV1MydXg4SlhoT2RIbkJSSDJleXI2LnUwUktodDlQbkQ1REMiLCJpYXQiOjE1ODUxNDY2MTAsImV4cCI6MTU4NTE0ODQxMH0.0rn5LW7R4JXcHRZpsTpb8hmBrGMhaM38O-HBdyZgBzQ"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(body)
     })
