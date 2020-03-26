@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+$bg-dark: #1a2639;
+$bg-dark-light: #3e4a61;
+$bg-orange: #c24d2c;
+$bg-light: #d9dad7;
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 5rem;
+}
+
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: $bg-light;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: $bg-dark;
+}
+
+// .App {
+//   background: ghostwhite;
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: darkgrey;
+// }
