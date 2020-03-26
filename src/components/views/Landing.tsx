@@ -8,7 +8,7 @@ interface Props {}
 const Landing = (props: Props) => {
   return (
     <>
-      <div>Landing works!</div>
+      <div id='text'> Landing works!</div>
       <LogIn />
     </>
   );

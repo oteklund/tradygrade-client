@@ -23,7 +23,7 @@ const ItemPlayground = ({
   const [category, setCategory] = useState<string>('');
   const [price, setPrice] = useState<number | string>(0);
   const [expiration, setExpiration] = useState<string>(
-    moment(new Date()).format('MM-DD-YYYY')
+    moment(new Date()).format('YYYY-MM-DD')
   );
   const [condition, setCondition] = useState<string>('');
   const [pictureUrl, setPictureUrl] = useState<string>('');
@@ -80,7 +80,7 @@ const ItemPlayground = ({
         <input
           type='date'
           onChange={e =>
-            setExpiration(moment(e.target.value).format('MM-DD-YYYY'))
+            setExpiration(moment(e.target.value).format('YYYY-MM-DD'))
           }
         />
         <br />
