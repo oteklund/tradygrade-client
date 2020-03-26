@@ -55,7 +55,7 @@ const ChatTesting = (props: Props) => {
                     time: message.time
                 }])
                 const element: HTMLElement = document.getElementById('output') as HTMLElement
-                element.innerHTML += `<li><i id="timeStamp">${moment(message.time).format('h:mm:ss')}</i> <b>${message.user}: </b>${message.message}</li>`
+                element.innerHTML += `<li><b>${message.user}: </b>${message.message} <i id="timeStamp">${moment(message.time).format('h:mm:ss')}</i></li>`
                 const chatWindow: HTMLElement = document.getElementById('chatWindow') as HTMLElement
                 chatWindow.scrollTop = element.scrollHeight;
                 const feedback: HTMLElement = document.getElementById('feedback') as HTMLElement
