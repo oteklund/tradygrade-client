@@ -4,11 +4,25 @@
   position: fixed;
   left: 0;
   background: #f3f3f3;
+  box-shadow: 5 10 rgba($color: #000000, $alpha: 0.2);
   display: flex;
   flex-direction: column;
   transition: width 200ms ease;
+
+  ul {
+    list-style: none;
+  }
+}
+
+.nav-text {
+  display: none;
+  opacity: 0;
 }
 
 .nav:hover {
   width: 16rem;
+
+  .nav-text {
+    animation: fadeIn 0.5 ease;
+  }
 }
