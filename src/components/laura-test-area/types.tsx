@@ -6,16 +6,8 @@ export interface ChatMessage {
     time: Date;
 }
 
-export interface ChatState {
-    input: string;
-    messages: ChatMessage[];
+export interface ChatUser {
+    id: number;
+    user: string;
+    picture: any;
 }
-
-export interface Messages {
-    messages: ChatMessage[];
-}
-
-// chat: chatID, 
-// user: userField,
-// message: messageField,
-// time: timeStamp

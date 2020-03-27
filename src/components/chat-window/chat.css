@@ -1,0 +1,17 @@
+.ChatWindow {
+  display: -ms-grid;
+  display: grid;
+}
+
+.ChatOutput {
+  background-color: pink;
+}
+
+.ChatParticipants {
+  background-color: palevioletred;
+}
+
+.ComposeMessage {
+  background-color: plum;
+}
+/*# sourceMappingURL=chat.css.map */

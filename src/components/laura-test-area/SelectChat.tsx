@@ -1,14 +1,14 @@
 /*
 This component displays the participant names and pictures in the chat window.
 */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component, ReactElement } from 'react';
 import ChatTesting from './ChatTesting';
 
 interface Props {
 
 }
-let chat = <h1>Hello</h1>;
 
+let chat: ReactElement;
 
 const SelectChat = (props: Props) => {
     const [chatID, setChatId] = useState<number>(0)
@@ -17,13 +17,13 @@ const SelectChat = (props: Props) => {
 
     let changeID = (e: any) => {
         setChatId(e.target.value)
-        chat = <ChatTesting chatID={e.target.value} user={user} userID={userID}/>
+        chat = <ChatTesting chatID={e.target.value} user={user} userID={userID} />
     }
 
     return (
         <div>
-             <input id="user" type="text" placeholder="User" value={user} onChange={e => setUser(e.target.value)} />
-             <input id="user" type="number" placeholder="User" value={userID} onChange={e => setUserId(e.target.value)} />
+            <input id="user" type="text" placeholder="User" value={user} onChange={e => setUser(e.target.value)} />
+            <input id="user" type="number" placeholder="User" value={userID} onChange={e => setUserId(e.target.value)} />
             <button value='1' onClick={changeID}>1</button>
             <button value='2' onClick={changeID}>2</button>
             <button value='3' onClick={changeID}>3</button>
