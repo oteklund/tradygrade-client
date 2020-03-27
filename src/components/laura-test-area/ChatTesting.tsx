@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import icon from './icon.png'
 import { ChatMessage } from './types';
-import { getMessageHistory, addNewMessage } from '../../actions/chat';
+import { getMessageHistory, addNewMessage } from '../../services/chat';
 
 import io from 'socket.io-client';
 const socket = io("http://localhost:9000")
