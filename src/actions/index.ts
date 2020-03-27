@@ -3,9 +3,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { ActionTypes } from './types';
-import { ThunkDispatch } from 'redux-thunk';
-import * as constants from '../models/constants';
-import { IItem, IItem2 } from '../models/types';
+import { IItem, IItem2, User } from '../models/types';
 // import { Authorization } from "../models/types"
 
 export interface IFetchItemActions {
@@ -93,58 +91,3 @@ export const updateItem = (item: IItem2) => {
     }
   };
 };
-
-// authentication-related actions
-export interface IAuthenticate {
-  type: constants.AUTHENTICATE;
-}
-export function authenticate(): IAuthenticate {
-  return {
-    type: constants.AUTHENTICATE
-  };
-}
-
-export interface IUnauthenticate {
-  type: constants.UNAUTHENTICATE;
-}
-export function unauthenticate(): IUnauthenticate {
-  return {
-    type: constants.UNAUTHENTICATE
-  };
-}
-
-export type AuthenticationAction = IAuthenticate | IUnauthenticate;
-
-export function logIn(name: string, password: string) {
-  return async (dispatch: ThunkDispatch<AuthenticationAction, {}, any>) => {
-    let body = {name: name, password: password}
-    await fetch("http://localhost:4000/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(res => res.json())
-      .then(data => {
-        window.localStorage.setItem("token", data.token)
-      })
-    dispatch(authenticate());
-  };
-}
-
-export function logOut() {
-  return async (dispatch: ThunkDispatch<AuthenticationAction, {}, any>) => {
-    await window.localStorage.setItem('token', 'null');
-    dispatch(unauthenticate());
-  };
-}
-
-export function checkAuthentication() {
-  return async (dispatch: ThunkDispatch<AuthenticationAction, {}, any>) => {
-    const token = await window.localStorage.getItem('token');
-    const formattedToken = typeof token === 'string' ? token : null;
-
-    formattedToken ? dispatch(authenticate()) : dispatch(unauthenticate());
-  };
-}

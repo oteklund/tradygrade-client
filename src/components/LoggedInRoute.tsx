@@ -3,21 +3,21 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Navigation from './Navigation';
 import history from '../history';
-import { StoreState } from '../models/types';
+import { StoreState, User } from '../models/types';
 
 interface Props {
   exact?: boolean;
-  isAuthenticated: boolean | null;
+  user: User;
   path: string;
   component: React.ComponentType<any>;
 }
 
 const LoggedInRoute = ({
   component: Component,
-  isAuthenticated,
+  user,
   ...otherProps
-}: Props) => {
-  if (isAuthenticated === false) {
+}: any) => {
+  if (!user.isAuthenticated) {
     history.push('/');
     console.log(
       'attempted to access a page that requires authorization, please log in to proceed.'
@@ -40,7 +40,7 @@ const LoggedInRoute = ({
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  isAuthenticated: state.auth.isAuthenticated
+  user: state.user
 });
 
 export default connect(mapStateToProps)(LoggedInRoute);

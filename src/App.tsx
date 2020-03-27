@@ -5,21 +5,20 @@ import { Router, Route } from 'react-router-dom';
 import Pages from './components/Pages';
 import SelectChat from './components/laura-test-area/SelectChat';
 import history from './history';
-import { checkAuthentication, fetchItems } from './actions';
-import { StoreState, IItem } from './models/types';
+import { fetchItems } from './actions';
+import { checkAuthentication } from "./actions/userActions"
+import { StoreState, IItem, User } from './models/types';
 
 interface IProps {
   checkAuthenticationConnect: () => void;
   fetchItems: () => void;
   items: IItem[];
+  user: User
 }
 
-const App = ({ checkAuthenticationConnect, fetchItems, items }: IProps) => {
+const App = ({ checkAuthenticationConnect, fetchItems, items, user }: any) => {
   React.useEffect(() => {
-    checkAuthenticationConnect();
-  }, []);
-
-  React.useEffect(() => {
+    checkAuthenticationConnect(user);
     fetchItems();
     //eslint-disable-next-line
   }, []);
@@ -40,7 +39,8 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  items: state.items
+  items: state.items,
+  user: state.user
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
