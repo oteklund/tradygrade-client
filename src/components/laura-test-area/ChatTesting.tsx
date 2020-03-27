@@ -6,13 +6,14 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import icon from './icon.png'
 import { ChatMessage } from './types';
-import { getMessageHistory } from '../../actions/chat';
+import { getMessageHistory, addNewMessage } from '../../actions/chat';
 
 import io from 'socket.io-client';
 const socket = io("http://localhost:9000")
 
 interface Props {
     user: string;
+    userID: number;
     chatID: number;
 }
 
@@ -20,6 +21,7 @@ interface Props {
 const ChatTesting = (props: Props) => {
     const [messageField, setMessageField] = useState<string>("");
     const [userField, setUserField] = useState<string>(props.user);
+    const [userId, setUserId] = useState<number>(props.userID)
     const [userPicture, setUserPicture] = useState<any>(icon)
     const [chatIDField, setChatIDField] = useState<number>(props.chatID);
     const [messageHistory, setMessageHistory] = useState<ChatMessage[]>([]);
@@ -40,8 +42,10 @@ const ChatTesting = (props: Props) => {
                 time: message.timestamp
             }])
             message.username !== userField ? position = 'text-align:left' : position = 'text-align:right'
+            
             const element: HTMLElement = document.getElementById('output') as HTMLElement
             element.innerHTML += `<p style=${position}><img src=${userPicture} height="20em" buffer)/> <b>${message.username}: </b>${message.message} <i id="timeStamp">${moment(message.timestamp).format('h:mm:ss')}</i></p>`
+            
             const chatWindow: HTMLElement = document.getElementById('chatWindow') as HTMLElement
             chatWindow.scrollTop = element.scrollHeight;
         }
@@ -78,10 +82,13 @@ const ChatTesting = (props: Props) => {
                     time: message.time
                 }])
                 message.user !== userField ? position = 'text-align:left' : position = 'text-align:right'
+                
                 const element: HTMLElement = document.getElementById('output') as HTMLElement
                 element.innerHTML += `<p style=${position}><img src=${userPicture} height="20em" buffer)/> <b>${message.user}: </b>${message.message} <i id="timeStamp">${moment(message.time).format('h:mm:ss')}</i></p>`
+                
                 const chatWindow: HTMLElement = document.getElementById('chatWindow') as HTMLElement
                 chatWindow.scrollTop = element.scrollHeight;
+               
                 const feedback: HTMLElement = document.getElementById('feedback') as HTMLElement
                 feedback.innerHTML = ``
                 setMessageField('');
@@ -107,6 +114,11 @@ const ChatTesting = (props: Props) => {
             message: messageField,
             time: timeStamp
         });
+        addNewMessage(chatIDField, {            
+            user: userId,
+            message: messageField,
+            time: timeStamp
+        })
     }
 
     const typingMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
