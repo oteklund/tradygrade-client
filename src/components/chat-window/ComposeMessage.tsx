@@ -10,7 +10,7 @@ interface Props {
 const ComposeMessage = (props: Props) => {
     return (
         <div className="ComposeMessage">
-            <h3>ComposeMessage</h3>
+            <textarea></textarea>
         </div>
     )
 }

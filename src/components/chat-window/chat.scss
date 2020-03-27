@@ -2,8 +2,8 @@
   margin: 0rem 0rem;
   height: 100vh;
   display: grid;
-  grid-template-columns: 15em 1fr;
-  grid-template-rows: 1fr 8em;
+  grid-template-columns: 15rem 1fr;
+  grid-template-rows: 1fr 8rem;
   grid-template-areas:
     "r m"
     "r s";
@@ -12,7 +12,7 @@
     grid-area: r;
     padding: 0rem 1rem;
     background-color: #f3f3f3;
-    border-left: 0.1rem solid #cecece ;
+    border-left: 0.1rem solid #cecece;
 
     #userDiv {
       padding: 0.7rem;
@@ -23,7 +23,7 @@
       }
     }
 
-    #userDiv:hover{
+    #userDiv:hover {
       background-color: #333;
 
       b {
@@ -42,9 +42,18 @@
 
   .ComposeMessage {
     grid-area: s;
-    background-color: palevioletred;
-    border-radius: 1rem;
-    margin: 0rem 1rem 0.5rem;
     padding: 0.5rem;
+    margin: 0rem 1rem 0.5rem;
+
+    textarea {
+      background-color: peachpuff;
+      border-radius: 1rem;
+      border: none;
+      resize: none;
+    }
+
+    textarea:focus {
+      outline: none;
+    }
   }
 }
