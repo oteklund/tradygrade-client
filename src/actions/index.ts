@@ -115,9 +115,20 @@ export function unauthenticate(): IUnauthenticate {
 
 export type AuthenticationAction = IAuthenticate | IUnauthenticate;
 
-export function logIn() {
+export function logIn(name: string, password: string) {
   return async (dispatch: ThunkDispatch<AuthenticationAction, {}, any>) => {
-    await window.localStorage.setItem('token', 'placeholder token');
+    let body = {name: name, password: password}
+    await fetch("http://localhost:4000/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(res => res.json())
+      .then(data => {
+        window.localStorage.setItem("token", data.token)
+      })
     dispatch(authenticate());
   };
 }
