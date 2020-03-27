@@ -6,7 +6,14 @@ export type User = {
   token: string | null
   refreshToken: string | null
   isAuthenticated: boolean | null
+  isLoading: boolean | null
 };
+
+export type Error = {
+  message: object
+  status: number | null
+  id?: string | null
+}
 
 export type IItem2 = {
   id?: string;
@@ -45,4 +52,5 @@ export type IItem = {
 export type StoreState = {
   items: IItem[];
   user: User | undefined;
+  error: any
 };

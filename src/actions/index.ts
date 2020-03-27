@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { ActionTypes } from './types';
-import { IItem, IItem2, User } from '../models/types';
+import { IItem, IItem2 } from '../models/types';
 // import { Authorization } from "../models/types"
 
 export interface IFetchItemActions {

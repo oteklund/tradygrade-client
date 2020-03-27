@@ -6,21 +6,23 @@ import Pages from './components/Pages';
 import SelectChat from './components/laura-test-area/SelectChat';
 import history from './history';
 import { fetchItems } from './actions';
-import { checkAuthentication } from "./actions/userActions"
+import { checkAuthentication, loadUser } from "./actions/userActions"
 import { StoreState, IItem, User } from './models/types';
 
 interface IProps {
   checkAuthenticationConnect: () => void;
   fetchItems: () => void;
+  loadUser: (name: string, password: string) => void
   items: IItem[];
   user: User
 }
 
-const App = ({ checkAuthenticationConnect, fetchItems, items, user }: any) => {
+const App = ({ checkAuthenticationConnect, loadUser, fetchItems, items, user }: any) => {
   React.useEffect(() => {
-    checkAuthenticationConnect(user);
+    // checkAuthenticationConnect();
+    loadUser(user.name, user.password)
     fetchItems();
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -34,8 +36,9 @@ const App = ({ checkAuthenticationConnect, fetchItems, items, user }: any) => {
 };
 
 const mapDispatchToProps = {
-  checkAuthenticationConnect: checkAuthentication,
-  fetchItems
+  // checkAuthenticationConnect: checkAuthentication,
+  fetchItems,
+  loadUser
 };
 
 const mapStateToProps = (state: StoreState) => ({
