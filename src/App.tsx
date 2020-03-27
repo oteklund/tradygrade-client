@@ -3,7 +3,6 @@ import './App.scss';
 import { connect } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import Pages from './components/Pages';
-import SelectChat from './components/laura-test-area/SelectChat';
 import history from './history';
 import { fetchItems } from './actions';
 import { checkAuthentication } from "./actions/userActions"
@@ -27,7 +26,6 @@ const App = ({ checkAuthenticationConnect, fetchItems, items, user }: any) => {
     <div className='App'>
       <Router history={history}>
         <Route component={Pages} />
-        <Route path="/laura" component={SelectChat}/>
       </Router>
     </div>
   );

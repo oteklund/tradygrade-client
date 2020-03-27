@@ -9,8 +9,8 @@ interface Props {
 
 const ChatParticipants = (props: Props) => {
     return (
-        <div>
-            
+        <div className="ChatParticipants">
+            <h3>ChatParticipants</h3>
         </div>
     )
 }
