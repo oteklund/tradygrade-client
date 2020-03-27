@@ -5,33 +5,31 @@ import './styles.scss';
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { ChatMessage } from './types';
+import icon from './icon.png'
 
 import io from 'socket.io-client';
 const socket = io("http://localhost:9000")
 
 interface Props {
-    chatID:number;
+    chatID: number;
 }
 
 
 const ChatTesting = (props: Props) => {
     const [messageField, setMessageField] = useState<string>("");
-    const [userField, setUserField] = useState<string>("Maisa");
+    const [userField, setUserField] = useState<string>("Esmes");
+    const [userPicture, setUserPicture] = useState<any>(icon)
     const [chatIDField, setChatIDField] = useState<number>(props.chatID);
     const [messageHistory, setMessageHistory] = useState<ChatMessage[]>([]);
 
     const timeStamp = new Date()
-    
-    // useEffect(() => {
-    //     setChatIDField(chatIDField => props.chatID)
-    // }, [props])
-    
+
     useEffect(() => {
         // socket
         socket
-        
+
             // Join chat
-            .emit('joinChat', userField , chatIDField)
+            .emit('joinChat', userField, chatIDField)
 
             //send welcome message
             .on('message', (message: string) => {
@@ -51,11 +49,12 @@ const ChatTesting = (props: Props) => {
                 setMessageHistory(messageHistory => [...messageHistory, {
                     chat: message.chat,
                     user: message.user,
+                    picture: message.picture,
                     message: message.message,
                     time: message.time
                 }])
                 const element: HTMLElement = document.getElementById('output') as HTMLElement
-                element.innerHTML += `<li><i id="timeStamp">${moment(message.time).format('h:mm:ss')}</i> <b>${message.user}: </b>${message.message}</li>`
+                element.innerHTML += `<li><img src=${userPicture} height="20em" buffer)/> <b>${message.user}: </b>${message.message} <i id="timeStamp">${moment(message.time).format('h:mm:ss')}</i></li>`
                 const chatWindow: HTMLElement = document.getElementById('chatWindow') as HTMLElement
                 chatWindow.scrollTop = element.scrollHeight;
                 const feedback: HTMLElement = document.getElementById('feedback') as HTMLElement
@@ -80,6 +79,7 @@ const ChatTesting = (props: Props) => {
         socket.emit('chatMessage', {
             chat: chatIDField,
             user: userField,
+            picture: userPicture,
             message: messageField,
             time: timeStamp
         });
