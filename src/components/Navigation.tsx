@@ -17,25 +17,38 @@ interface Props {
 const Navigation = ({ user, logOutConnect }: any) => {
   return (
     <div className='nav'>
-      <ul className="main-navigation">
+      <ul className='main-navigation'>
         <li>
-          <NavLink to='/home'>home</NavLink>
+          <NavLink to='/home'>
+            <i className='fas fa-home'></i>
+            <span className='nav-text'>Home</span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to='/marketplace'>marketplace</NavLink>
+          <NavLink to='/marketplace'>
+            <i className='fas fa-shopping-cart'></i>
+            <span className='nav-text'>Market</span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to='/chat'>chats</NavLink>
+          <NavLink to='/chat'>
+            <i className='fas fa-comments'></i>
+            <span className='nav-text'>Chat</span>
+          </NavLink>
         </li>
       </ul>
-      <ul className="account-navigation">
+      <ul className='account-navigation'>
         <li>
-          <NavLink to='/account'>account</NavLink>
+          <NavLink to='/account'>
+            <i className='fas fa-user-circle'></i>
+            <span className='nav-text'>My profile</span>
+          </NavLink>
         </li>
         <li>
           <NavLink onClick={() => logOutConnect(user)} to='/'>
-            log out
-       </NavLink>
+            <i className='fas fa-sign-out-alt'></i>
+            <span className='nav-text'>Log Out</span>
+          </NavLink>
         </li>
       </ul>
     </div>
