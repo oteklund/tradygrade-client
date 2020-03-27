@@ -20,3 +20,16 @@ export const addNewMessage = async (chatID: number, body: object) => {
         console.log('Did not get the message history!');
     }
 }
+
+
+// Temporary user fetch
+const usersUrl = "http://localhost:4000/api/users"
+
+export const getUsers = async () => {
+    const response = await axios.get(`${usersUrl}`);
+    if (response.status === 200) {
+        return (response.data)
+    } else {
+        console.log('Did not find users!');
+    }
+}

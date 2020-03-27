@@ -7,6 +7,9 @@ import history from './history';
 import { fetchItems } from './actions';
 import { checkAuthentication } from "./actions/userActions"
 import { StoreState, IItem, User } from './models/types';
+import ChatWindow from './components/views/ChatWindow';
+import SelectChat from './components/laura-test-area/SelectChat';
+
 
 interface IProps {
   checkAuthenticationConnect: () => void;
@@ -26,6 +29,8 @@ const App = ({ checkAuthenticationConnect, fetchItems, items, user }: any) => {
     <div className='App'>
       <Router history={history}>
         <Route component={Pages} />
+        <Route path="/laura"component={ChatWindow} />
+        <Route path="/laura2"component={SelectChat} />
       </Router>
     </div>
   );

@@ -14,9 +14,8 @@ interface Props {
 const ChatWindow = (props: Props) => {
     return (
         <div className="ChatWindow">
-            <h1>Chat Window</h1>
-            < ChatOutput />
             < ChatParticipants />
+            < ChatOutput />
             < ComposeMessage />
         </div>
     )

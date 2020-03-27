@@ -1,15 +1,50 @@
 .ChatWindow {
-    display: grid;
-}
+  margin: 0rem 0rem;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 15em 1fr;
+  grid-template-rows: 1fr 8em;
+  grid-template-areas:
+    "r m"
+    "r s";
 
-.ChatOutput {
+  .ChatParticipants {
+    grid-area: r;
+    padding: 0rem 1rem;
+    background-color: #f3f3f3;
+    border-left: 0.1rem solid #cecece ;
+
+    #userDiv {
+      padding: 0.7rem;
+      // margin: 0.5em;
+
+      b {
+        font-size: 0.8rem;
+      }
+    }
+
+    #userDiv:hover{
+      background-color: #333;
+
+      b {
+        color: rgba($color: #ffffff, $alpha: 1);
+      }
+    }
+  }
+
+  .ChatOutput {
+    grid-area: m;
     background-color: pink;
-}
+    border-radius: 1rem;
+    margin: 0.5rem 1rem;
+    padding: 0.5rem;
+  }
 
-.ChatParticipants {
+  .ComposeMessage {
+    grid-area: s;
     background-color: palevioletred;
-}
-
-.ComposeMessage {
-    background-color: plum;
+    border-radius: 1rem;
+    margin: 0rem 1rem 0.5rem;
+    padding: 0.5rem;
+  }
 }
