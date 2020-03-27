@@ -2,22 +2,21 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import history from '../history';
-import { Authorization } from '../models/types';
-import Navigation from './Navigation';
+import { User, StoreState } from '../models/types';
 
 interface Props {
   exact?: boolean;
-  isAuthenticated: boolean | null;
+  user: User
   path: string;
   component: React.ComponentType<any>;
 }
 
 const LoggedOutRoute = ({
   component: Component,
-  isAuthenticated,
+  user,
   ...otherProps //why is this unused?
-}: Props) => {
-  if (isAuthenticated === true) {
+}: any) => {
+  if (user.isAuthenticated === true) {
     history.push('/home');
     console.log(
       'Attempted to access a route that is available only if you are logged out, please log out to proceed.'
@@ -29,7 +28,6 @@ const LoggedOutRoute = ({
       <Route
         render={otherProps => (
           <>
-            <Navigation />
             <Component {...otherProps} />
           </>
         )}
@@ -38,8 +36,8 @@ const LoggedOutRoute = ({
   );
 };
 
-const mapStateToProps = (state: Authorization) => ({
-  isAuthenticated: state.isAuthenticated
+const mapStateToProps = (state: StoreState) => ({
+  user: state.user
 });
 
 export default connect(mapStateToProps)(LoggedOutRoute);

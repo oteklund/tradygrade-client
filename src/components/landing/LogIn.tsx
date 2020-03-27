@@ -2,11 +2,12 @@
 This component allows the user to log in.
 */
 import React, { useState } from 'react'
-import { logIn } from "../../actions"
+import { logIn } from "../../actions/userActions"
 import { connect } from 'react-redux'
+import history from '../../history'
 
 interface Props {
-    logInConnect: (name: string, password:string) => void
+    logInConnect: (name: string, password: string) => void
 }
 
 const LogIn = ({ logInConnect }: Props) => {
@@ -16,8 +17,15 @@ const LogIn = ({ logInConnect }: Props) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
-        console.log(name, password)
-        logInConnect(name, password)
+        if (!name || !password) console.log("Please fill out the required fields.")
+        else {
+            try {
+                logInConnect(name, password)
+                history.push("/home")
+            } catch (error) {
+                console.error(error.message)                
+            }
+        }
     }
 
     const onNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

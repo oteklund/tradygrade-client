@@ -7,70 +7,43 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { StoreState, User } from '../models/types';
-import { logOut } from '../actions';
+import { logOut } from '../actions/userActions';
 
 interface Props {
-  isAuthenticated: boolean | null;
-  token: string | null;
-  user: User | null;
-  logOutConnect: () => void;
+  user: User;
+  logOutConnect: (logOutUser: User | null) => void;
 }
 
-const Navigation = ({ isAuthenticated, user, logOutConnect }: Props) => {
-  const links = isAuthenticated ? (
-    <div className='nav'>
-      <li>
-        <NavLink to='/home'>home</NavLink>
-      </li>
-      <li>
-        <NavLink to='/marketplace'>marketplace</NavLink>
-      </li>
-      <li>
-        <NavLink to='/chat'>chats</NavLink>
-      </li>
-    </div>
-  ) : (
-    <div className='nav'>
-      <li>
-        <NavLink to='/'>landing</NavLink>
-      </li>
-      <li>
-        <NavLink to='/about'>about</NavLink>
-      </li>
-    </div>
-  );
-  const profileLinks = isAuthenticated ? (
-    <div className='nav'>
-      <li>
-        <NavLink to='/account'>account</NavLink>
-      </li>
-      <li>
-        <NavLink onClick={logOutConnect} to='/'>
-          log out
-        </NavLink>
-      </li>
-    </div>
-  ) : null;
-
+const Navigation = ({ user, logOutConnect }: any) => {
   return (
     <div className='nav'>
-      <p>
-        {isAuthenticated
-          ? `Logged in user: ${user ? user.username : 'Bob'}`
-          : `Logged out`}
-      </p>
-      <div>
-        <ul>{links}</ul>
-        <ul>{profileLinks}</ul>
-      </div>
+      <ul className="main-navigation">
+        <li>
+          <NavLink to='/home'>home</NavLink>
+        </li>
+        <li>
+          <NavLink to='/marketplace'>marketplace</NavLink>
+        </li>
+        <li>
+          <NavLink to='/chat'>chats</NavLink>
+        </li>
+      </ul>
+      <ul className="account-navigation">
+        <li>
+          <NavLink to='/account'>account</NavLink>
+        </li>
+        <li>
+          <NavLink onClick={() => logOutConnect(user)} to='/'>
+            log out
+       </NavLink>
+        </li>
+      </ul>
     </div>
   );
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  token: state.auth.token,
-  user: state.auth.user
+  user: state.user
 });
 
 const mapDispatchToProps = {
