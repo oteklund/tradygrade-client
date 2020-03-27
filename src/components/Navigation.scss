@@ -1,5 +1,5 @@
 .nav {
-  width: 5rem;
+  width: 4rem;
   height: 100vh;
   margin: 0;
   padding: 3rem 0;
@@ -59,7 +59,7 @@ i {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: space-between;
-    margin: 0.5rem;
+    align-items: center;
 
     span {
       text-align: left;
@@ -70,6 +70,7 @@ i {
 .nav-item {
   display: flex;
   justify-content: center;
+  margin: 0.5rem;
 }
 
 @keyframes fadeIn {
