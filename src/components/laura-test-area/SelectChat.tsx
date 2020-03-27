@@ -13,15 +13,17 @@ let chat = <h1>Hello</h1>;
 const SelectChat = (props: Props) => {
     const [chatID, setChatId] = useState<number>(0)
     const [user, setUser] = useState<string>('')
+    const [userID, setUserId] = useState<any>(0)
 
     let changeID = (e: any) => {
         setChatId(e.target.value)
-        chat = <ChatTesting chatID={e.target.value} user={user} />
+        chat = <ChatTesting chatID={e.target.value} user={user} userID={userID}/>
     }
 
     return (
         <div>
              <input id="user" type="text" placeholder="User" value={user} onChange={e => setUser(e.target.value)} />
+             <input id="user" type="number" placeholder="User" value={userID} onChange={e => setUserId(e.target.value)} />
             <button value='1' onClick={changeID}>1</button>
             <button value='2' onClick={changeID}>2</button>
             <button value='3' onClick={changeID}>3</button>

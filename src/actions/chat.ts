@@ -11,3 +11,12 @@ export const getMessageHistory = async (chatID: number) => {
     console.log('Did not get the message history!');
   }
 }
+
+export const addNewMessage = async (chatID: number, body:object) => {
+    const response = await axios.post(`${MessageUrl}s/${chatID}`, body);
+    if (response.status === 200) {
+      return(response.data)
+    } else {
+      console.log('Did not get the message history!');
+    }
+  }
