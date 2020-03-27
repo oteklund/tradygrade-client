@@ -117,7 +117,7 @@ export type AuthenticationAction = IAuthenticate | IUnauthenticate;
 
 export function logIn(name: string, password: string) {
   return async (dispatch: ThunkDispatch<AuthenticationAction, {}, any>) => {
-    let body = {name: name, password: password}
+    let body = { name: name, password: password }
     await fetch("http://localhost:4000/api/auth/login", {
       method: "POST",
       headers: {
