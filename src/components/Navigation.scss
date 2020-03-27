@@ -1,5 +1,5 @@
 .nav {
-  width: 5rem;
+  width: 4rem;
   height: 100vh;
   margin: 0;
   padding: 3rem 0;
@@ -10,6 +10,7 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+  box-shadow: 3px 0px 10px 0.3px rgba($color: #000000, $alpha: 0.05);
   transition: width 200ms ease;
 
   ul {
@@ -31,11 +32,13 @@
 }
 i {
   color: black;
+  font-size: 1.5rem;
 }
 
 .nav-text {
   display: none;
   color: black;
+  animation: 0.7s fadeIn;
 }
 
 .nav:hover {
@@ -57,7 +60,7 @@ i {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: space-between;
-    margin: 0.5rem;
+    align-items: center;
 
     span {
       text-align: left;
@@ -68,4 +71,17 @@ i {
 .nav-item {
   display: flex;
   justify-content: center;
+  margin: 0.5rem;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    display: inline-block;
+  }
+  100% {
+    opacity: 1;
+  }
 }
