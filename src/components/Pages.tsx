@@ -31,6 +31,11 @@ const Pages = () => {
       />
       <LoggedInRoute path='/chat' exact={true} component={ChatWindow} />
       {/* <LoggedInRoute path='/chat/:chatid' exact={true} component={ChatWindow} /> */}
+      <LoggedInRoute
+        path='/marketplace/search'
+        exact={true}
+        component={SearchResults}
+      />
       <LoggedInRoute path='/marketplace' exact={true} component={Marketplace} />
       <LoggedInRoute
         path='/marketplace/new'
@@ -46,11 +51,6 @@ const Pages = () => {
         path='/marketplace/:itemid/review'
         exact={true}
         component={Review}
-      />
-      <LoggedInRoute
-        path='/marketplace/search'
-        exact={true}
-        component={SearchResults}
       />
       <Route exact path='/itemplayground' component={ItemPlayground} />
       <Route path='**' component={NotFound} />

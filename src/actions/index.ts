@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 import { ActionTypes } from './types';
 import { IItem, IItem2, User } from '../models/types';
+import { IFetchUserActions } from './users';
 // import { Authorization } from "../models/types"
 
 export interface IFetchItemActions {
@@ -25,6 +26,12 @@ export interface IUpdateItemActions {
   type: ActionTypes.updateItem;
   payload: IItem2;
 }
+
+export type ItemActions =
+  | IFetchItemActions
+  | IDeleteItemActions
+  | ICreateItemActions
+  | IUpdateItemActions;
 
 const ItemUrl = 'http://localhost:4000/api/marketplace/items';
 

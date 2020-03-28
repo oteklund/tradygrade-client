@@ -1,6 +1,7 @@
 // import { IFetchItemActions } from '../actions';
 import { IItem } from '../models/types';
 import { ActionTypes } from '../actions/types';
+import { ItemActions } from '../actions';
 
 // Korjaa any, kun ehdit!
 
