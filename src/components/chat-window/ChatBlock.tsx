@@ -20,7 +20,7 @@ const ChatBlock = (props: Props) => {
 
   const openChat = async () => {
       let chatID = await getChatID(myId, user2);
-      props.selectedChat({ id: chatID, myId: myId, user2: props.chatUser.id, user2name: props.chatUser.user, picture: props.chatUser.picture});
+      props.selectedChat({ id: chatID, myId: myId, myName: myName, user2: props.chatUser.id, user2name: props.chatUser.user, picture: props.chatUser.picture});
   };
 
   return (

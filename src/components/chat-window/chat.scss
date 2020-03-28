@@ -55,7 +55,7 @@
       #output strong{
           color: #575ed8;
         }
-        
+
       #feedback p{
           color: #aaa;
           padding: 14px 0px;
@@ -65,12 +65,17 @@
   }
 
   .ComposeMessage {
-    display: flex;
+    display: flexbox;
     grid-area: s;
     padding: 0.5rem;
     margin: 0rem 1rem 0.5rem;
     background-color: peachpuff;
     border-radius: 1rem;
+
+    #feedback {
+      height: 1rem;
+      background-color: lightblue;
+    }  
 
     textarea {
       flex: auto;
@@ -79,7 +84,7 @@
       border: 0.5rem solid #ffffff ;
       resize: none;
     }
-
+    
     textarea:focus {
       outline: none;
     }
