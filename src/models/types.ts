@@ -1,11 +1,12 @@
 export type User = {
+  id?: number;
   name: string;
   email: string | null;
   password: string | null;
   image_url?: string | null;
-  token: string | null
-  refreshToken: string | null
-  isAuthenticated: boolean | null
+  token: string | null;
+  refreshToken: string | null;
+  isAuthenticated: boolean | null;
 };
 
 export type IItem2 = {
@@ -41,8 +42,8 @@ export type IItem = {
   };
 };
 
-
 export type StoreState = {
   items: IItem[];
   user: User | undefined;
+  users: User[];
 };
