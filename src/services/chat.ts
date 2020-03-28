@@ -21,12 +21,23 @@ export const addNewMessage = async (chatID: number, body: object) => {
     }
 }
 
+// GET chatID by two userIDs
+const ChatUrl = "http://localhost:4000/api/chat"
+
+export const getChatID = async (user1:number, user2:number) => {
+    const response = await axios.get(`${ChatUrl}/our/${user1}/${user2}`);
+    if (response.status === 200  && response.data.length !== 0) {
+        return (response.data[0].chat_id)
+    } else {
+        console.log('Did not find chatID for these users!');
+    }
+}
 
 // Temporary user fetch
-const usersUrl = "http://localhost:4000/api/users"
+const UsersUrl = "http://localhost:4000/api/users"
 
 export const getUsers = async () => {
-    const response = await axios.get(`${usersUrl}`);
+    const response = await axios.get(`${UsersUrl}`);
     if (response.status === 200) {
         return (response.data)
     } else {

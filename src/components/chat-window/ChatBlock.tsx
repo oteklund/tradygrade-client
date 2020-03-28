@@ -1,26 +1,36 @@
 /*
 This component displays one chat user.
 */
-import React from 'react';
-import icon from '../laura-test-area/icon.png';
+import React, { useEffect, useState } from "react";
+import icon from "../laura-test-area/icon.png";
 import { ChatUser } from "../laura-test-area/types";
-
+import { getChatID } from "../../services/chat";
 
 interface Props {
-    chatUser:ChatUser
+  chatUser: ChatUser;
+  selectedChat: any;
 }
-
 
 const ChatBlock = (props: Props) => {
-    const openChat = () => {
-        console.log(props.chatUser.user)
-    }
-    
-    return (
-        <div className="ChatBlock">
-            <div  id="userDiv" onClick={openChat}><img src={props.chatUser.picture || icon} height="20em"/><b> {props.chatUser.user} </b></div>
-        </div>
-    )
-}
+  const [myId, setMyId] = useState<number>(2);
+  const [myName, setMyName] = useState<string>('John Doe')
+  const [user2, setUser2] = useState<number>(props.chatUser.id);
 
-export default ChatBlock
+//   const getChatId = async () => {};
+
+  const openChat = async () => {
+      let chatID = await getChatID(myId, user2);
+      props.selectedChat({ id: chatID, myId: myId, myName: myName, user2: props.chatUser.id, user2name: props.chatUser.user, picture: props.chatUser.picture});
+  };
+
+  return (
+    <div className="ChatBlock" key={props.chatUser.id}>
+      <div id="userDiv" onClick={openChat}>
+        <img src={props.chatUser.picture || icon} height="20em" />
+        <b> {props.chatUser.user} </b>
+      </div>
+    </div>
+  );
+};
+
+export default ChatBlock;
