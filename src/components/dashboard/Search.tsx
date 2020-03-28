@@ -2,7 +2,7 @@
 This component enables the user to search for sales items. When the search is run, the user is redirected to the Search Results view.
 */
 import './Search.scss';
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useState } from 'react';
 import { History, LocationState } from 'history';
 import { User, StoreState } from '../../models/types';
 import { connect } from 'react-redux';

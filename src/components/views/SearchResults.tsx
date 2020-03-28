@@ -1,14 +1,27 @@
 /*
 This component displays paginated results of a search. 
 */
-import React from 'react';
-import { User } from '../../models/types';
+import React, { useEffect, useState } from 'react';
+import { User, StoreState, IItem } from '../../models/types';
+import { connect } from 'react-redux';
 
 interface Props {
   location: any;
+  items: IItem[];
 }
 
 const SearchResults = (props: Props) => {
+  //   const [matchingItems, setMatchingItems] = useState<IItem[]>([]);
+
+  //   useEffect(() => {
+  //     fetchMatchingItems();
+  //   });
+
+  //   const fetchMatchingItems = () => {
+  //       let matchingItems = props.items.map(item => (
+
+  //       ))
+  //   };
   return (
     <div>
       <div>
@@ -24,4 +37,8 @@ const SearchResults = (props: Props) => {
   );
 };
 
-export default SearchResults;
+const mapStateToProps = (state: StoreState) => ({
+  items: state.items
+});
+
+export default connect(mapStateToProps)(SearchResults);
