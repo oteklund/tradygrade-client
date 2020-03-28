@@ -4,17 +4,19 @@ This component enables the user to search for sales items. When the search is ru
 import './Search.scss';
 import React, { useState } from 'react';
 import { History, LocationState } from 'history';
-import { User, StoreState } from '../../models/types';
+import { User, StoreState, IItem } from '../../models/types';
 import { connect } from 'react-redux';
 
 interface Props {
   history: History<LocationState>;
   users: User[];
+  items: IItem[];
 }
 
 const Search = (props: Props) => {
   const [searchText, setSearchText] = useState<string>('');
   const [filteredUsers, setFilteredUsers] = useState<Array<any>>([]);
+  const [filteredItems, setFilteredItems] = useState<Array<any>>([]);
 
   const handleSearch = (e: any): void => {
     e.preventDefault();
@@ -22,7 +24,7 @@ const Search = (props: Props) => {
     setSearchText('');
     props.history.push({
       pathname: '/marketplace/search',
-      state: filteredUsers
+      state: { filteredUsers, filteredItems }
     });
   };
 
@@ -38,7 +40,18 @@ const Search = (props: Props) => {
         return user;
       }
     });
+    let matchingItems: IItem[] = props.items.filter(item => {
+      if (
+        item.item.name
+          .toLowerCase()
+          .trim()
+          .includes(e.target.value)
+      ) {
+        return item;
+      }
+    });
     setFilteredUsers(matchingUsers);
+    setFilteredItems(matchingItems);
   };
   return (
     <div className='search-container'>
@@ -61,7 +74,8 @@ const Search = (props: Props) => {
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  users: state.users
+  users: state.users,
+  items: state.items
 });
 
 export default connect(mapStateToProps)(Search);

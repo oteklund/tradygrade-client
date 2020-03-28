@@ -11,27 +11,30 @@ interface Props {
 }
 
 const SearchResults = (props: Props) => {
-  //   const [matchingItems, setMatchingItems] = useState<IItem[]>([]);
+  // const [matchingItems, setMatchingItems] = useState<IItem[]>([]);
 
-  //   useEffect(() => {
-  //     fetchMatchingItems();
-  //   });
+  // useEffect(() => {
+  //   fetchMatchingItems();
+  // });
 
-  //   const fetchMatchingItems = () => {
-  //       let matchingItems = props.items.map(item => (
-
-  //       ))
-  //   };
+  // const fetchMatchingItems = () => {
+  //     let matchingItems = props.items.map(item => {
+  //         return
+  //     })
+  // };
   return (
     <div>
       <div>
         <h3>Matching users</h3>
-        {props.location.state.map((user: User) => (
+        {props.location.state.filteredUsers.map((user: User) => (
           <div key={user.id}>{user.name}</div>
         ))}
       </div>
       <div>
         <h3>Matching products</h3>
+        {props.location.state.filteredItems.map((item: IItem) => (
+          <div key={item.item.id}>{item.item.name}</div>
+        ))}
       </div>
     </div>
   );
