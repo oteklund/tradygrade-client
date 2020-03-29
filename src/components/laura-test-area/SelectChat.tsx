@@ -1,6 +1,7 @@
 /*
 This component displays the participant names and pictures in the chat window.
 */
+
 import React, { useState, useEffect, Component, ReactElement } from 'react';
 import ChatTesting from './ChatTesting';
 

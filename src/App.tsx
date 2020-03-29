@@ -29,8 +29,8 @@ const App = ({ checkAuthenticationConnect, fetchItems, items, user }: any) => {
     <div className='App'>
       <Router history={history}>
         <Route component={Pages} />
-        <Route path="/laura"component={ChatWindow} />
-        <Route path="/laura2"component={SelectChat} />
+        {/* <Route path="/laura"component={ChatWindow} /> */}
+        <Route path="/laura"component={SelectChat} />
       </Router>
     </div>
   );

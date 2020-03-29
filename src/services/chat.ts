@@ -33,6 +33,15 @@ export const getChatID = async (user1:number, user2:number) => {
     }
 }
 
+export const getChats = async (userid:number) => {
+    const response = await axios.get(`${ChatUrl}/my/${userid}`);
+    if (response.status === 200  && response.data.length !== 0) {
+        return (response.data)
+    } else {
+        console.log('Did not find chatID for these users!');
+    }
+}
+
 // Temporary user fetch
 const UsersUrl = "http://localhost:4000/api/users"
 
