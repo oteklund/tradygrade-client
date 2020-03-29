@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { StoreState, IItem } from '../models/types';
+import { StoreState, Item } from '../models/types';
 import { deleteItem, updateItem, createItem } from '../actions/index';
 import moment from 'moment';
 
@@ -8,7 +8,7 @@ interface Props {
   deleteItem: (id: string) => Promise<void>;
   updateItem: any;
   createItem: any;
-  items: IItem[];
+  items: Item[];
 }
 
 const ItemPlayground = ({

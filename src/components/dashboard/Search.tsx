@@ -4,13 +4,13 @@ This component enables the user to search for sales items. When the search is ru
 import './Search.scss';
 import React, { useState } from 'react';
 import { History, LocationState } from 'history';
-import { User, StoreState, IItem } from '../../models/types';
+import { User, StoreState, Item } from '../../models/types';
 import { connect } from 'react-redux';
 
 interface Props {
   history: History<LocationState>;
   users: User[];
-  items: IItem[];
+  items: Item[];
 }
 
 const Search = (props: Props) => {
@@ -40,7 +40,7 @@ const Search = (props: Props) => {
         return user;
       }
     });
-    let matchingItems: IItem[] = props.items.filter(item => {
+    let matchingItems: Item[] = props.items.filter(item => {
       if (
         item.item.name
           .toLowerCase()
