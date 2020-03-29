@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Navigation from './Navigation';
 import history from '../history';
 import { StoreState, User } from '../models/types';
+import Search from './dashboard/Search';
+import SearchResults from './views/SearchResults';
 
 interface Props {
   exact?: boolean;
@@ -12,11 +14,7 @@ interface Props {
   component: React.ComponentType<any>;
 }
 
-const LoggedInRoute = ({
-  component: Component,
-  user,
-  ...otherProps
-}: any) => {
+const LoggedInRoute = ({ component: Component, user, ...otherProps }: any) => {
   if (!user.isAuthenticated) {
     history.push('/');
     console.log(
@@ -31,6 +29,7 @@ const LoggedInRoute = ({
         render={otherProps => (
           <>
             <Navigation />
+            <Search {...otherProps} />
             <Component {...otherProps} />
           </>
         )}
