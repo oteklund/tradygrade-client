@@ -2,7 +2,7 @@
 This component displays the participant names and pictures in the chat window.
 */
 import React, { useEffect, useState } from "react";
-import { ChatUser } from "../laura-test-area/types";
+import { ChatUser } from "../chat-window/types";
 import ChatBlock from "./ChatBlock";
 
 interface Props {

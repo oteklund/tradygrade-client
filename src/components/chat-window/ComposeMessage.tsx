@@ -3,50 +3,41 @@ This component allows the user to write and send chat messages.
 */
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { ChatMessage } from "../laura-test-area/types";
+import { ChatMessage } from "./types";
 import { getMessageHistory, addNewMessage } from "../../services/chat";
-
-import io from "socket.io-client";
-const socket = io("http://localhost:9000");
 
 interface Props {
   chatDetails: any;
-  // message: String
+  myUserId: number
+  myName: string
+  emitMessage: any
 }
 
 const ComposeMessage = (props: Props) => {
   const [messageField, setMessageField] = useState<string>("");
-  const [userField, setUserField] = useState<string>("");
-  const [userPicture, setUserPicture] = useState<any>("");
-  const [chatID, setChatID] = useState<number>(0);
+  const [userField, setUserField] = useState<string>(props.myName);
+  const [userPicture, setUserPicture] = useState<any>(
+    props.chatDetails.picture
+  );
+  const [chatID, setChatID] = useState<number>(props.chatDetails.id);
 
   const timeStamp = new Date();
 
   useEffect(() => {
-    setUserField(props.chatDetails.myName);
-    setChatID(props.chatDetails.id);
-    setUserPicture(props.chatDetails.picture);
-
-    socket
-      // Join chat
-      .emit("joinChat", userField, chatID)
-      
-      .on('typing', (user: string) => {
-        const feedback: HTMLElement = document.getElementById('feedback') as HTMLElement
-        feedback.innerHTML = `<p><em>${user} is typing a message...</em></p>`
-    })
+    setChatID(props.chatDetails.id)
+    setUserField(props.myName)
+    setUserPicture(props.chatDetails.picture)
   }, [props.chatDetails]);
 
   // Sending an message
   const sendMessage = () => {
-    //Emmiting a chat message to server
-    socket.emit("chatMessage", {
+    props.emitMessage({
       chat: chatID,
       user: userField,
       picture: userPicture,
       message: messageField,
       time: timeStamp
-    });
+    })
     // addNewMessage(chatIDField, {
     //   user: userId,
     //   message: messageField,
@@ -57,7 +48,7 @@ const ComposeMessage = (props: Props) => {
 
   const typingMessage = (e: any) => {
     setMessageField(e.target.value);
-    socket.emit("typing", userField, chatID);
+    // socket.emit("typing", userField, chatID);
   };
 
   return (

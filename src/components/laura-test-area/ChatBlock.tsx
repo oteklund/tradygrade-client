@@ -2,9 +2,10 @@
 This component displays one chat user.
 */
 import React, { useEffect, useState } from "react";
-import icon from "../laura-test-area/icon.png";
-import { ChatUser } from "../laura-test-area/types";
+import icon from "./icon.png";
+import { ChatUser } from "../chat-window/types";
 import { getChatID } from "../../services/chat";
+
 
 interface Props {
   chatUser: ChatUser;
