@@ -1,41 +1,53 @@
 /*
 This component displays paginated results of a search. 
 */
+import './SearchResults.scss';
 import React, { useEffect, useState } from 'react';
-import { User, StoreState, IItem } from '../../models/types';
+import { StoreState, Item } from '../../models/types';
 import { connect } from 'react-redux';
+import UsersList from '../search-results/UsersList';
+import ItemsList from '../search-results/ItemsList';
 
 interface Props {
   location: any;
-  items: IItem[];
+  items: Item[];
 }
 
-const SearchResults = (props: Props) => {
-  // const [matchingItems, setMatchingItems] = useState<IItem[]>([]);
+const SearchResults = ({ location }: Props) => {
+  const [showProductsOnly, setShowProductsOnly] = useState<Boolean>(false);
+  const [showUsersOnly, setshowUsersOnly] = useState<Boolean>(false);
 
-  // useEffect(() => {
-  //   fetchMatchingItems();
-  // });
+  useEffect(() => {
+    setShowProductsOnly(false);
+    setshowUsersOnly(false);
+  }, [location.state.filteredItems, location.state.filteredUsers]);
 
-  // const fetchMatchingItems = () => {
-  //     let matchingItems = props.items.map(item => {
-  //         return
-  //     })
-  // };
+  const handleFilter = (e: any) => {
+    if (e.target.innerText === 'Products') {
+      setShowProductsOnly(true);
+      setshowUsersOnly(false);
+    } else {
+      setShowProductsOnly(false);
+      setshowUsersOnly(true);
+    }
+  };
   return (
-    <div>
-      <div>
-        <h3>Matching users</h3>
-        {props.location.state.filteredUsers.map((user: User) => (
-          <div key={user.id}>{user.name}</div>
-        ))}
-      </div>
-      <div>
-        <h3>Matching products</h3>
-        {props.location.state.filteredItems.map((item: IItem) => (
-          <div key={item.item.id}>{item.item.name}</div>
-        ))}
-      </div>
+    <div className='result-container'>
+      <span>Show me only:</span>
+      <button className='filter-button' onClick={e => handleFilter(e)}>
+        Products
+      </button>
+      <button className='filter-button' onClick={e => handleFilter(e)}>
+        Users
+      </button>
+      {showProductsOnly && <ItemsList items={location.state.filteredItems} />}
+      {showUsersOnly && <UsersList users={location.state.filteredUsers} />}
+      {!showUsersOnly && !showProductsOnly && (
+        <React.Fragment>
+          <ItemsList items={location.state.filteredItems} />
+          <UsersList users={location.state.filteredUsers} />
+        </React.Fragment>
+      )}
     </div>
   );
 };

@@ -7,7 +7,7 @@ import history from './history';
 import { fetchItems } from './actions';
 import { fetchUsers } from './actions/users';
 import { checkAuthentication } from './actions/userActions';
-import { StoreState, IItem, User } from './models/types';
+import { StoreState, Item, User } from './models/types';
 import ChatWindow from './components/views/ChatWindow';
 import SelectChat from './components/laura-test-area/SelectChat';
 
@@ -15,7 +15,7 @@ interface IProps {
   checkAuthenticationConnect: () => void;
   fetchItems: () => void;
   fetchUsers: () => void;
-  items: IItem[];
+  items: Item[];
   user: User;
 }
 
