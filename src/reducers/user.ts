@@ -18,6 +18,7 @@ export function userReducer(
     switch (action.type) {
         case AUTHENTICATE:
             return {
+                id: action.payload.id,
                 name: action.payload.name,
                 email: action.payload.email,
                 token: action.payload.token,

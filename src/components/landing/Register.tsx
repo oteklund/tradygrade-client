@@ -93,8 +93,8 @@ const Register = ({user, error, register}: any) => {
                 <Fade in={open}>
                     <div className={classes.paper}>
                         <form onSubmit={handleRegister}>
-                            <input type="text" placeholder="email" onChange={onEmailChange} />
                             <input type="text" placeholder="username" onChange={onNameChange} />
+                            <input type="text" placeholder="email" onChange={onEmailChange} />
                             <input type="password" placeholder="password" onChange={onPasswordChange} />
                             <input type="password" placeholder="confirm password" onChange={onConfirmPasswordChange} />
                             <button type="submit">register</button>
