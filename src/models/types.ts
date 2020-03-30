@@ -7,6 +7,19 @@ export type User = {
   token: string | null;
   refreshToken: string | null;
   isAuthenticated: boolean | null;
+  isLoading: boolean | null;
+};
+
+export type Error = {
+  message: object;
+  status: number | null;
+  id?: string | null;
+};
+
+export type IItem2 = {
+  token: string | null;
+  refreshToken: string | null;
+  isAuthenticated: boolean | null;
 };
 
 export type Item2 = {
@@ -14,7 +27,7 @@ export type Item2 = {
   name: string;
   description: string;
   sold: boolean;
-  seller: string;
+  seller: number | undefined;
   category: string;
   price: number;
   listedAt: Date;
@@ -45,5 +58,6 @@ export type Item = {
 export type StoreState = {
   items: Item[];
   user: User | undefined;
+  error: any;
   users: User[];
 };

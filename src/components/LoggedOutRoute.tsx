@@ -16,10 +16,10 @@ const LoggedOutRoute = ({
   user,
   ...otherProps //why is this unused?
 }: any) => {
-  if (user.isAuthenticated === true) {
+  if (user.isAuthenticated) {
     history.push('/home');
     console.log(
-      'Attempted to access a route that is available only if you are logged out, please log out to proceed.'
+      'Attempted to access a route that is available only if you are logged out, redirecting to dashboard.'
     );
   }
 
