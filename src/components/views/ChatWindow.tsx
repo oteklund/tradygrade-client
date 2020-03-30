@@ -15,13 +15,14 @@ import io from "socket.io-client";
 
 interface Props {
   user: any;
+  match: any
 }
 
 // Open socket connection
 const socket = io("http://localhost:9000");
 
 const ChatWindow = (props: Props) => {
-  // const [chatUsers, setChatUsers] = useState<[]>([]);
+  const [chatID, setChatId ] = useState<number>(props.match.params.chatid)
   const [chatDetails, setChatDetails] = useState<any>([]);
   const [chats, setChats] = useState<any>([]);
   const [messages, setMessages] = useState<any>();
