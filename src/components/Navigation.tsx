@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { StoreState, User } from '../models/types';
 import { logOut } from '../actions/userActions';
-import logo from '../pictures/tradyheadlightblue.png';
+import logo from '../pictures/tradyheadorange.png';
 
 interface Props {
   user: User;
