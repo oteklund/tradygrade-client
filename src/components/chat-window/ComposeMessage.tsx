@@ -7,9 +7,10 @@ import { ChatMessage } from "./types";
 import { getMessageHistory, addNewMessage } from "../../services/chat";
 
 interface Props {
-  chatDetails: any;
+  chatID: number
   myUserId: number
   myName: string
+  myPicture: string;
   emitMessage: any
 }
 
@@ -17,17 +18,17 @@ const ComposeMessage = (props: Props) => {
   const [messageField, setMessageField] = useState<string>("");
   const [userField, setUserField] = useState<string>(props.myName);
   const [userPicture, setUserPicture] = useState<any>(
-    props.chatDetails.picture
+    props.myPicture
   );
-  const [chatID, setChatID] = useState<number>(props.chatDetails.id);
+  const [chatID, setChatID] = useState<number>(props.chatID);
 
   const timeStamp = new Date();
 
   useEffect(() => {
-    setChatID(props.chatDetails.id)
+    setChatID(props.chatID)
     setUserField(props.myName)
-    setUserPicture(props.chatDetails.picture)
-  }, [props.chatDetails]);
+    setUserPicture(props.myPicture)
+  }, [props.chatID]);
 
   // Sending an message
   const sendMessage = () => {

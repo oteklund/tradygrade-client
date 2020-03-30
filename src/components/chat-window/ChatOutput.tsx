@@ -12,8 +12,9 @@ import UserDetails from "../account-management/UserDetails";
 const socket = io("http://localhost:9000");
 
 interface Props {
-  chatDetails: any;
+  chatID: number
   myUserId: number;
+  myPicture: string;
   myName: string;
   newMessage: any;
 }
@@ -21,18 +22,15 @@ interface Props {
 const ChatOutput = (props: Props) => {
   const [messageHistory, setMessageHistory] = useState<ChatMessage[]>([]);
   const [newMessages, setNewMessages] = useState<ChatMessage>(props.newMessage);
-  const [chatIDField, setChatIDField] = useState<number>(props.myUserId);
+  const [chatIDField, setChatIDField] = useState<number>(props.chatID);
   const [userField, setUserField] = useState<string>(props.myName);
-  const [userPicture, setUserPicture] = useState<any>(
-    props.chatDetails.picture
-  );
 
   let position: string;
   async function getHistory() {
     const element: HTMLElement = document.getElementById(
       "output"
     ) as HTMLElement;
-    const history = await getMessageHistory(props.chatDetails.id);
+    const history = await getMessageHistory(props.chatID);
     for (let message of history.messages) {
       setMessageHistory(messageHistory => [
         ...messageHistory,
@@ -73,15 +71,14 @@ const ChatOutput = (props: Props) => {
       "output"
     ) as HTMLElement;
     element.innerHTML = "";
+    setChatIDField(props.chatID);
     setUserField(props.myName);
-    setChatIDField(props.chatDetails.id);
-    setUserPicture(props.chatDetails.picture);
     getHistory();
-  }, [props.chatDetails]);
+  }, [props.chatID]);
 
   const addNewRow = async () => {
     let message = await props.newMessage;
-    if (message == undefined ) {console.log('fail')} else {
+    if (message == undefined ) {console.log('fail: no new messages')} else {
     const element: HTMLElement = document.getElementById(
         "output"
       ) as HTMLElement;
