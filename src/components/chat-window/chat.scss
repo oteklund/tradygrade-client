@@ -121,12 +121,20 @@ box-shadow:  7px 7px 18px #111926,
 
 box-shadow:  4px 4px 8px #202630, 
              -4px -4px 8px #404c62;
+             margin-top:10px;
       
       
     }
 
     button:hover {
       background-color: #e26d4c;
+    }
+
+    button:active {
+      box-shadow:  2px 2px 4px #202630, 
+             -2px -2px 4px #404c62;
+             margin-top:10px;
+
     }
 
     button:focus {
