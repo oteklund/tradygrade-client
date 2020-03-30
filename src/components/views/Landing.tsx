@@ -3,6 +3,7 @@ This component is displayed when the user first visits the website. Subsequent v
 */
 import React from 'react';
 import LogIn from '../landing/LogIn';
+import Register from '../landing/Register';
 interface Props {}
 
 const Landing = (props: Props) => {
@@ -10,6 +11,8 @@ const Landing = (props: Props) => {
     <>
       <div id='text'> Landing works!</div>
       <LogIn />
+      <br />
+      <Register />
     </>
   );
 };

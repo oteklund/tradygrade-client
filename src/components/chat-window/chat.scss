@@ -1,0 +1,107 @@
+.ChatWindow {
+  margin: 0rem 0rem;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  grid-template-rows: 1fr 6rem;
+  grid-template-areas:
+    "r m"
+    "r s";
+
+  .MyChats {
+    grid-area: r;
+    padding: 0rem 1rem;
+    background-color: #f3f3f3;
+    border-left: 0.1rem solid #cecece;
+
+    #userDiv {
+      padding: 0.7rem;
+      // margin: 0.5em;
+
+      b {
+        font-size: 0.8rem;
+      }
+    }
+
+    #userDiv:hover {
+      background-color: #333;
+
+      b {
+        color: rgba($color: #ffffff, $alpha: 1);
+      }
+    }
+  }
+
+  .ChatOutput {
+    display: flexbox;
+    grid-area: m;
+    background-color: pink;
+    border-radius: 1rem;
+    margin: 0.5rem 1rem;
+    padding: 0.5rem;
+
+    #chatWindow{
+      overflow: auto;
+        
+      #timeStamp {
+          font-size: xx-small;
+        }
+        
+      #output p{
+          padding: 14px 0px;
+          margin: 0 20px;
+        }
+        
+      #output strong{
+          color: #575ed8;
+        }
+
+      #feedback p{
+          color: #aaa;
+          padding: 14px 0px;
+          margin: 0 20px;
+        }
+    }
+  }
+
+  .ComposeMessage {
+    display: flexbox;
+    grid-area: s;
+    padding: 0.5rem;
+    margin: 0rem 1rem 0.5rem;
+    background-color: peachpuff;
+    border-radius: 1rem;
+
+    #feedback {
+      height: 1rem;
+      background-color: lightblue;
+    }  
+
+    textarea {
+      flex: auto;
+      background-color: #ffffff;
+      border-radius: 1rem;
+      border: 0.5rem solid #ffffff ;
+      resize: none;
+    }
+    
+    textarea:focus {
+      outline: none;
+    }
+
+    button {
+      background-color: pink;
+      border: none;
+      border-radius: 1rem;
+      width: 4rem;
+    }
+
+    button:hover {
+      background-color: rgba(255, 192, 203, 0.445);
+    }
+
+    button:focus {
+      outline: none;
+    }
+  }
+}

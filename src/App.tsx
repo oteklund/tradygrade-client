@@ -1,26 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
 import { connect } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import Pages from './components/Pages';
-import SelectChat from './components/laura-test-area/SelectChat';
 import history from './history';
-import { checkAuthentication, fetchItems } from './actions';
-import { StoreState, IItem } from './models/types';
+import { fetchItems } from './actions';
+import { fetchUsers } from './actions/users';
+import { checkAuthentication } from './actions/userActions';
+import { StoreState, Item, User } from './models/types';
+import ChatWindow from './components/views/ChatWindow';
+import SelectChat from './components/laura-test-area/SelectChat';
 
 interface IProps {
   checkAuthenticationConnect: () => void;
   fetchItems: () => void;
-  items: IItem[];
+  fetchUsers: () => void;
+  items: Item[];
+  user: User;
 }
 
-const App = ({ checkAuthenticationConnect, fetchItems, items }: IProps) => {
-  React.useEffect(() => {
-    checkAuthenticationConnect();
-  }, []);
-
-  React.useEffect(() => {
+const App = ({
+  checkAuthenticationConnect,
+  fetchItems,
+  fetchUsers,
+  items,
+  user
+}: any) => {
+  useEffect(() => {
+    checkAuthenticationConnect(user);
     fetchItems();
+    fetchUsers();
     //eslint-disable-next-line
   }, []);
 
@@ -28,7 +37,8 @@ const App = ({ checkAuthenticationConnect, fetchItems, items }: IProps) => {
     <div className='App'>
       <Router history={history}>
         <Route component={Pages} />
-        <Route path="/laura" component={SelectChat}/>
+        {/* <Route path="/laura"component={ChatWindow} /> */}
+        <Route path="/laura"component={SelectChat} />
       </Router>
     </div>
   );
@@ -36,11 +46,14 @@ const App = ({ checkAuthenticationConnect, fetchItems, items }: IProps) => {
 
 const mapDispatchToProps = {
   checkAuthenticationConnect: checkAuthentication,
-  fetchItems
+  fetchItems,
+  fetchUsers
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  items: state.items
+  items: state.items,
+  user: state.user,
+  users: state.users
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
