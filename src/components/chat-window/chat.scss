@@ -2,8 +2,8 @@
   margin: 0rem 0rem;
   height: 100vh;
   display: grid;
-  grid-template-columns: 15rem 1fr;
-  grid-template-rows: 1fr 6rem;
+  grid-template-columns: 12rem 1fr;
+  grid-template-rows: 0.8fr 10rem;
   grid-template-areas:
     "r m"
     "r s";
@@ -11,8 +11,11 @@
   .MyChats {
     grid-area: r;
     padding: 0rem 1rem;
-    background-color: #f3f3f3;
-    border-left: 0.1rem solid #cecece;
+    background-color: #3e4a61;
+    display: flexbox;
+    min-width:100px;
+    max-width:143px;
+
 
     #userDiv {
       padding: 0.7rem;
@@ -27,18 +30,20 @@
       background-color: #333;
 
       b {
-        color: rgba($color: #ffffff, $alpha: 1);
+        color: rgba($color: #d9dad7, $alpha: 1);
       }
     }
   }
 
   .ChatOutput {
     display: flexbox;
+    min-width:300px;
     grid-area: m;
-    background-color: pink;
+    background-color: #d9dad7;
     border-radius: 1rem;
     margin: 0.5rem 1rem;
     padding: 0.5rem;
+    max-height:800px;
 
     #chatWindow{
       overflow: auto;
@@ -69,7 +74,7 @@
     grid-area: s;
     padding: 0.5rem;
     margin: 0rem 1rem 0.5rem;
-    background-color: peachpuff;
+    background-color: #d9dad7;
     border-radius: 1rem;
 
     #feedback {
@@ -78,7 +83,7 @@
     }  
 
     textarea {
-      flex: auto;
+      display:flexbox;
       background-color: #ffffff;
       border-radius: 1rem;
       border: 0.5rem solid #ffffff ;
@@ -90,14 +95,15 @@
     }
 
     button {
-      background-color: pink;
+      background-color:#b15237;
       border: none;
       border-radius: 1rem;
       width: 4rem;
+      color:white;
     }
 
     button:hover {
-      background-color: rgba(255, 192, 203, 0.445);
+      background-color: #e26d4c;
     }
 
     button:focus {

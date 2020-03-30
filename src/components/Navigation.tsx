@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { StoreState, User } from '../models/types';
 import { logOut } from '../actions/userActions';
+import logo from '../pictures/tradyheadorange.png';
 
 interface Props {
   user: User;
@@ -18,6 +19,9 @@ const Navigation = ({ user, logOutConnect }: any) => {
   return (
     <div className='nav'>
       <ul className='main-navigation'>
+        <li>
+        <img src={logo} className="App-logo" alt="logo" height="45px" />
+        </li>
         <li>
           <NavLink to='/home' style={{ textDecoration: 'none' }}>
             <div className='nav-item'>

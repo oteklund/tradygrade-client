@@ -11,6 +11,12 @@ body {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   margin-left: 5rem;
+  background-image: url('./pictures/tradywatermark10.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color:#5a6b8b ;
+  background-size: 500px 500px;
 }
 
 body::-webkit-scrollbar {
