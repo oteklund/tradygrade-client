@@ -1,6 +1,7 @@
 /*
 This component is the main view of the marketplace. 
 */
+import './Marketplace.scss';
 import React, { SyntheticEvent } from 'react';
 import { StoreState, Item } from '../../models/types';
 import { connect } from 'react-redux';
