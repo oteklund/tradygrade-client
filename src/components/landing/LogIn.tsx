@@ -66,7 +66,7 @@ const LogIn = ({ logInConnect }: Props) => {
     return (
         <>
             <button type="button" onClick={handleOpen}>Login</button>
-            <Modal
+            <Modal id="login-modal"
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
@@ -79,7 +79,7 @@ const LogIn = ({ logInConnect }: Props) => {
                 }}
             >
                 <Fade in={open}>
-                    <div className={classes.paper}>
+                    <div className="modal">
                         <form onSubmit={handleSubmit}>
                             <input type="text" placeholder="username" onChange={onNameChange} />
                             <input type="password" placeholder="password" onChange={onPasswordChange} />
