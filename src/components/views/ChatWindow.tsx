@@ -6,10 +6,8 @@ import "../chat-window/chat.scss";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import ChatOutput from "../chat-window/ChatOutput";
-import ChatParticipants from "../laura-test-area/ChatParticipants";
 import ComposeMessage from "../chat-window/ComposeMessage";
-import { getUsers, getChats } from "../../services/chat";
-import { ChatUser, ChatMessage } from "../chat-window/types";
+import { ChatMessage } from "../chat-window/types";
 import MyChats from "../chat-window/MyChats";
 import io from "socket.io-client";
 
@@ -19,7 +17,7 @@ interface Props {
 }
 
 const ChatWindow = (props: Props) => {
-  const [chatID, setChatId] = useState<number>(props.match.params.chatid);
+  const [chatID] = useState<number>(props.match.params.chatid);
   const [messages, setMessages] = useState<ChatMessage>();
   const [typingInfo, setTypingInfo] = useState<any>();
   const [myUserId, setMyUsedID] = useState<number>(props.user.id);
@@ -53,8 +51,6 @@ const ChatWindow = (props: Props) => {
       .on("new message", (message: any) => {
         let newMessage = message;
         if (chatID === newMessage.chat) {
-          console.log(chatID);
-          console.log(newMessage);
           setMessages(newMessage);
         }
       })
@@ -77,7 +73,6 @@ const ChatWindow = (props: Props) => {
   };
 
   const typingMessage = (username: string, id: number) => {
-    console.log(username, id);
     socket.emit("typing", myName, chatID);
   };
 
