@@ -6,19 +6,26 @@ $bg-orange: #c24d2c;
 $bg-light: #d9dad7;
 
 body {
-  color: #d9dad7;
+  color: #1a2639;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+
   margin-left: 5rem;
-  background-image: url('./pictures/tradywatermark10.png');
+  background-image: url('./pictures/TradyGradeWatermarkBlue.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  background-color:#1a2639;
-  background-size: 500px 500px;
+  background-color:#d9dad7;
+  background-size: 1000px 1000px;
   
+
 }
 
 body::-webkit-scrollbar {
