@@ -7,10 +7,6 @@ import { getMessageHistory } from "../../services/chat";
 import { ChatMessage } from "./types";
 import icon from "./icon.png";
 
-import io from "socket.io-client";
-import UserDetails from "../account-management/UserDetails";
-const socket = io("http://localhost:9000");
-
 interface Props {
   chatID: number;
   myUserId: number;
@@ -29,10 +25,7 @@ const ChatOutput = (props: Props) => {
   const [chatIDField, setChatIDField] = useState<number>(props.chatID);
   const [userField, setUserField] = useState<string>(props.myName);
 
-  let position: string;
-  let element: HTMLElement = document.getElementById(
-    "output"
-  ) as HTMLElement;
+  let position: string = 'left';
 
   async function getHistory() {
     const history = await getMessageHistory(props.chatID);
@@ -80,10 +73,6 @@ const ChatOutput = (props: Props) => {
   useEffect(() => {
     setNewMessages(newMessages => props.newMessage);
     addNewRow();
-    let feedback: HTMLElement = document.getElementById(
-      "feedback"
-    ) as HTMLElement;
-    feedback.innerHTML = ''
   }, [props.newMessage]);
 
   useEffect(() => {
@@ -92,8 +81,12 @@ const ChatOutput = (props: Props) => {
   }, [props.typingInfo]);
 
   const addNewRow = async () => {
+    let feedback: HTMLElement = document.getElementById(
+      "feedback"
+    ) as HTMLElement;
+    feedback.innerHTML = ''
     let message = await props.newMessage;
-    if (message == undefined) {
+    if (message === undefined) {
       console.log("fail: no new messages");
     } else {
       const element: HTMLElement = document.getElementById(

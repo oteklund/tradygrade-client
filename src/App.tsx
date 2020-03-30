@@ -8,8 +8,6 @@ import { fetchItems } from './actions';
 import { fetchUsers } from './actions/users';
 import { checkAuthentication, loadUser } from './actions/userActions';
 import { StoreState, Item, User } from './models/types';
-import ChatWindow from './components/views/ChatWindow';
-import SelectChat from './components/laura-test-area/SelectChat';
 
 interface IProps {
   checkAuthenticationConnect: () => void;
