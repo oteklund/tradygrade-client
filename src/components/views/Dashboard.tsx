@@ -25,13 +25,16 @@ const Dashboard = ({ user, items }: Props) => {
               new Date(a.item.listedAt).valueOf()
             );
           })
-          .splice(0, 5)
-          .map(item => (
-            <div>
-              <p>{item.item.name}</p>
-              <p>{moment(item.item.listedAt).format('DD-MM-YYYY')}</p>
-            </div>
-          ))}
+          .map((item, index) => {
+            if (index < 5) {
+              return (
+                <div>
+                  <p>{item.item.name}</p>
+                  <p>{moment(item.item.listedAt).format('DD-MM-YYYY')}</p>
+                </div>
+              );
+            }
+          })}
       </div>
     </div>
   );
