@@ -1,6 +1,6 @@
 .ChatWindow {
   opacity: 0.7;
-  z-index:-1;
+  z-index: -1;
   margin: 0rem 0rem;
   height: 100vh;
   display: grid;
@@ -11,15 +11,15 @@
     "r s";
 
   .Chats {
-    color:#d9dad7;
+    color: #d9dad7;
     grid-area: r;
     padding: 0rem 1rem;
     display: flexbox;
-    min-width:100px;
-    max-width:143px;
+    min-width: 100px;
+    max-width: 143px;
     border-radius: 0px;
     background: #ffffff;
-    box-shadow:  10px 10px 10px #c5c6c4;
+    box-shadow: 10px 10px 10px #c5c6c4;
 
     #userDiv {
       padding: 0.7rem;
@@ -41,36 +41,36 @@
 
   .ChatOutput {
     display: flexbox;
-    min-width:300px;
+    min-width: 300px;
     grid-area: m;
     border-radius: 1rem;
     margin: 0.5rem 1rem;
     padding: 0.5rem;
     border-radius: 0px;
     background: #ffffff;
-    box-shadow:  10px 10px 10px #828381;
+    box-shadow: 10px 10px 10px #828381;
 
-    #chatWindow{
+    #chatWindow {
       overflow: auto;
-        
-      #timeStamp {
-          font-size: xx-small;
-        }
-        
-      #output p{
-          padding: 14px 0px;
-          margin: 0 20px;
-        }
-        
-      #output strong{
-          color: #575ed8;
-        }
 
-      #feedback p{
-          color: #aaa;
-          padding: 14px 0px;
-          margin: 0 20px;
-        }
+      #timeStamp {
+        font-size: xx-small;
+      }
+
+      #output p {
+        padding: 14px 0px;
+        margin: 0 20px;
+      }
+
+      #output strong {
+        color: #575ed8;
+      }
+
+      #feedback p {
+        color: #aaa;
+        padding: 14px 0px;
+        margin: 0 20px;
+      }
     }
   }
 
@@ -82,38 +82,34 @@
     border-radius: 0px;
     background: #ffffff;
     border-radius: 0px;
-    box-shadow:  10px 10px 10px #828381;
+    box-shadow: 10px 10px 10px #828381;
 
     #feedback {
       height: 2rem;
-      
-    }  
+    }
 
     textarea {
-      display:flexbox;
+      display: flexbox;
       background-color: #ffffff;
       border-radius: 1rem;
-      border: 0.5rem solid #ffffff ;
+      border: 0.5rem solid #ffffff;
       resize: none;
-      min-width:300px;
-      width:95%;
+      min-width: 300px;
+      width: 95%;
     }
-    
+
     textarea:focus {
       outline: none;
     }
 
     button {
-      background-color:#fa4a19;
+      background-color: #fa4a19;
       border: none;
       border-radius: 1rem;
       width: 5rem;
       height: 2rem;
       border-radius: 31px;
-box-shadow:  8px 8px 10px #828381, 
-             -8px -8px 10px #ffffff;
-      
-      
+      box-shadow: 8px 8px 10px #828381, -8px -8px 10px #ffffff;
     }
 
     button:hover {
@@ -121,8 +117,7 @@ box-shadow:  8px 8px 10px #828381,
     }
 
     button:active {
-      box-shadow:  4px 4px 6px #828381, 
-      -4px -4px 6px #ffffff;
+      box-shadow: 4px 4px 6px #828381, -4px -4px 6px #ffffff;
     }
 
     button:focus {
@@ -132,6 +127,8 @@ box-shadow:  8px 8px 10px #828381,
 }
 
 .MyChatWindow {
+  opacity: 0.7;
+  z-index: -1;
   margin: 0rem 0rem;
   height: 100vh;
   display: grid;
@@ -141,22 +138,60 @@ box-shadow:  8px 8px 10px #828381,
     "r m"
     "r m";
 
+  .MyChatOutput {
+    display: flexbox;
+    min-width: 300px;
+    grid-area: m;
+    border-radius: 1rem;
+    margin: 0.5rem 1rem;
+    padding: 0.5rem;
+    border-radius: 0px;
+    background: #ffffff;
+    box-shadow: 10px 10px 10px #828381;
+
+    #chatWindow {
+      overflow: auto;
+
+      #timeStamp {
+        font-size: xx-small;
+      }
+
+      #output p {
+        padding: 14px 0px;
+        margin: 0 20px;
+      }
+
+      #output strong {
+        color: #575ed8;
+      }
+
+      #feedback p {
+        color: #aaa;
+        padding: 14px 0px;
+        margin: 0 20px;
+      }
+    }
+
+    img {
+      border: none;
+      box-shadow: none;
+      background-color: transparent;
+      max-height: 80vmin;
+      align-self: center;
+    }
+  }
+  
   .MyChats {
-    color:#d9dad7;
+    grid-area: r;
+    color: #d9dad7;
     grid-area: r;
     padding: 0rem 1rem;
     display: flexbox;
-    min-width:100px;
-    max-width:143px;
-    border-radius: 25px;
-    border-radius: 25px;
-    background: #303949;
-    border-radius: 30px;
-    
-
-box-shadow:  7px 7px 18px #111926, 
-             -7px -7px 18px #23334c;
-
+    min-width: 100px;
+    max-width: 143px;
+    border-radius: 0px;
+    background: #ffffff;
+    box-shadow: 10px 10px 10px #c5c6c4;
 
     #userDiv {
       padding: 0.7rem;
@@ -173,49 +208,6 @@ box-shadow:  7px 7px 18px #111926,
       b {
         color: rgba($color: #d9dad7, $alpha: 1);
       }
-    }
-  }
-
-  .MyChatOutput {
-    grid-area: m;
-    text-align: center;
-    min-width:300px;
-    border-radius: 1rem;
-    margin: 0.5rem 1rem;
-    padding: 0.5rem;
-    max-height:800px;
-    border-radius: 30px;
-    background: #303949;
-    border-radius: 30px;
-    box-shadow:  7px 7px 18px #111926, 
-                 -7px -7px 18px #23334c;
-
-    img {
-      max-height: 80vmin;
-      align-self: center;
-    }
-
-    #chatWindow{
-      overflow: auto;
-        
-      #timeStamp {
-          font-size: xx-small;
-        }
-        
-      #output p{
-          padding: 14px 0px;
-          margin: 0 20px;
-        }
-        
-      #output strong{
-          color: #575ed8;
-        }
-
-      #feedback p{
-          color: #aaa;
-          padding: 14px 0px;
-          margin: 0 20px;
-        }
     }
   }
 }
