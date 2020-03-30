@@ -38,8 +38,6 @@ const App = ({
     <div className='App'>
       <Router history={history}>
         <Route component={Pages} />
-        {/* <Route path="/laura"component={ChatWindow} /> */}
-        <Route path="/laura"component={SelectChat} />
       </Router>
     </div>
   );

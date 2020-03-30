@@ -2,8 +2,9 @@
 This component is the container for all chat functionality: composing and sending messages, reading earlier chats and displaying participants.
 */
 
-import React, { useEffect, useState } from "react";
 import "../chat-window/chat.scss";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import ChatOutput from "../chat-window/ChatOutput";
 import ChatParticipants from "../laura-test-area/ChatParticipants";
 import ComposeMessage from "../chat-window/ComposeMessage";
@@ -12,27 +13,31 @@ import { ChatUser, ChatMessage } from "../chat-window/types";
 import MyChats from "../chat-window/MyChats";
 import io from "socket.io-client";
 
-interface Props {}
+interface Props {
+  user: any;
+}
 
 const ChatWindow = (props: Props) => {
   // const [chatUsers, setChatUsers] = useState<[]>([]);
   const [chatDetails, setChatDetails] = useState<any>([]);
   const [chats, setChats] = useState<any>([]);
   const [messages, setMessages] = useState<any>();
-  const myUserId = 2;
-  const myName = "John Doe";
+  const [myUserId, setMyUsedID] = useState<number>(props.user.id);
+  const [myName, setMyName] = useState<string>(props.user.name);
 
   // Open socket connection
   const socket = io("http://localhost:9000");
 
   const myChats = async () => {
-    let chatList = await getChats(myUserId);
+    let chatList = await getChats(props.user.id);
     setChats(chatList);
   };
 
   useEffect(() => {
+    setMyUsedID(props.user.id);
+    setMyName(props.user.name);
     myChats();
-  }, []);
+  }, [myUserId]);
 
   socket
     // Join chat
@@ -56,17 +61,13 @@ const ChatWindow = (props: Props) => {
       console.log(offlineMessage);
     });
 
-  // return () => {
-  //   socket.off("disconnet");
-  // };
-
   const selectedChat = (data: any) => {
     setChatDetails(data);
   };
 
-  const emitMessage = async (message: any) => {
+  const emitMessage = (message: any) => {
     // Emmiting a chat message to server
-    socket.emit("chatMessage", message);
+    socket.emit("chatMessage", message)
   };
 
   return (
@@ -88,4 +89,10 @@ const ChatWindow = (props: Props) => {
   );
 };
 
-export default ChatWindow;
+// export default ChatWindow;
+
+const mapStateToProps = (state: any) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(ChatWindow);
