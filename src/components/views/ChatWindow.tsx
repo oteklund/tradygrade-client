@@ -15,18 +15,19 @@ import io from "socket.io-client";
 
 interface Props {
   user: any;
+  match: any
 }
 
+// Open socket connection
+const socket = io("http://localhost:9000");
+
 const ChatWindow = (props: Props) => {
-  // const [chatUsers, setChatUsers] = useState<[]>([]);
+  const [chatID, setChatId ] = useState<number>(props.match.params.chatid)
   const [chatDetails, setChatDetails] = useState<any>([]);
   const [chats, setChats] = useState<any>([]);
   const [messages, setMessages] = useState<any>();
   const [myUserId, setMyUsedID] = useState<number>(props.user.id);
   const [myName, setMyName] = useState<string>(props.user.name);
-
-  // Open socket connection
-  const socket = io("http://localhost:9000");
 
   const myChats = async () => {
     let chatList = await getChats(props.user.id);
@@ -39,10 +40,14 @@ const ChatWindow = (props: Props) => {
     myChats();
   }, [myUserId]);
 
-  socket
-    // Join chat
-    .emit("joinChat", myName, chatDetails.id)
+  const selectedChat = (data: any) => {
+    setChatDetails(data);
+    socket
+      // Join chat
+      .emit("joinChat", myName, chatDetails.id);
+  };
 
+  socket
     // Receive messages from socket
     .on("message", (message: string) => {
       console.log(message);
@@ -50,7 +55,11 @@ const ChatWindow = (props: Props) => {
 
     .on("new message", (message: any) => {
       let newMessage = message;
-      setMessages(newMessage);
+      if (chatDetails.id === newMessage.chat) {
+        console.log(chatDetails)
+        console.log(newMessage)
+        setMessages(newMessage);
+      }
     })
 
     .on("typing", (user: string) => {
@@ -61,13 +70,11 @@ const ChatWindow = (props: Props) => {
       console.log(offlineMessage);
     });
 
-  const selectedChat = (data: any) => {
-    setChatDetails(data);
-  };
-
   const emitMessage = (message: any) => {
     // Emmiting a chat message to server
-    socket.emit("chatMessage", message)
+    if (chatDetails.id === message.chat) {
+      socket.emit("chatMessage", message);
+    }
   };
 
   return (
