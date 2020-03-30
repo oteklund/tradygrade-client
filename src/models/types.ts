@@ -4,6 +4,19 @@ export type User = {
   email: string | null;
   password: string | null;
   image_url?: string | null;
+  token: string | null
+  refreshToken: string | null
+  isAuthenticated: boolean | null
+  isLoading: boolean | null
+};
+
+export type Error = {
+  message: object
+  status: number | null
+  id?: string | null
+}
+
+export type IItem2 = {
   token: string | null;
   refreshToken: string | null;
   isAuthenticated: boolean | null;
@@ -45,5 +58,6 @@ export type Item = {
 export type StoreState = {
   items: Item[];
   user: User | undefined;
+  error: any
   users: User[];
 };
