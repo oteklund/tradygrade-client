@@ -1,3 +1,63 @@
+*{
+  box-sizing: border-box;
+}
+
 .dashboard {
   padding: 1rem;
 }
+
+.dashItem{
+  background-color: white;
+  opacity:0.8;
+  box-shadow: 10px 10px 10px #828381;
+  margin: 5px;
+  padding: 3px;
+  text-align:center;
+  float:left;
+  justify-items:center;
+  width: 200px;
+  height: 300px;
+  transition: width 100ms ease;
+}
+
+.dashItem:active {
+  opacity:0.7;
+  box-shadow: 5px 5px 5px #737472;
+
+}
+
+.dashItem:hover {
+  width:250px;
+
+}
+
+.dashDate{
+  font-size:10px;
+}
+
+.welcome{
+  background-color:white;
+  opacity:0.8;
+  text-align:center;
+  box-shadow: 10px 10px 10px #828381;
+  margin:10px;
+  padding:10px;
+  font-size:20px;
+  
+}
+
+.itemPicture{
+  border-radius: 22px;
+  background: #d9dad7;
+  box-shadow:  8px 8px 16px #757674, 
+             -8px -8px 16px #ffffff;
+}
+
+.itemPicture:active {
+  border-radius: 22px;
+  background: #d9dad7;
+  box-shadow:  4px 4px 8px #757674, 
+             -4px -4px 8px #ffffff;
+
+}
+
