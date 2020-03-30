@@ -60,6 +60,7 @@ const ComposeMessage = (props: Props) => {
         value={messageField}
         onChange={typingMessage}
       ></textarea>
+      <br></br>
       <button onClick={sendMessage}>Send</button>
     </div>
   );
