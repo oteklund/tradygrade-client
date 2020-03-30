@@ -33,7 +33,7 @@ const NewSalesItem = ({ createItem, user }: Props) => {
       description,
       sold: false,
       category,
-      seller: user.id,
+      sellerId: user.id,
       price: parseFloat(price),
       listedAt: new Date(),
       expires: new Date(expiration),
