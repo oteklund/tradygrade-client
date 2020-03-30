@@ -1,12 +1,58 @@
 /*
 This component is for viewing and buying an existing item. The owner of the item may also edit item details. For posting a new item see component NewSalesItem.
 */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { StoreState, Item } from '../../models/types';
+import { connect } from 'react-redux';
+import moment from 'moment';
+// import { RouteProps } from 'react-router';
 
-interface Props {}
+interface Props {
+  match: any;
+  items: Item[];
+}
 
-const SalesItem = (props: Props) => {
-  return <div></div>;
+const SalesItem = ({ items, match }: Props) => {
+  const [item, setItem] = useState<Item | undefined>();
+
+  useEffect(() => {
+    let matchingItem = items.find((item: Item) => {
+      return item.item.id === match.params.id, 10;
+    });
+    setItem(matchingItem);
+  });
+  if (item) {
+    return (
+      <div className='item-container'>
+        <h3>{item.item.name}</h3>
+        <div className='item-content'>
+          <p>Seller</p>
+          <div>
+            {item.seller.name}
+            <button>View Profile</button>
+          </div>
+          <p>Description</p>
+          <div>{item.item.description}</div>
+          <p>Condition</p>
+          <div>{item.item.condition}</div>
+          <p>Listed at</p>
+          <div>{moment(item.item.listedAt).format('DD-MM-YYYY')}</div>
+          <p>Price</p>
+          <div>
+            <b>{`${item.item.price} €`}</b>
+          </div>
+          <button>Buy Item</button>
+          <button>Chat With Seller</button>
+        </div>
+      </div>
+    );
+  } else {
+    return <p>Loading, please wait...</p>;
+  }
 };
 
-export default SalesItem;
+const mapStateToProps = (state: StoreState) => ({
+  items: state.items
+});
+
+export default connect(mapStateToProps)(SalesItem);

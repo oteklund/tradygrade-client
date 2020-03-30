@@ -16,6 +16,7 @@ import SearchResults from './views/SearchResults';
 import LoggedInRoute from './LoggedInRoute';
 import LoggedOutRoute from './LoggedOutRoute';
 import ItemPlayground from './ItemPlayground';
+import UserProfile from './views/UserProfile';
 
 const Pages = () => {
   return (
@@ -52,6 +53,7 @@ const Pages = () => {
         exact={true}
         component={Review}
       />
+      <LoggedInRoute path='/users/:name' exact={true} component={UserProfile} />
       <Route exact path='/itemplayground' component={ItemPlayground} />
       <Route path='**' component={NotFound} />
     </Switch>
