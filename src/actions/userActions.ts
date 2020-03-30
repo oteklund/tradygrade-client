@@ -2,6 +2,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import * as constants from '../models/constants';
 import { User } from '../models/types'
 import { returnErrors } from "./errorActions"
+import { tokenAndHeaderConfig, handleErrors } from '../services/util';
 
 const authUrl = "http://localhost:4000/api/auth"
 const usersUrl = "http://localhost:4000/api/users"
@@ -45,9 +46,11 @@ export function register (data: Object) {
                 headers: headers,
                 body: JSON.stringify(data)
             })
-                .then(res => res.json())
+                .then(res => {
+                    return res.json()
+                })
                 .then(data => {
-                    console.log(data)
+                    handleErrors(data)
                     dispatch({
                         type: constants.REGISTER_SUCCESS,
                         payload: data
@@ -62,17 +65,23 @@ export function register (data: Object) {
     }
 }
 
-export function loadUser(name: string, password: string) {
+export function loadUser() {
     return async (dispatch: ThunkDispatch<any, {}, any>) => {
+
+        const token = localStorage.getItem("token")
+        if (!token) return
+
         dispatch({ type: constants.USER_LOADING })
 
         const headers = tokenAndHeaderConfig()
         
         fetch(authUrl, {
-            method: "GET",
             headers: headers
         })
-            .then(res => res.json())
+            .then(res => {
+                handleErrors(res)
+                return res.json()
+            })
             .then(data => {
                 console.log(data)
                 dispatch({
@@ -81,25 +90,13 @@ export function loadUser(name: string, password: string) {
                 })
             })
             .catch(error => {
-                dispatch(returnErrors({...error, id: "REGISTER_FAIL"}))
+                console.log(error)
+                dispatch(returnErrors({...error, id: "AUTH_ERROR"}))
                 dispatch({
                     type: constants.AUTH_ERROR
                 })
             })
     }
-}
-
-export function tokenAndHeaderConfig(): Record<string, string> {
-    // get token from localstorage
-    const token = localStorage.getItem("token")
-
-    //set request headers
-    let headers: Record<string, string> = { "Content-Type": "application/json" }
-    if (token) {
-        headers = { ...headers, "Authorization": `Bearer ${token}` }
-    }
-
-    return headers
 }
 
 // TODO error handling
@@ -142,7 +139,7 @@ export function logOut() {
         fetch("http://localhost:4000/api/auth/logout", { method: "DELETE" })
         window.localStorage.setItem("token", "null");
         window.localStorage.setItem("refreshToken", "null")
-        dispatch(unauthenticate());
+        dispatch({ type: constants.LOGOUT_SUCCESS });
     };
 }
 
@@ -164,6 +161,8 @@ export function checkAuthentication() {
         })
             .then(res => res.json())
             .then(user => {
+                console.log("hello: " + user.token);
+                
                 if (!user.token) dispatch(unauthenticate())
                 else {
                     window.localStorage.setItem("token", user.token)

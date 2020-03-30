@@ -27,7 +27,7 @@ export type Item2 = {
   name: string;
   description: string;
   sold: boolean;
-  seller: number | undefined;
+  sellerId: number | undefined;
   category: string;
   price: number;
   listedAt: Date;

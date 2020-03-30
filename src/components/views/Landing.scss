@@ -1,0 +1,102 @@
+$bg-dark: #1a2639;
+$bg-dark-light: #3e4a61;
+$bg-orange: #c24d2c;
+$bg-light: #d9dad7;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700&display=swap');
+
+.landing-container {
+    width: 80vw;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+        padding: 1rem;
+        color: $bg-dark-light;
+        border-style: none;
+        outline: none;
+        font-size: 2rem;
+        text-transform: capitalize;
+        font-family: "comfortaa", "Roboto", sans-serif;
+
+        transition: all 0.1s ease-in-out;
+        transition: color 0.3s;
+
+        border-radius: 8px;
+        background: #d9dad7;
+        box-shadow: 9px 9px 20px #b8b9b7, -9px -9px 20px #fafbf7;
+
+        &:active {
+            border-radius: 8px;
+            background: linear-gradient(145deg, #c3c4c2, #e8e9e6);
+            box-shadow: 9px 9px 20px #b8b9b7, -9px -9px 20px #fafbf7;
+        }
+        &:hover {
+            color: $bg-orange;
+        }
+    }
+}
+.modal {
+    font-family: "comfortaa", "Roboto", sans-serif; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 30vh;
+    width: 20vw;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background-color: $bg-light;
+    border-style: none;
+    outline: none;
+    border-radius: 7px;
+    border-radius: 11px;
+    background: #d9dad7;
+    box-shadow: inset 28px 28px 29px #b8b9b7, inset -28px -28px 29px #fafbf7;
+    input {
+        background-color: #00000000;
+        border-style: none;
+        outline: none;
+    }
+    form {
+        height: 100%;
+        input {
+            font-size: 17px;
+            color: $bg-orange;
+            padding: 10px;
+            margin: 5px auto;
+        }
+    }
+    button {
+        margin-top: 15px;
+        justify-self: flex-end;
+        padding: 0.5rem;
+        color: $bg-dark-light;
+        border-style: none;
+        outline: none;
+        font-size: 1rem;
+        text-transform: capitalize;
+        font-family: "Roboto", sans-serif;
+
+        transition: all 0.1s ease-in-out;
+        transition: color 0.3s;
+
+        border-radius: 11px;
+        background: #d9dad7;
+        box-shadow: 7px 7px 14px #b8b9b7, -7px -7px 14px #fafbf7;
+
+        &:active {
+            border-radius: 11px;
+            background: linear-gradient(145deg, #c3c4c2, #e8e9e6);
+            box-shadow: 7px 7px 14px #b8b9b7, -7px -7px 14px #fafbf7;
+            transition: 0.3s ease-in-out;
+        }
+        &:hover {
+            color: $bg-orange;
+        }
+    }
+}

@@ -16,7 +16,19 @@ export function userReducer(
     action: IAuthenticate | IUnauthenticate | IRefreshToken | any,
 ): User {
     switch (action.type) {
+        case REFRESH_TOKEN:
+            return {
+                ...action.payload
+            }
+        case USER_LOADING:
+            return {
+                ...initialState,
+                isLoading: true
+            }
         case AUTHENTICATE:
+        case LOGIN_SUCCESS:
+            localStorage.setItem("token", action.payload.token)
+            localStorage.setItem("refreshToken", action.payload.refreshToken)
             return {
                 id: action.payload.id,
                 name: action.payload.name,
@@ -24,11 +36,33 @@ export function userReducer(
                 token: action.payload.token,
                 refreshToken: action.payload.refreshToken,
                 password: action.payload.password,
-                image_url: action.payload.image_url,
+                image_url: action.payload.picture,
                 isAuthenticated: true,
                 isLoading: false
             }
+        case USER_LOADED:
+            return {
+                id: action.payload.id,
+                name: action.payload.name,
+                email: action.payload.email,
+                token: localStorage.getItem("token"),
+                refreshToken: localStorage.getItem("refreshToken"),
+                password: action.payload.password,
+                image_url: action.payload.picture,
+                isAuthenticated: true,
+                isLoading: false
+            }
+        case REGISTER_SUCCESS:
+            return {
+                ...initialState,
+                isLoading: false,
+                isAuthenticated: false
+            }
+        case AUTH_ERROR:
+        case LOGIN_FAIL:
+        case REGISTER_FAIL:
         case UNAUTHENTICATE:
+            localStorage.removeItem("token")
             return {
                 name: "",
                 email: null,
@@ -39,39 +73,8 @@ export function userReducer(
                 isAuthenticated: false,
                 isLoading: false
             }
-        case REFRESH_TOKEN:
-            return {
-                ...action.payload
-            }
-        case USER_LOADING:
-            return {
-                ...initialState,
-                isLoading: true
-            }
-        case USER_LOADED:
-        case LOGIN_SUCCESS:
-            localStorage.setItem("token", action.payload.token)
-            localStorage.setItem("refreshToken", action.payload.refreshToken)
-            return {
-                name: action.payload.name,
-                email: action.payload.email,
-                token: action.payload.token,
-                refreshToken: action.payload.refreshToken,
-                password: action.payload.password,
-                image_url: action.payload.image_url,
-                isLoading: false,
-                isAuthenticated: true,
-            }
-        case REGISTER_SUCCESS:
-            return {
-                ...initialState,
-                isLoading: false,
-                isAuthenticated: false
-            }
-        case AUTH_ERROR:
-        case LOGIN_FAIL:
         case LOGOUT_SUCCESS:
-        case REGISTER_FAIL:
+            localStorage.removeItem("refreshToken")
             localStorage.removeItem("token")
             return {
                 name: "",

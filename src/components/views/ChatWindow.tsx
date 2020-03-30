@@ -15,49 +15,37 @@ import io from "socket.io-client";
 
 interface Props {
   user: any;
-  match: any
+  match: any;
 }
 
-// Open socket connection
-const socket = io("http://localhost:9000");
-
 const ChatWindow = (props: Props) => {
-  const [chatID, setChatId ] = useState<number>(props.match.params.chatid)
-  const [chatDetails, setChatDetails] = useState<any>([]);
+  const [chatID, setChatId] = useState<number>(props.match.params.chatid);
   const [chats, setChats] = useState<any>([]);
   const [messages, setMessages] = useState<any>();
   const [myUserId, setMyUsedID] = useState<number>(props.user.id);
   const [myName, setMyName] = useState<string>(props.user.name);
+  const [myPicture, setMyPicture] = useState<string>(props.user.image_url)
 
-  const myChats = async () => {
-    let chatList = await getChats(props.user.id);
-    setChats(chatList);
-  };
+  // Open socket connection
+  const socket = io("http://localhost:9000");
 
-  useEffect(() => {
-    setMyUsedID(props.user.id);
-    setMyName(props.user.name);
-    myChats();
-  }, [myUserId]);
-
-  const selectedChat = (data: any) => {
-    setChatDetails(data);
-    socket
-      // Join chat
-      .emit("joinChat", myName, chatDetails.id);
-  };
-
+  // socket
   socket
+
+    // Join chat
+    .emit("joinChat", myName, chatID)
+
     // Receive messages from socket
     .on("message", (message: string) => {
       console.log(message);
     })
 
+    // Receive chat nmessage
     .on("new message", (message: any) => {
       let newMessage = message;
-      if (chatDetails.id === newMessage.chat) {
-        console.log(chatDetails)
-        console.log(newMessage)
+      if (chatID === newMessage.chat) {
+        console.log(chatID);
+        console.log(newMessage);
         setMessages(newMessage);
       }
     })
@@ -70,26 +58,40 @@ const ChatWindow = (props: Props) => {
       console.log(offlineMessage);
     });
 
+  const myChats = async () => {
+    let chatList = await getChats(props.user.id);
+    setChats(chatList);
+  };
+
+  useEffect(() => {
+    setMyUsedID(props.user.id);
+    setMyName(props.user.name);
+    setMyPicture(props.user.image_url)
+    myChats();
+  }, [myUserId]);
+
   const emitMessage = (message: any) => {
     // Emmiting a chat message to server
-    if (chatDetails.id === message.chat) {
+    if (chatID === message.chat) {
       socket.emit("chatMessage", message);
     }
   };
 
   return (
     <div className="ChatWindow">
-      <MyChats selectedChat={selectedChat} chats={chats} />
+      <MyChats chats={chats} />
       <ChatOutput
-        chatDetails={chatDetails}
+        chatID={chatID}
         myUserId={myUserId}
         myName={myName}
+        myPicture={myPicture}
         newMessage={messages}
       />
       <ComposeMessage
-        chatDetails={chatDetails}
+        chatID={chatID}
         myUserId={myUserId}
         myName={myName}
+        myPicture={myPicture}
         emitMessage={emitMessage}
       />
     </div>
