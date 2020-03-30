@@ -1,8 +1,8 @@
 export interface ChatMessage {
     chat: number;
-    message: string;
-    picture: any;
     user: string;
+    picture: any;
+    message: string;
     time: Date;
 }
 

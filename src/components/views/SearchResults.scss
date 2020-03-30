@@ -1,0 +1,29 @@
+.filter-button {
+  border: none;
+  border-bottom: 1px solid #f4f4f4;
+  background: inherit;
+  padding: 0.3rem 0.5rem;
+  margin: 0.3rem;
+  outline: none;
+}
+
+.filter-button:hover {
+  background: #f4f4f4;
+  cursor: pointer;
+}
+
+// .active {
+//   border-color: black;
+//   background: #333;
+// }
+
+.result-container {
+  text-align: center;
+}
+
+#user-list-item {
+  max-width: 800px;
+  display: grid;
+  margin: auto;
+  grid-template-columns: 5fr repeat(2, 1fr);
+}

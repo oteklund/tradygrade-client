@@ -4,8 +4,8 @@ This component contains the fields in which the user writes a message and submit
 import './styles.scss';
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import icon from './icon.png'
-import { ChatMessage } from './types';
+import icon from '../chat-window/icon.png'
+import { ChatMessage } from '../chat-window/types';
 import { getMessageHistory, addNewMessage } from '../../services/chat';
 
 import io from 'socket.io-client';
@@ -114,11 +114,11 @@ const ChatTesting = (props: Props) => {
             message: messageField,
             time: timeStamp
         });
-        addNewMessage(chatIDField, {            
-            user: userId,
-            message: messageField,
-            time: timeStamp
-        })
+        // addNewMessage(chatIDField, {            
+        //     user: userId,
+        //     message: messageField,
+        //     time: timeStamp
+        // })
     }
 
     const typingMessage = (e: React.ChangeEvent<HTMLInputElement>) => {

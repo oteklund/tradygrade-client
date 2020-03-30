@@ -1,10 +1,11 @@
 // import { IFetchItemActions } from '../actions';
-import { IItem } from '../models/types';
+import { Item } from '../models/types';
 import { ActionTypes } from '../actions/types';
+import { ItemActions } from '../actions';
 
 // Korjaa any, kun ehdit!
 
-export const itemsReducer = (state: IItem[] = [], action: any) => {
+export const itemsReducer = (state: Item[] = [], action: any) => {
   switch (action.type) {
     case ActionTypes.fetchItems:
       return action.payload;

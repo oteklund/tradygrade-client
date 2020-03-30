@@ -3,14 +3,12 @@ This component makes up the front page of the site. Users who have logged on are
 */
 import './Dashboard.scss';
 import React from 'react';
-import Search from '../dashboard/Search';
 
 interface Props {}
 
 const Dashboard = (props: Props) => {
   return (
     <div className='dashboard'>
-      <Search />
       <div>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
         eaque sequi fuga natus vel eveniet modi, aperiam fugit, nesciunt iste

@@ -1,4 +1,5 @@
 export type User = {
+  id?: number;
   name: string;
   email: string | null;
   password: string | null;
@@ -16,6 +17,12 @@ export type Error = {
 }
 
 export type IItem2 = {
+  token: string | null;
+  refreshToken: string | null;
+  isAuthenticated: boolean | null;
+};
+
+export type Item2 = {
   id?: string;
   name: string;
   description: string;
@@ -29,7 +36,7 @@ export type IItem2 = {
   pictureURL: string;
 };
 
-export type IItem = {
+export type Item = {
   item: {
     id: string;
     name: string;
@@ -48,9 +55,9 @@ export type IItem = {
   };
 };
 
-
 export type StoreState = {
-  items: IItem[];
+  items: Item[];
   user: User | undefined;
   error: any
+  users: User[];
 };

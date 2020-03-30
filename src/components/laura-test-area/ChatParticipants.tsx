@@ -2,18 +2,19 @@
 This component displays the participant names and pictures in the chat window.
 */
 import React, { useEffect, useState } from "react";
-import { getUsers } from "../../services/chat";
-import { ChatUser } from "../laura-test-area/types";
+import { ChatUser } from "../chat-window/types";
 import ChatBlock from "./ChatBlock";
 
-interface Props {}
+interface Props {
+  users: any;
+  selectedChat: any
+}
 
 const ChatParticipants = (props: Props) => {
   const [chatUsers, setChatUsers] = useState<ChatUser[]>([]);
 
-  const allUsers = async () => {
-    let users = await getUsers();
-    for (let user of users) {
+  useEffect(() => {
+    for (let user of props.users) {
       setChatUsers(chatUsers => [
         ...chatUsers,
         {
@@ -23,21 +24,16 @@ const ChatParticipants = (props: Props) => {
         }
       ]);
     }
-  };
-
-  useEffect(() => {
-    allUsers();
-  }, []);
+  }, [props.users]);
 
   return (
     <div className="ChatParticipants">
       <h3>ChatParticipants</h3>
-      <div id="userList">
-        {chatUsers.map(chatUser => < ChatBlock chatUser={chatUser} key={chatUser.id}/>)}
+      <div id="userList" >
+        {chatUsers.map(chatUser => (<ChatBlock chatUser={chatUser} key={chatUser.id} selectedChat={props.selectedChat}/>))}
       </div>
     </div>
   );
 };
-
 
 export default ChatParticipants;
