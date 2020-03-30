@@ -118,6 +118,7 @@ export function logIn(name: string, password: string) {
                 if (!data.token) dispatch(unauthenticate())
                 if (data.token) {
                     const loggedInUser: User = {
+                        id: data.id,
                         name: data.name,
                         email: data.email,
                         password: data.password,
@@ -127,6 +128,7 @@ export function logIn(name: string, password: string) {
                         isAuthenticated: null,
                         isLoading: false
                     }
+                    console.log(loggedInUser)
                     window.localStorage.setItem("token", data.token)
                     window.localStorage.setItem("refreshToken", data.refreshToken)
                     dispatch(authenticate(loggedInUser));
