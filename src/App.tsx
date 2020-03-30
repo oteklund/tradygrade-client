@@ -6,14 +6,13 @@ import Pages from './components/Pages';
 import history from './history';
 import { fetchItems } from './actions';
 import { fetchUsers } from './actions/users';
-import { checkAuthentication } from './actions/userActions';
+import { checkAuthentication, loadUser } from './actions/userActions';
 import { StoreState, Item, User } from './models/types';
 import ChatWindow from './components/views/ChatWindow';
 import SelectChat from './components/laura-test-area/SelectChat';
 
 interface IProps {
   checkAuthenticationConnect: () => void;
-  fetchItems: () => void;
   fetchUsers: () => void;
   items: Item[];
   user: User;
@@ -23,11 +22,13 @@ const App = ({
   checkAuthenticationConnect,
   fetchItems,
   fetchUsers,
+  loadUser,
   items,
   user
 }: any) => {
   useEffect(() => {
-    checkAuthenticationConnect(user);
+    // checkAuthenticationConnect(user);
+    loadUser(user.name, user.password)
     fetchItems();
     fetchUsers();
     //eslint-disable-next-line
@@ -44,6 +45,7 @@ const App = ({
 
 const mapDispatchToProps = {
   checkAuthenticationConnect: checkAuthentication,
+  loadUser,
   fetchItems,
   fetchUsers
 };

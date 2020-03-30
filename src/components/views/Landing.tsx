@@ -9,7 +9,6 @@ interface Props {}
 const Landing = (props: Props) => {
   return (
     <>
-      <div id='text'> Landing works!</div>
       <LogIn />
       <br />
       <Register />
