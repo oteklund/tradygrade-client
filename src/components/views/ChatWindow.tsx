@@ -20,55 +20,54 @@ interface Props {
 
 const ChatWindow = (props: Props) => {
   const [chatID, setChatId] = useState<number>(props.match.params.chatid);
-  const [chats, setChats] = useState<any>([]);
-  const [messages, setMessages] = useState<any>();
+  const [messages, setMessages] = useState<ChatMessage>();
+  const [typingInfo, setTypingInfo] = useState<any>();
   const [myUserId, setMyUsedID] = useState<number>(props.user.id);
   const [myName, setMyName] = useState<string>(props.user.name);
-  const [myPicture, setMyPicture] = useState<string>(props.user.image_url)
-
-  // Open socket connection
-  const socket = io("http://localhost:9000");
-
-  // socket
-  socket
-
-    // Join chat
-    .emit("joinChat", myName, chatID)
-
-    // Receive messages from socket
-    .on("message", (message: string) => {
-      console.log(message);
-    })
-
-    // Receive chat nmessage
-    .on("new message", (message: any) => {
-      let newMessage = message;
-      if (chatID === newMessage.chat) {
-        console.log(chatID);
-        console.log(newMessage);
-        setMessages(newMessage);
-      }
-    })
-
-    .on("typing", (user: string) => {
-      console.log(`<p><em>${user} is typing a message...</em></p>`);
-    })
-
-    .on("user disconnect", (offlineMessage: string) => {
-      console.log(offlineMessage);
-    });
-
-  const myChats = async () => {
-    let chatList = await getChats(props.user.id);
-    setChats(chatList);
-  };
+  const [myPicture, setMyPicture] = useState<string>(props.user.image_url);
+  const [socket, setSocket] = useState<any>();
 
   useEffect(() => {
     setMyUsedID(props.user.id);
     setMyName(props.user.name);
-    setMyPicture(props.user.image_url)
-    myChats();
-  }, [myUserId]);
+    setMyPicture(props.user.image_url);
+    // myChats();
+  }, [props.user.id]);
+
+  useEffect(() => {
+    // Open socket connection
+    const socket = io("http://localhost:9000");
+    setSocket(socket);
+
+    // socket
+    socket
+      // Join chat
+      .emit("joinChat", myName, chatID)
+
+      // Receive messages from socket
+      .on("message", (message: string) => {
+        console.log(message);
+      })
+
+      // Receive chat nmessage
+      .on("new message", (message: any) => {
+        let newMessage = message;
+        if (chatID === newMessage.chat) {
+          console.log(chatID);
+          console.log(newMessage);
+          setMessages(newMessage);
+        }
+      })
+
+      .on("typing", async (user: string) => {
+        let typer = user;
+        setTypingInfo(typer);
+      })
+
+      .on("user disconnect", (offlineMessage: string) => {
+        console.log(offlineMessage);
+      });
+  }, []);
 
   const emitMessage = (message: any) => {
     // Emmiting a chat message to server
@@ -77,15 +76,21 @@ const ChatWindow = (props: Props) => {
     }
   };
 
+  const typingMessage = (username: string, id: number) => {
+    console.log(username, id);
+    socket.emit("typing", myName, chatID);
+  };
+
   return (
     <div className="ChatWindow">
-      <MyChats chats={chats} />
+      <MyChats />
       <ChatOutput
         chatID={chatID}
         myUserId={myUserId}
         myName={myName}
         myPicture={myPicture}
         newMessage={messages}
+        typingInfo={typingInfo}
       />
       <ComposeMessage
         chatID={chatID}
@@ -93,6 +98,7 @@ const ChatWindow = (props: Props) => {
         myName={myName}
         myPicture={myPicture}
         emitMessage={emitMessage}
+        typingMessage={typingMessage}
       />
     </div>
   );

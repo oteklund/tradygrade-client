@@ -12,24 +12,29 @@ import UserDetails from "../account-management/UserDetails";
 const socket = io("http://localhost:9000");
 
 interface Props {
-  chatID: number
+  chatID: number;
   myUserId: number;
   myPicture: string;
   myName: string;
   newMessage: any;
+  typingInfo: any;
 }
 
 const ChatOutput = (props: Props) => {
   const [messageHistory, setMessageHistory] = useState<ChatMessage[]>([]);
   const [newMessages, setNewMessages] = useState<ChatMessage>(props.newMessage);
+  const [typingMessages, setTypingMessages] = useState<ChatMessage>(
+    props.typingInfo
+  );
   const [chatIDField, setChatIDField] = useState<number>(props.chatID);
   const [userField, setUserField] = useState<string>(props.myName);
 
   let position: string;
+  let element: HTMLElement = document.getElementById(
+    "output"
+  ) as HTMLElement;
+
   async function getHistory() {
-    const element: HTMLElement = document.getElementById(
-      "output"
-    ) as HTMLElement;
     const history = await getMessageHistory(props.chatID);
     for (let message of history.messages) {
       setMessageHistory(messageHistory => [
@@ -42,28 +47,24 @@ const ChatOutput = (props: Props) => {
           time: message.timestamp
         }
       ]);
-      const element: HTMLElement = document.getElementById(
-        "output"
-      ) as HTMLElement;
       message.username !== userField
         ? (position = "text-align:left")
         : (position = "text-align:right");
-  
+      let element: HTMLElement = document.getElementById(
+        "output"
+      ) as HTMLElement;
       element.innerHTML += `<p style=${position}><img src=${message.picture ||
         icon} height="20em" buffer)/> <b>${message.username}: </b>${
         message.message
       } <i id="timeStamp">${moment(message.time).format("h:mm:ss")}</i></p>`;
-  
-      const chatWindow: HTMLElement = document.getElementById(
+      let chatWindow: HTMLElement = document.getElementById(
         "chatWindow"
       ) as HTMLElement;
       chatWindow.scrollTop = element.scrollHeight;
     }
   }
 
-  const addOutput = (message: any) => {
-    
-  };
+  const addOutput = (message: any) => {};
 
   useEffect(() => {
     setMessageHistory([]);
@@ -76,37 +77,59 @@ const ChatOutput = (props: Props) => {
     getHistory();
   }, [props.chatID]);
 
+  useEffect(() => {
+    setNewMessages(newMessages => props.newMessage);
+    addNewRow();
+    let feedback: HTMLElement = document.getElementById(
+      "feedback"
+    ) as HTMLElement;
+    feedback.innerHTML = ''
+  }, [props.newMessage]);
+
+  useEffect(() => {
+    setTypingMessages(typingMessages => props.typingInfo);
+    someoneIsTyping(props.typingInfo);
+  }, [props.typingInfo]);
+
   const addNewRow = async () => {
     let message = await props.newMessage;
-    if (message == undefined ) {console.log('fail: no new messages')} else {
-    const element: HTMLElement = document.getElementById(
+    if (message == undefined) {
+      console.log("fail: no new messages");
+    } else {
+      const element: HTMLElement = document.getElementById(
         "output"
       ) as HTMLElement;
       message.user !== userField
         ? (position = "text-align:left")
         : (position = "text-align:right");
-  
+
       element.innerHTML += `<p style=${position}><img src=${message.picture ||
         icon} height="20em" buffer)/> <b>${message.user}: </b>${
         message.message
       } <i id="timeStamp">${moment(message.time).format("h:mm:ss")}</i></p>`;
-  
+
       const chatWindow: HTMLElement = document.getElementById(
         "chatWindow"
       ) as HTMLElement;
       chatWindow.scrollTop = element.scrollHeight;
-    }};
+    }
+  };
 
-  useEffect(() => {
-    setNewMessages(newMessages => props.newMessage);
-    addNewRow();
-  }, [props.newMessage]);
+  const someoneIsTyping = (typer:string) => {
+    let feedback: HTMLElement = document.getElementById(
+      "feedback"
+    ) as HTMLElement;
+    if (props.typingInfo !== undefined) {
+      feedback.innerHTML = `<p><em>${typer} is typing a message...</em></p>`;
+    }
+  };
 
   return (
     <div className="ChatOutput">
       <h3>ChatOutput</h3>
       <div id="chatWindow">
         <ul id="output"></ul>
+        <div id="feedback"></div>
       </div>
     </div>
   );

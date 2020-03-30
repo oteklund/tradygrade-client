@@ -1,7 +1,7 @@
 /*
 This component allows a new visitor to create a user account.
 */
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from "@material-ui/core/styles"
 import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
