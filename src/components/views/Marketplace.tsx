@@ -11,7 +11,9 @@ interface Props {
 }
 
 const Marketplace = ({ items }: Props) => {
-  const handleNewItemAddition = (e: SyntheticEvent) => {};
+  const handleNewItemAddition = (e: SyntheticEvent) => {
+    history.push('/marketplace/new');
+  };
   return (
     <div className='marketplace-container'>
       <button onClick={handleNewItemAddition}>

@@ -5,8 +5,13 @@
   justify-content: center;
   border: none;
   padding: 0.2rem 0.5rem;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba($color: #f4f4f4, $alpha: 0.9);
   outline: none;
+  background: inherit;
+}
+
+::placeholder {
+  color: rgba($color: #f4f4f4, $alpha: 0.9);
 }
 
 .search-container {
