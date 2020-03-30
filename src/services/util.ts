@@ -7,6 +7,13 @@ export function tokenAndHeaderConfig(): Record<string, string> {
     if (token) {
         headers = { ...headers, "Authorization": `Bearer ${token}` }
     }
-
     return headers
+}
+
+// handles fetch errors
+export function handleErrors(response: any) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
 }
