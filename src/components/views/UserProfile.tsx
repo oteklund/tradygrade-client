@@ -4,7 +4,7 @@ This component displays the profile of the user
 import React, { useState, useEffect } from 'react';
 import { StoreState, Item, User } from '../../models/types';
 import { connect } from 'react-redux';
-// import history from '../../history';
+import history from '../../history';
 
 interface Props {
   location: any;
@@ -18,6 +18,10 @@ const UserProfile = ({ users, items, location }: Props) => {
     let currentUser = users.find(user => user.name === location.state.name);
     setUser(currentUser);
   }, []);
+
+  const goBack = (e: any): void => {
+    history.goBack();
+  };
   if (user) {
     return (
       <div className='user-profile-container'>
@@ -27,6 +31,7 @@ const UserProfile = ({ users, items, location }: Props) => {
           <div>Positive Reviews:</div>
           <div>Negative Reviews:</div>
         </div>
+        <button onClick={goBack}>Back</button>
       </div>
     );
   } else {
