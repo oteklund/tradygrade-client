@@ -50,3 +50,26 @@ body::-webkit-scrollbar-thumb {
 //   font-size: calc(10px + 2vmin);
 //   color: darkgrey;
 // }
+
+
+button {
+  border:none;
+  background-color: #fa4a19;
+  box-shadow: 8px 8px 8px #828381;
+  color: white;
+  font-size:20px;
+  margin:10px;
+  border-radius: 10px;
+  opacity:0.8;
+}
+
+
+button:hover {
+  color:#1a2639;
+
+}
+
+button:active{
+  box-shadow: 4px 4px 4px #828381;
+  opacity:0.9;
+}

@@ -1,6 +1,8 @@
 /*
 This component is for viewing and buying an existing item. The owner of the item may also edit item details. For posting a new item see component NewSalesItem.
 */
+
+import './SalesItem.scss';
 import React, { useState, useEffect } from 'react';
 import { StoreState, Item } from '../../models/types';
 import { connect } from 'react-redux';
@@ -53,6 +55,7 @@ const SalesItem = ({ items, match }: Props) => {
           <p>Listed at</p>
           <div>{moment(item.item.listedAt).format('DD-MM-YYYY')}</div>
           <p>Price</p>
+          {/* <img className="itemPicture" src={item.item.pictureURL} height="200px" /> */}
           <div>
             <b>{`${item.item.price} €`}</b>
           </div>

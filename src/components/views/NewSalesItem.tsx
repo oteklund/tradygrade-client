@@ -93,8 +93,8 @@ const NewSalesItem = ({ createItem, user }: Props) => {
           onChange={e => setPictureUrl(e.target.value)}
         />
         <br />
-        <button type='submit'>Add to DB</button>
-        <button onClick={() => history.goBack()}>Go Back</button>
+        <button className="itemButton" type='submit'>Add to DB</button>
+        <button className="itemButton" onClick={() => history.goBack()}>Go Back</button>
       </form>
     </div>
   );

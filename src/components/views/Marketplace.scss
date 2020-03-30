@@ -41,7 +41,7 @@
   opacity:0.8;
 }
 
-button {
+.itemButton {
   border:none;
   background-color: #fa4a19;
   box-shadow: 8px 8px 8px #828381;
@@ -51,12 +51,12 @@ button {
   border-radius: 10px;
 }
 
-button:hover {
+.itemButton:hover {
   color:#1a2639;
 
 }
 
-button:active{
+.itemButton:active{
   box-shadow: 4px 4px 4px #828381;
   opacity:0.9;
 }
