@@ -26,9 +26,10 @@ const App = ({
   items,
   user
 }: any) => {
+
   useEffect(() => {
-    // checkAuthenticationConnect(user);
-    loadUser(user.name, user.password)
+    // checkAuthenticationConnect();
+    loadUser()
     fetchItems();
     fetchUsers();
     //eslint-disable-next-line

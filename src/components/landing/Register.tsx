@@ -9,6 +9,7 @@ import Fade from "@material-ui/core/Fade"
 import { StoreState, User, Error } from '../../models/types'
 import { connect } from 'react-redux'
 import { register } from "../../actions/userActions"
+import { clearErrors } from '../../actions/errorActions'
 
 const useStyles = makeStyles(theme => ({
     modal: {
@@ -28,10 +29,10 @@ const useStyles = makeStyles(theme => ({
 interface Props {
     user: User,
     error: Error,
-    register: (data: Object) => void 
+    register: (data: Object) => void
 }
 
-const Register = ({user, error, register}: any) => {
+const Register = ({ user, error, register, clearErrors }: any) => {
 
     const classes = useStyles()
 
@@ -39,6 +40,10 @@ const Register = ({user, error, register}: any) => {
         setOpen(true)
     }
     const handleClose = () => {
+        setName("")
+        setPassword("")
+        setConfirmPassword("")
+        setEmail("")
         setOpen(false)
     }
 
@@ -47,16 +52,27 @@ const Register = ({user, error, register}: any) => {
     const [password, setPassword] = useState<string>("")
     const [email, setEmail] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [errorMessage, setErrorMessage] = useState("")
 
-    const handleRegister = (e: React.FormEvent<HTMLFormElement>): void => {
+    const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const data = {
             name: name,
             password: password,
             email: email
         }
-        if (password !== confirmPassword) alert("Passwords do not match")
-        else register(data)
+        if (password !== confirmPassword) setErrorMessage("Passwords do not match, please try again.")
+        else {
+            try {
+                await register(data)
+                handleClose()
+            } catch (err) {
+                console.log(err)
+                console.log(err.message)
+                setErrorMessage(err.message)
+                
+            }
+        }
     }
 
     const onNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -78,7 +94,7 @@ const Register = ({user, error, register}: any) => {
     return (
         <>
             <button type="button" onClick={handleOpen}>Register</button>
-            <Modal
+            <Modal id="register-modal"
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
@@ -91,13 +107,14 @@ const Register = ({user, error, register}: any) => {
                 }}
             >
                 <Fade in={open}>
-                    <div className={classes.paper}>
+                    <div className="modal">
                         <form onSubmit={handleRegister}>
                             <input type="text" placeholder="username" onChange={onNameChange} />
                             <input type="text" placeholder="email" onChange={onEmailChange} />
                             <input type="password" placeholder="password" onChange={onPasswordChange} />
                             <input type="password" placeholder="confirm password" onChange={onConfirmPasswordChange} />
                             <button type="submit">register</button>
+                            <p id="register-error-response">{errorMessage}</p>
                         </form>
                     </div>
                 </Fade>
@@ -107,7 +124,8 @@ const Register = ({user, error, register}: any) => {
 }
 
 const mapDispatchToProps = {
-    register
+    register,
+    clearErrors
 }
 
 const mapStateToProps = (state: StoreState) => ({
