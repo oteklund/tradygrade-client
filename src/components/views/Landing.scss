@@ -6,15 +6,16 @@ $bg-light: #d9dad7;
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .landing-container {
+    width: 80vw;
     margin-top: 4rem;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
     button {
         padding: 1rem;
-        color: $bg-light;
+        color: $bg-dark-light;
         border-style: none;
         outline: none;
         font-size: 2rem;
@@ -25,13 +26,13 @@ $bg-light: #d9dad7;
         transition: color 0.3s;
 
         border-radius: 8px;
-        background: #1a2639;
-        box-shadow: 6px 6px 10px #16202f, -6px -6px 10px #1e2c43;
+        background: #d9dad7;
+        box-shadow: 9px 9px 20px #b8b9b7, -9px -9px 20px #fafbf7;
+
         &:active {
             border-radius: 8px;
-            background: #1a2639;
-            box-shadow: inset 6px 6px 10px #16202f, inset -6px -6px 10px #1e2c43;
-            transition: 0.3s ease-in-out;
+            background: linear-gradient(145deg, #c3c4c2, #e8e9e6);
+            box-shadow: 9px 9px 20px #b8b9b7, -9px -9px 20px #fafbf7;
         }
         &:hover {
             color: $bg-orange;
@@ -51,8 +52,9 @@ $bg-light: #d9dad7;
     border-style: none;
     outline: none;
     border-radius: 7px;
-    background: #3e4a61;
-    box-shadow: inset 26px 26px 26px #343e51, inset -26px -26px 26px #485671;
+    border-radius: 11px;
+    background: #d9dad7;
+    box-shadow: inset 28px 28px 29px #b8b9b7, inset -28px -28px 29px #fafbf7;
     input {
         background-color: #00000000;
         border-style: none;
@@ -64,14 +66,14 @@ $bg-light: #d9dad7;
             font-size: 17px;
             color: $bg-orange;
             padding: 10px;
-            margin-bottom: 10px;
+            margin: 5px auto;
         }
     }
     button {
         margin-top: 15px;
         justify-self: flex-end;
-        padding: 0.4rem;
-        color: $bg-light;
+        padding: 0.5rem;
+        color: $bg-dark-light;
         border-style: none;
         outline: none;
         font-size: 1rem;
@@ -81,13 +83,14 @@ $bg-light: #d9dad7;
         transition: all 0.1s ease-in-out;
         transition: color 0.3s;
 
-        border-radius: 7px;
-        background: #3e4a61;
-        box-shadow: 6px 6px 7px #374155, -6px -6px 7px #45536d;
+        border-radius: 11px;
+        background: #d9dad7;
+        box-shadow: 7px 7px 14px #b8b9b7, -7px -7px 14px #fafbf7;
+
         &:active {
-            border-radius: 7px;
-            background: #3e4a61;
-            box-shadow: inset 6px 6px 7px #374155, inset -6px -6px 7px #45536d;
+            border-radius: 11px;
+            background: linear-gradient(145deg, #c3c4c2, #e8e9e6);
+            box-shadow: 7px 7px 14px #b8b9b7, -7px -7px 14px #fafbf7;
             transition: 0.3s ease-in-out;
         }
         &:hover {
