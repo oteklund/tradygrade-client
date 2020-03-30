@@ -13,7 +13,7 @@ const Landing = (props: Props) => {
     className="landing-container"
     >
       <LogIn />
-      <br />
+      <h1 id="landing-title">tradygrade</h1>
       <Register />
     </div>
   );
