@@ -1,0 +1,25 @@
+.item-container{
+    background-color:white;
+    min-width: 400px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity:0.8;
+}
+.itemPicture{
+    border-radius: 22px;
+    background: #d9dad7;
+    box-shadow:  8px 8px 16px #757674, 
+               -8px -8px 16px #ffffff;
+  }
+  
+  .itemPicture:active {
+    border-radius: 22px;
+    background: #d9dad7;
+    box-shadow:  4px 4px 8px #757674, 
+               -4px -4px 8px #ffffff;
+  
+  }
+  
