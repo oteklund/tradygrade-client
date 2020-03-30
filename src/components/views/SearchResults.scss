@@ -20,3 +20,10 @@
 .result-container {
   text-align: center;
 }
+
+#user-list-item {
+  max-width: 800px;
+  display: grid;
+  margin: auto;
+  grid-template-columns: 5fr repeat(2, 1fr);
+}
