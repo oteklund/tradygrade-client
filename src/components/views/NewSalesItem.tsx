@@ -1,40 +1,40 @@
 /*
 This component allows users to post a new item they wish to sell.
 */
-import React, { useState } from 'react';
+import './NewSalesItem.scss';
+import React, { useState, SyntheticEvent } from 'react';
 import { connect } from 'react-redux';
-import { StoreState, Item } from '../../models/types';
-import { deleteItem, updateItem, createItem } from '../../actions/';
+import { StoreState, Item2, User } from '../../models/types';
+import { createItem } from '../../actions/';
 import moment from 'moment';
+import history from '../../history';
 
 interface Props {
-  deleteItem: (id: string) => Promise<void>;
-  updateItem: any;
-  createItem: any;
-  items: Item[];
+  // createItem: (item: Item2) => Promise<void>;
+  createItem: (item: Item2) => Promise<void>;
+  user: any;
 }
 
-const NewSalesItem = ({ items, deleteItem, updateItem, createItem }: Props) => {
+const NewSalesItem = ({ createItem, user }: Props) => {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [sellerId, setSellerId] = useState<string | number>(0);
   const [category, setCategory] = useState<string>('');
-  const [price, setPrice] = useState<number | string>(0);
+  const [price, setPrice] = useState<string>('');
   const [expiration, setExpiration] = useState<string>(
     moment(new Date()).format('YYYY-MM-DD')
   );
   const [condition, setCondition] = useState<string>('');
   const [pictureUrl, setPictureUrl] = useState<string>('');
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     createItem({
       name,
       description,
       sold: false,
-      sellerId,
       category,
-      price,
+      seller: user.id,
+      price: parseFloat(price),
       listedAt: new Date(),
       expires: new Date(expiration),
       condition,
@@ -42,14 +42,8 @@ const NewSalesItem = ({ items, deleteItem, updateItem, createItem }: Props) => {
     });
   };
   return (
-    <div>
+    <div className='new-item'>
       <form onSubmit={e => handleSubmit(e)}>
-        <input
-          type='number'
-          placeholder='Seller id'
-          onChange={e => setSellerId(e.target.value)}
-        />
-        <br />
         <input
           type='text'
           placeholder='Enter product name'
@@ -100,27 +94,15 @@ const NewSalesItem = ({ items, deleteItem, updateItem, createItem }: Props) => {
         />
         <br />
         <button type='submit'>Add to DB</button>
+        <button onClick={() => history.goBack()}>Go Back</button>
       </form>
-      <ul>
-        {items.map(item => (
-          <li key={item.item.id}>
-            {item.item.name}
-            <button onClick={() => deleteItem(item.item.id)}>X</button>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
 
-const mapDispatchToProps = {
-  deleteItem,
-  updateItem,
-  createItem
-};
-
 const mapStateToProps = (state: StoreState) => ({
-  items: state.items
+  items: state.items,
+  user: state.user
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewSalesItem);
+export default connect(mapStateToProps, { createItem })(NewSalesItem);

@@ -10,10 +10,9 @@
   background: inherit;
 }
 
-::placeholder {
+.searchbar::placeholder {
   color: rgba($color: #f4f4f4, $alpha: 0.9);
 }
-
 .search-container {
   padding: 1rem;
   margin-bottom: 2rem;
