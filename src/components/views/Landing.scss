@@ -4,9 +4,19 @@ $bg-orange: #c24d2c;
 $bg-light: #d9dad7;
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Comfortaa:400,700&display=swap");
 
 .landing-container {
+    #landing-title {
+        font-size: 6em;
+        position: absolute;
+        left:5%;
+        bottom: 0%;
+        font-family: "comfortaa", "Roboto", sans-serif;
+        pointer-events: none;
+        user-select: none;
+    }
+
     width: 80vw;
     margin-top: 4rem;
     display: flex;
@@ -20,7 +30,6 @@ $bg-light: #d9dad7;
         border-style: none;
         outline: none;
         font-size: 2rem;
-        text-transform: capitalize;
         font-family: "comfortaa", "Roboto", sans-serif;
 
         transition: all 0.1s ease-in-out;
@@ -41,7 +50,7 @@ $bg-light: #d9dad7;
     }
 }
 .modal {
-    font-family: "comfortaa", "Roboto", sans-serif; 
+    font-family: "comfortaa", "Roboto", sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
