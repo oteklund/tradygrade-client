@@ -20,7 +20,7 @@ const Navigation = ({ user, logOutConnect }: any) => {
     <div className='nav'>
       <ul className='main-navigation'>
         <li>
-        <img src={logo} className="App-logo" alt="logo" height="45px" />
+        <img src={logo} className="App-logo" alt="logo" height="40px" />
         </li>
         <li>
           <NavLink to='/home' style={{ textDecoration: 'none' }}>
