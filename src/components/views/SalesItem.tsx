@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { StoreState, Item } from '../../models/types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import history from '../../history';
 // import { RouteProps } from 'react-router';
 
 interface Props {
@@ -21,6 +22,20 @@ const SalesItem = ({ items, match }: Props) => {
     });
     setItem(matchingItem);
   });
+
+  const handleProfileClick = (e: any): void => {
+    if (item) {
+      let userUrlParam = item.seller.name.replace(/\s/, '');
+      history.push({
+        pathname: `/users/${userUrlParam}`,
+        state: { name: item.seller.name }
+      });
+    }
+  };
+
+  const goBack = (e: any): void => {
+    history.goBack();
+  };
   if (item) {
     return (
       <div className='item-container'>
@@ -29,7 +44,7 @@ const SalesItem = ({ items, match }: Props) => {
           <p>Seller</p>
           <div>
             {item.seller.name}
-            <button>View Profile</button>
+            <button onClick={e => handleProfileClick(e)}>View Profile</button>
           </div>
           <p>Description</p>
           <div>{item.item.description}</div>
@@ -42,7 +57,8 @@ const SalesItem = ({ items, match }: Props) => {
             <b>{`${item.item.price} €`}</b>
           </div>
           <button>Buy Item</button>
-          <button>Chat With Seller</button>
+          <button>Chat With Seller</button> <br />
+          <button onClick={goBack}>Go Back</button>
         </div>
       </div>
     );
