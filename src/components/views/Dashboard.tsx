@@ -15,7 +15,7 @@ interface Props {
 const Dashboard = ({ user, items }: Props) => {
   return (
     <div className='dashboard'>
-      {user ? <div>{`Welcome, ${user.name}!`}</div> : <div>WTF?</div>}
+      {user ? <div className="welcome">{`Welcome, ${user.name}!`}</div> : <div>WTF?</div>}
       <div className='latest-items'>
         <p>Latest 5 items added to the marketplace:</p>
         {items
@@ -28,9 +28,13 @@ const Dashboard = ({ user, items }: Props) => {
           .map((item, index) => {
             if (index < 5) {
               return (
-                <div>
-                  <p>{item.item.name}</p>
-                  <p>{moment(item.item.listedAt).format('DD-MM-YYYY')}</p>
+                <div className="dashItem">
+                  <p>{item.item.name}/ {item.item.price}€</p>
+                  <img className="itemPicture"src={item.item.pictureURL} height="100px" />
+                  <p>Listed By: {item.seller.name}</p>
+                  <p className="dashDate" >{moment(item.item.listedAt).format('DD-MM-YYYY')}</p>
+                  
+
                 </div>
               );
             }
