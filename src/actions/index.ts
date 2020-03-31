@@ -73,6 +73,7 @@ export const deleteItem = (id: string) => {
 };
 export const createItem = (item: Item2) => {
   return async (dispatch: Dispatch) => {
+    console.log(item);
     const response = await axios.post(ItemUrl, item);
     if (response.status === 201) {
       const item = await axios.get(`${ItemUrl}/${response.data.id}`);
