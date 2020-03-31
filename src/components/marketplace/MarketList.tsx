@@ -10,14 +10,43 @@ interface Props {
 
 const MarketList = ({ items }: Props) => {
   const [filteredItems, setFilteredItems] = useState<Array<any>>([]);
-  const [category, setCategory] = useState<string>('');
+  const [category, setCategory] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<string>('new');
 
   const handleCategoryChange = (e: any) => {
     setCategory(e.target.value);
   };
+  const handleSortChange = (e: any): void => {
+    setSortBy(e.target.value);
+    switch (sortBy) {
+      case 'new':
+        let sortedArray = filteredItems.sort((a, b) => {
+          return (
+            new Date(b.item.listedAt).valueOf() -
+            new Date(a.item.listedAt).valueOf()
+          );
+        });
+        setFilteredItems(sortedArray);
+        break;
+      case 'asc':
+        let ascArray = filteredItems.sort((a, b) =>
+          a.item.name.toLowerCase().localeCompare(b.item.name.toLowerCase())
+        );
+        setFilteredItems(ascArray);
+        break;
+      case 'high':
+        break;
+      case 'low':
+        break;
+
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
     setFilteredItems(items);
+    setSortBy('new');
     //eslint-disable-next-line
   }, []);
 
@@ -91,9 +120,9 @@ const MarketList = ({ items }: Props) => {
         <div className='filter-settings'>
           <div className='sort-by'>
             <label>Sort by </label>
-            <select>
+            <select value={sortBy} onChange={handleSortChange}>
               <option value='new'>Newly listed</option>
-              <option value='new'>Alphabetical</option>
+              <option value='asc'>Alphabetical</option>
               <option value='high'>Highest price</option>
               <option value='low'>Lowest price</option>
             </select>
