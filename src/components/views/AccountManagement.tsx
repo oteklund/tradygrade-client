@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react'
 import { StoreState, User } from '../../models/types';
 import { connect } from 'react-redux';
 import "./AccountManagement.scss"
-import OttoDevZone from '../laura-test-area/OttoDevZone';
+// import OttoDevZone from '../laura-test-area/OttoDevZone';
 
 interface Props {
     user: User
@@ -43,7 +43,7 @@ const AccountManagement = ({ user }: any) => {
 
     return (
         <div className="account-management-container">
-            <OttoDevZone />
+            {/* <OttoDevZone /> */}
             <span>{user.name}</span>
             <br/>
             <span>{user.email}</span>
