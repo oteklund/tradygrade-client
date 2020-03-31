@@ -1,5 +1,5 @@
 import './MarketList.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
 import MarketListItem from './MarketListItem';
 import { Item } from '../../models/types';
 import RangeSlider from './RangeSlider';
@@ -12,13 +12,15 @@ const MarketList = ({ items }: Props) => {
   const [filteredItems, setFilteredItems] = useState<Array<any>>([]);
   const [category, setCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('new');
+  const [filterText, setFilterText] = useState<string>('');
+  const [sliderValues, setSliderValues] = useState<Array<any>>([0, 1000000]);
 
   const handleCategoryChange = (e: any) => {
     setCategory(e.target.value);
   };
   const handleSortChange = (e: any): void => {
     setSortBy(e.target.value);
-    switch (sortBy) {
+    switch (e.target.value) {
       case 'new':
         let sortedArray = filteredItems.sort((a, b) => {
           return (
@@ -26,6 +28,8 @@ const MarketList = ({ items }: Props) => {
             new Date(a.item.listedAt).valueOf()
           );
         });
+        console.log('sorting by new');
+        console.log(sortedArray);
         setFilteredItems(sortedArray);
 
         break;
@@ -43,14 +47,45 @@ const MarketList = ({ items }: Props) => {
         break;
       case 'low':
         let sortByLow = filteredItems.sort((a, b) => {
-          return b.item.price - a.item.price;
+          return a.item.price - b.item.price;
         });
+
         setFilteredItems(sortByLow);
         break;
 
       default:
         break;
     }
+  };
+
+  const handleSliderChange = (values: Array<number>): void => {
+    setSliderValues(values);
+    let filteredByPrice = items.filter(
+      (item: Item) =>
+        item.item.price > values[0] &&
+        item.item.price < values[1] &&
+        (item.item.category === category || category === 'all') &&
+        item.item.name
+          .toLowerCase()
+          .trim()
+          .includes(filterText.toLowerCase().trim())
+    );
+    setFilteredItems(filteredByPrice);
+  };
+
+  const handleTextFilterChange = (e: any): void => {
+    setFilterText(e.target.value);
+    let filteredByWord = items.filter(
+      (item: Item) =>
+        item.item.name
+          .toLowerCase()
+          .trim()
+          .includes(e.target.value.toLowerCase().trim()) &&
+        (item.item.category === category || category === 'all') &&
+        item.item.price > sliderValues[0] &&
+        item.item.price < sliderValues[1]
+    );
+    setFilteredItems(filteredByWord);
   };
 
   useEffect(() => {
@@ -127,6 +162,12 @@ const MarketList = ({ items }: Props) => {
     <div className='market-list'>
       <div className='filter-box'>
         <h3>Filters</h3>
+        <input
+          type='text'
+          placeholder='Filter by typing'
+          value={filterText}
+          onChange={handleTextFilterChange}
+        />
         <div className='filter-settings'>
           <div className='sort-by'>
             <label>Sort by </label>
@@ -157,7 +198,7 @@ const MarketList = ({ items }: Props) => {
             </select>
           </div>
           <div className='price-filter'>
-            <RangeSlider />
+            <RangeSlider onValueChange={handleSliderChange} />
           </div>
         </div>
       </div>
