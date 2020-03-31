@@ -1,5 +1,5 @@
 import './MarketList.scss';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MarketListItem from './MarketListItem';
 import { Item } from '../../models/types';
 import RangeSlider from './RangeSlider';
@@ -9,6 +9,110 @@ interface Props {
 }
 
 const MarketList = ({ items }: Props) => {
+  const [filteredItems, setFilteredItems] = useState<Array<any>>([]);
+  const [category, setCategory] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<string>('new');
+
+  const handleCategoryChange = (e: any) => {
+    setCategory(e.target.value);
+  };
+  const handleSortChange = (e: any): void => {
+    setSortBy(e.target.value);
+    switch (sortBy) {
+      case 'new':
+        let sortedArray = filteredItems.sort((a, b) => {
+          return (
+            new Date(b.item.listedAt).valueOf() -
+            new Date(a.item.listedAt).valueOf()
+          );
+        });
+        setFilteredItems(sortedArray);
+        break;
+      case 'asc':
+        let ascArray = filteredItems.sort((a, b) =>
+          a.item.name.toLowerCase().localeCompare(b.item.name.toLowerCase())
+        );
+        setFilteredItems(ascArray);
+        break;
+      case 'high':
+        break;
+      case 'low':
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    setFilteredItems(items);
+    setSortBy('new');
+    //eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    switch (category) {
+      case 'Electonics':
+        let itemArray = items.filter(
+          (item: Item) => item.item.category === 'Electronics'
+        );
+        setFilteredItems(itemArray);
+        break;
+      case 'Sports':
+        let sportsArray = items.filter(
+          (item: Item) => item.item.category === 'Sports'
+        );
+        setFilteredItems(sportsArray);
+        break;
+      case 'Vehicles & Accessories':
+        let vehicleArray = items.filter(
+          (item: Item) => item.item.category === 'Vehicles & Accessories'
+        );
+        setFilteredItems(vehicleArray);
+        break;
+      case 'Books, Movies & Music':
+        let booksArray = items.filter(
+          (item: Item) => item.item.category === 'Books, Movies & Music'
+        );
+        setFilteredItems(booksArray);
+        break;
+      case 'Fashion':
+        let fashionArray = items.filter(
+          (item: Item) => item.item.category === 'Fashion'
+        );
+        setFilteredItems(fashionArray);
+        break;
+      case 'Collectibles':
+        let collectiblesArray = items.filter(
+          (item: Item) => item.item.category === 'Collectibles'
+        );
+        setFilteredItems(collectiblesArray);
+        break;
+      case 'Home & Garden':
+        let homeArray = items.filter(
+          (item: Item) => item.item.category === 'Home & Garden'
+        );
+        setFilteredItems(homeArray);
+        break;
+      case 'Health & Beauty':
+        let beautyArray = items.filter(
+          (item: Item) => item.item.category === 'Health & Beauty'
+        );
+        setFilteredItems(beautyArray);
+        break;
+      case 'Other':
+        let otherArray = items.filter(
+          (item: Item) => item.item.category === 'Other'
+        );
+        setFilteredItems(otherArray);
+        break;
+
+      default:
+        setFilteredItems(items);
+        break;
+    }
+  }, [category]);
+
   return (
     <div className='market-list'>
       <div className='filter-box'>
@@ -16,25 +120,30 @@ const MarketList = ({ items }: Props) => {
         <div className='filter-settings'>
           <div className='sort-by'>
             <label>Sort by </label>
-            <select>
+            <select value={sortBy} onChange={handleSortChange}>
               <option value='new'>Newly listed</option>
-              <option value='new'>Alphabetical</option>
+              <option value='asc'>Alphabetical</option>
               <option value='high'>Highest price</option>
               <option value='low'>Lowest price</option>
             </select>
           </div>
           <div className='category-filter'>
             <label>Category</label>
-            <select>
-              <option value='electronics'>Electronics</option>
-              <option value='sports'>Sports</option>
-              <option value='vehicles'>Vehicles & Accessories</option>
-              <option value='fashion'>Fashion</option>
-              <option value='booksmoviesmusic'>Books, Movies & Music</option>
-              <option value='collectibles'>Collectibles</option>
-              <option value='homegarden'>Home & Garden</option>
-              <option value='healthbeauty'>Health & Beauty</option>
-              <option value='others'>Others</option>
+            <select value={category} onChange={handleCategoryChange}>
+              <option value='all'>All</option>
+              <option value='Electronics'>Electronics</option>
+              <option value='Sports'>Sports</option>
+              <option value='Vehicles & Accessories'>
+                Vehicles & Accessories
+              </option>
+              <option value='Fashion'>Fashion</option>
+              <option value='Books, Movies & Music'>
+                Books, Movies & Music
+              </option>
+              <option value='Collectibles'>Collectibles</option>
+              <option value='Home & Garden'>Home & Garden</option>
+              <option value='Health & Beauty'>Health & Beauty</option>
+              <option value='Other'>Others</option>
             </select>
           </div>
           <div className='price-filter'>
@@ -42,7 +151,7 @@ const MarketList = ({ items }: Props) => {
           </div>
         </div>
       </div>
-      {items.map((item: Item) => (
+      {filteredItems.map((item: Item) => (
         <MarketListItem key={item.item.id} item={item} />
       ))}
     </div>
