@@ -11,15 +11,15 @@
     "r s";
 
   .Chats {
-    color: #d9dad7;
+    color: #1a2639;
     grid-area: r;
     padding: 0rem 1rem;
     display: flexbox;
-    min-width: 100px;
-    max-width: 143px;
+    min-width: 150px;
+    max-width: 250px;
     border-radius: 0px;
     background: #ffffff;
-    box-shadow: 10px 10px 10px #c5c6c4;
+    box-shadow: 10px 10px 10px #828381;
 
     #userDiv {
       padding: 0.7rem;
@@ -67,7 +67,7 @@
       }
 
       #feedback p {
-        color: #aaa;
+        color: #1a2639;
         padding: 14px 0px;
         margin: 0 20px;
       }
@@ -95,7 +95,6 @@
       border: 0.5rem solid #ffffff;
       resize: none;
       min-width: 300px;
-      width: 95%;
     }
 
     textarea:focus {
@@ -113,7 +112,7 @@
     }
 
     button:hover {
-      color: white;
+      color: #1a2639;
     }
 
     button:active {
@@ -166,7 +165,7 @@
       }
 
       #feedback p {
-        color: #aaa;
+        color: #1a2639;
         padding: 14px 0px;
         margin: 0 20px;
       }
@@ -183,15 +182,15 @@
   
   .MyChats {
     grid-area: r;
-    color: #d9dad7;
+    color: #1a2639;
     grid-area: r;
     padding: 0rem 1rem;
     display: flexbox;
-    min-width: 100px;
-    max-width: 143px;
+    min-width: 150px;
+    max-width: 250px;
     border-radius: 0px;
     background: #ffffff;
-    box-shadow: 10px 10px 10px #c5c6c4;
+    box-shadow: 10px 10px 10px #828381;
 
     #userDiv {
       padding: 0.7rem;
@@ -206,7 +205,7 @@
       background-color: #333;
 
       b {
-        color: rgba($color: #d9dad7, $alpha: 1);
+        color: rgba($color: #1a2639, $alpha: 1);
       }
     }
   }
