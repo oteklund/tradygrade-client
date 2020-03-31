@@ -40,7 +40,10 @@ export type AuthenticationAction = IAuthenticate | IUnauthenticate;
 
 export function register (data: Object) {
     return async (dispatch: ThunkDispatch<any, {}, any>) => {
+        
+        //set headers including jwt token (if valid)
         const headers = tokenAndHeaderConfig()
+        
         fetch(usersUrl, {
                 method: "POST",
                 headers: headers,
