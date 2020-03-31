@@ -1,0 +1,19 @@
+.market-list {
+  text-align: center;
+
+  // .filter-box {
+  // }
+}
+
+.filter-box:hover {
+  .filter-settings {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem;
+  }
+}
+
+.filter-settings {
+  display: none;
+}
