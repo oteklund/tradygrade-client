@@ -42,6 +42,15 @@ export const getChats = async (userid:number) => {
     }
 }
 
+export const newChat = async (userids:object) => {
+    const response = await axios.post(`${ChatUrl}/new`, {userids});
+    if (response.status === 200  && response.data.length !== 0) {
+        return (response.data)
+    } else {
+        console.log('Could not create new chat!');
+    }
+}
+
 // Temporary user fetch
 const UsersUrl = "http://localhost:4000/api/users"
 
