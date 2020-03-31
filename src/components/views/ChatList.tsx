@@ -11,6 +11,8 @@ import { User } from "../../models/types";
 import history from "../../history";
 import icon from "../../pictures/tradyheadorange.png";
 import picture from "../../pictures/tradygradedarkblue.png";
+import { render } from "@testing-library/react";
+import { renderIntoDocument } from "react-dom/test-utils";
 
 interface Props {
   user: any;
@@ -34,8 +36,11 @@ const ChatList = (props: Props) => {
   }, [props.user]);
 
   const createChat = async () => {
-    let newChatID = newChat({ user1: props.user.id, user2: selectedUser });
-    console.log(newChatID);
+    let newChatID = await newChat({
+      user1: props.user.id,
+      user2: selectedUser
+    });
+    history.push(`/chat/${newChatID}`)
   };
 
   return (
