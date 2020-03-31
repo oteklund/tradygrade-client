@@ -27,6 +27,7 @@ const MarketList = ({ items }: Props) => {
           );
         });
         setFilteredItems(sortedArray);
+
         break;
       case 'asc':
         let ascArray = filteredItems.sort((a, b) =>
@@ -35,8 +36,16 @@ const MarketList = ({ items }: Props) => {
         setFilteredItems(ascArray);
         break;
       case 'high':
+        let sortByHigh = filteredItems.sort((a, b) => {
+          return b.item.price - a.item.price;
+        });
+        setFilteredItems(sortByHigh);
         break;
       case 'low':
+        let sortByLow = filteredItems.sort((a, b) => {
+          return b.item.price - a.item.price;
+        });
+        setFilteredItems(sortByLow);
         break;
 
       default:
@@ -52,17 +61,18 @@ const MarketList = ({ items }: Props) => {
 
   useEffect(() => {
     switch (category) {
-      case 'Electonics':
-        let itemArray = items.filter(
-          (item: Item) => item.item.category === 'Electronics'
-        );
-        setFilteredItems(itemArray);
-        break;
       case 'Sports':
         let sportsArray = items.filter(
           (item: Item) => item.item.category === 'Sports'
         );
         setFilteredItems(sportsArray);
+        break;
+      case 'Electronics':
+        let itemArr = items.filter(
+          (item: Item) => item.item.category === 'Electronics'
+        );
+        console.log(itemArr);
+        setFilteredItems(itemArr);
         break;
       case 'Vehicles & Accessories':
         let vehicleArray = items.filter(
