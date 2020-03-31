@@ -4,7 +4,7 @@ This component allows the user to write and send chat messages.
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { ChatMessage } from "./types";
-import { getMessageHistory, addNewMessage } from "../../services/chat";
+import { addNewMessage } from "../../services/chat";
 
 interface Props {
   chatID: number;
@@ -38,11 +38,11 @@ const ComposeMessage = (props: Props) => {
       message: messageField,
       time: timeStamp
     });
-    // addNewMessage(chatIDField, {
-    //   user: userId,
-    //   message: messageField,
-    //   time: timeStamp
-    // });
+    addNewMessage(props.chatID, {
+      user: props.myUserId,
+      message: messageField,
+      time: timeStamp
+    });
     setMessageField("");
   };
 
