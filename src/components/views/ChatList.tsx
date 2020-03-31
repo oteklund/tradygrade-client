@@ -36,7 +36,7 @@ const ChatList = (props: Props) => {
   }, [props.user]);
 
   const createChat = async () => {
-    let newChatID  
+    let newChatID;  
     try {
           newChatID = await newChat({
             user1: props.user.id,
