@@ -45,7 +45,7 @@ const LogIn = ({ logInConnect }: Props) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
-        if (!name || !password) console.log("Please fill out the required fields.")
+        if (!name || !password) console.error("Please fill out the required fields.")
         else {
             try {
                 logInConnect(name, password)
