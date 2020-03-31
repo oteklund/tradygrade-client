@@ -10,7 +10,7 @@ export const itemsReducer = (state: Item[] = [], action: any) => {
     case ActionTypes.fetchItems:
       return action.payload;
     case ActionTypes.createItem:
-      return [...state, action.payload];
+      return [action.payload, ...state];
     case ActionTypes.deleteItem:
       return state.filter(item => item.item.id !== action.payload);
     case ActionTypes.updateItem:
