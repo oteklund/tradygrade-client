@@ -186,7 +186,7 @@ const MarketList = ({ items }: Props) => {
             )}
           </div>
         </div>
-        <div className={`filter-settings ${showMenu}`}>
+        <div className='filter-settings'>
           <div className='filter-group'>
             <label>Filter by input</label>
             <input
