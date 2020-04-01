@@ -1,5 +1,6 @@
 .marketplace-container {
   margin: 1rem;
+
   .item-container {
     background-color: #d9dad7;
     max-width: 1100px;
@@ -30,7 +31,7 @@
     opacity: 0.7;
     box-shadow: 5px 5px 5px #737472;
   }
-
+  
   .lone-button {
     border: none;
     background-color: #fa4a19;
@@ -39,7 +40,16 @@
     font-size: 20px;
     margin: 10px;
     border-radius: 10px;
-    opacity: 0.8;
+    opacity: 0.7;
+  }
+
+  .loneButton:hover {
+    color: #1a2639;
+  }
+
+  .loneButton:active {
+    box-shadow: 4px 4px 4px #828381;
+    opacity: 0.6;
   }
 
   .item-button {

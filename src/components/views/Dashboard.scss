@@ -7,16 +7,18 @@
   background-color: #d9dad7;
   opacity: 0.95;
 
-  .welcome {
-    background-color: #d9dad7;
-    opacity: 0.9;
-    text-align: center;
-    box-shadow: 10px 10px 10px #828381;
-    margin: 10px;
-    padding: 10px;
-    font-size: 20px;
-    border-radius: 22px;
-    box-shadow: 8px 8px 16px #757674, -8px -8px 16px #ffffff;
+  .welcome{
+    background-color:#d9dad7;
+    opacity:0.9;
+    text-align:center;
+    box-shadow: 10px 10px 10px #b4b5b2;
+    margin:10px;
+    padding:10px;
+    font-size:20px;
+    border-radius:22px;
+    box-shadow:  8px 8px 16px #b4b5b2, 
+                  -8px -8px 16px #ececec;
+    
   }
 
   .latest-items {
@@ -36,29 +38,34 @@
       width: 200px;
       height: 300px;
       border-radius: 22px;
-      box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #fefffc;
+      box-shadow:  8px 8px 12px #b4b5b2, 
+                  -8px -8px 12px #ececec;
       transition: box-shadow 30ms ease;
 
       .item-picture {
         border-radius: 22px;
         background: #d9dad7;
-        box-shadow: 8px 8px 16px #757674, -8px -8px 16px #ffffff;
+        box-shadow:  8px 8px 16px #757674, 
+                  -8px -8px 16px #ececec;
       }
 
       .item-picture:active {
         border-radius: 22px;
         background: #d9dad7;
-        box-shadow: 4px 4px 8px #757674, -4px -4px 8px #ffffff;
+        box-shadow:  4px 4px 8px #757674, 
+                  -4px -4px 8px #ececec;
       }
     }
-
-    .dash-item:hover {
-      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #fefffc;
+    .dashItem:hover {
       cursor: pointer;
+      box-shadow:  10px 10px 15px #b4b5b2, 
+                -10px -10px 15px #ececec;
+
     }
 
-    .dash-item:active {
-      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #fefffc;
+    .dashItem:active {
+      box-shadow:  5px 5px 10px #b4b5b2, 
+                -5px -5px 10px #ececec;
     }
 
     .dash-date {

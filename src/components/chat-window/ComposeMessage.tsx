@@ -61,6 +61,8 @@ const ComposeMessage = (props: Props) => {
     <div className="ComposeMessage">
       <form autoComplete="off" onSubmit={sendMessage}>
       <input
+        className="chatMessage"
+        type="text"
         id="message"
         placeholder="Message"
         value={messageField}
@@ -68,7 +70,7 @@ const ComposeMessage = (props: Props) => {
         onChange={typingMessage}
       ></input>
       <br></br>
-      <input type='submit' value='Send'/>
+      <input className="chatSend" type='submit' value='Send'/>
       </form>
     </div>
   );
