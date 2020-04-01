@@ -1,11 +1,10 @@
 .ChatWindow {
-  
+  color: #1a2639;
   z-index: -1;
   margin: 0rem 0rem;
-  height: 95%;
   display: grid;
   grid-template-columns: 12rem 1fr;
-  grid-template-rows: 0.8fr 10rem;
+  grid-template-rows: 1fr 10rem;
   grid-template-areas:
     "r m"
     "r s";
@@ -16,15 +15,24 @@
     color: #1a2639;
     grid-area: r;
     padding: 0rem 1rem;
-    display: flexbox;
+    
     min-width: 150px;
     max-width: 250px;
-    min-height:550px;
+    min-height:450px;
     background: #d9dad7;
     box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
     transition: box-shadow 30ms ease;
     margin: 15px;
     border-radius:22px;
+    text-align: center;
+    flex-wrap: wrap;
+    overflow:scroll;
+
+    img {
+      height:60px;
+      box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
+      border-radius:22px;
+    }
 
     .MyChatButton {
       border: none;
@@ -75,10 +83,16 @@
       background-color: #333;
 
       b {
-        color: rgba($color: #d9dad7, $alpha: 1);
+        color: rgba($color: #1a2639, $alpha: 1);
       }
     }
   }
+  .Chats::-webkit-scrollbar {
+    display: none;
+  }
+
+  
+ 
 
   .chatEdge{
 
@@ -93,6 +107,7 @@
     .ChatOutput {
       display: flexbox;
       min-width: 300px;
+      max-height:400px;
       grid-area: m;
       border-radius: 1rem;
       margin: 0.5rem 1rem;
@@ -104,6 +119,10 @@
       box-shadow: inset 5px 5px 8px #cecfcc, 
             inset -5px -5px 8px #e4e5e2;
       transition: background-color ease 500ms;
+      overflow:scroll;
+
+      
+
 
       #chatWindow {
         overflow: auto;
@@ -130,9 +149,16 @@
       }
       
     }
+
+    .ChatOutput::-webkit-scrollbar {
+      display: none;
+    }
+
     .ChatOutput:hover {
       background-color:#fdfdfd;
     }
+
+    
 
 
 
@@ -215,10 +241,10 @@
 }
 
 .MyChatWindow {
-  opacity: 0.95;
+  color: #1a2639;
   z-index: -1;
   margin: 0rem 0rem;
-  height: 100vh;
+  height: 95%;
   display: grid;
   grid-template-columns: 12rem 1fr;
   grid-template-rows: 0.8fr 10rem;
@@ -227,18 +253,24 @@
     "r m";
   background-color:#d9dad7;
   padding:10px;
+  border-radius: 22px;
 
   .MyChatOutput {
     display: flexbox;
-    min-width: 300px;
-    grid-area: m;
-    border-radius: 1rem;
-    margin: 0.5rem 1rem;
-    padding: 0.5rem;
-    border-radius: 0px;
-    background: #ffffff;
-    box-shadow: 10px 10px 10px #828381;
-
+      min-width: 300px;
+      max-height:400px;
+      grid-area: m;
+      border-radius: 1rem;
+      margin: 0.5rem 1rem;
+      padding: 0.5rem;
+      margin: 15px;
+      border-radius:22px;
+      border-radius: 22px;
+      background: #ececec;
+      box-shadow: inset 5px 5px 8px #cecfcc, 
+            inset -5px -5px 8px #e4e5e2;
+      transition: background-color ease 500ms;
+      overflow:scroll;
     #chatWindow {
       overflow: auto;
 
@@ -260,6 +292,10 @@
         padding: 14px 0px;
         margin: 0 20px;
       }
+
+      
+
+
     }
 
     img {
@@ -269,20 +305,76 @@
       max-height: 80vmin;
       align-self: center;
     }
-  }
+
+    .trady-image {
+      /* trady trady */
+      width: 200px;
+      height: 200px;
+      display: block;
+      position: absolute;
+      
+      -webkit-animation: moveX 5s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate;
+      -moz-animation: moveX 5s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate;
+      -o-animation: moveX 5s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate;
+      animation: moveX 5s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate ;
+    }
+    
+    @-webkit-keyframes moveX {
+      /* screen width - width of image */
+      from { left: 0; } to { left: calc(100% - 200px); }
+    }
+    @-moz-keyframes moveX {
+      from { left: 0; } to { left: calc(100% - 200px); }
+    }
+    @-o-keyframes moveX {
+      from { left: 0; } to { left: calc(100% - 200px); }
+    }
+    @keyframes moveX {
+      from { left: 0; } to { left: calc(100% - 200px); }
+    }
+    @-webkit-keyframes moveY {
+      /* screen height - height of image */
+      from { top: calc(100% - 100px); } to { top: 0; }
+    }
+    @-moz-keyframes moveY {
+      from { top: calc(100% - 100px); } to { top: 0; }
+    }
+    @-o-keyframes moveY {
+      from { top: calc(100% - 100px); } to { top: 0; }
+    }
+    @keyframes moveY {
+      from { top: calc(100% - 100px); } to { top: 0; }
+    }
+    
   
+  }
+
+  
+
+  .MyChatOutput::-webkit-scrollbar {
+    display: none;
+  }
+
+  .MyChatOutput:hover {
+    background-color:#fdfdfd;
+  }
   .MyChats {
-    grid-area: r;
     color: #1a2639;
     grid-area: r;
     padding: 0rem 1rem;
-    display: flexbox;
-    min-width: 150px;
+    
+    min-width: 180px;
     max-width: 250px;
-    border-radius: 0px;
-    background: #ffffff;
-    box-shadow: 10px 10px 10px #828381;
-
+    min-height:550px;
+    background: #d9dad7;
+    box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
+    transition: box-shadow 30ms ease;
+    margin: 15px;
+    border-radius:22px;
+    text-align: center;
+    flex-wrap: wrap;
+    overflow: scroll;
+    
     #userDiv {
       padding: 0.7rem;
       // margin: 0.5em;
@@ -302,5 +394,9 @@
         color: rgba($color: #1a2639, $alpha: 1);
       }
     }
+  }
+
+  .MyChats::-webkit-scrollbar {
+    display: none;
   }
 }
