@@ -186,7 +186,10 @@ const NewSalesItem = ({ createItem, user }: Props) => {
             error={conditionError}
           >
             <MenuItem value='New'>New</MenuItem>
+            <MenuItem value='Like new'>Like new</MenuItem>
             <MenuItem value='Very good'>Very good</MenuItem>
+            <MenuItem value='Good'>Good</MenuItem>
+            <MenuItem value='Acceptable'>Acceptable</MenuItem>
             <MenuItem value='Poor'>Poor</MenuItem>
           </Select>
         </div>
