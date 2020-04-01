@@ -14,6 +14,7 @@ const MarketList = ({ items }: Props) => {
   const [sortBy, setSortBy] = useState<string>('new');
   const [filterText, setFilterText] = useState<string>('');
   const [sliderValues, setSliderValues] = useState<Array<any>>([0, 1000000]);
+  const [showFilter, setShowFilter] = useState<Boolean>(false);
 
   const handleCategoryChange = (e: any) => {
     setCategory(e.target.value);
@@ -88,6 +89,10 @@ const MarketList = ({ items }: Props) => {
     setFilteredItems(filteredByWord);
   };
 
+  const handleShowFilterChange = (e: any): void => {
+    setShowFilter(!showFilter);
+  };
+
   useEffect(() => {
     setFilteredItems(items);
     setSortBy('new');
@@ -158,18 +163,39 @@ const MarketList = ({ items }: Props) => {
     }
   }, [category]);
 
+  let showMenu = showFilter ? 'show' : 'hide';
+
   return (
     <div className='market-list'>
-      <div className='filter-box'>
-        <h3>Filters</h3>
-        <input
-          type='text'
-          placeholder='Filter by typing'
-          value={filterText}
-          onChange={handleTextFilterChange}
-        />
-        <div className='filter-settings'>
-          <div className='sort-by'>
+      <div className={`filter-box ${showMenu}`}>
+        <div className='filter-header'>
+          <h3>
+            <span>Filters</span>
+            <i
+              className='fas fa-filter'
+              style={{ marginLeft: '10px', color: '#f4f4f4' }}
+            ></i>
+          </h3>
+
+          <div className='hamburger' onClick={handleShowFilterChange}>
+            {!showFilter ? (
+              <i className='fas fa-bars'></i>
+            ) : (
+              <i className='fas fa-times'></i>
+            )}
+          </div>
+        </div>
+        <div className={`filter-settings ${showMenu}`}>
+          <div className='filter-group'>
+            <label>Filter by input</label>
+            <input
+              type='text'
+              placeholder='Enter keyword...'
+              value={filterText}
+              onChange={handleTextFilterChange}
+            />
+          </div>
+          <div className='filter-group'>
             <label>Sort by </label>
             <select value={sortBy} onChange={handleSortChange}>
               <option value='new'>Newly listed</option>
@@ -178,7 +204,7 @@ const MarketList = ({ items }: Props) => {
               <option value='low'>Lowest price</option>
             </select>
           </div>
-          <div className='category-filter'>
+          <div className='filter-group'>
             <label>Category</label>
             <select value={category} onChange={handleCategoryChange}>
               <option value='all'>All</option>
@@ -197,17 +223,16 @@ const MarketList = ({ items }: Props) => {
               <option value='Other'>Others</option>
             </select>
           </div>
-          <div className='price-filter'>
+          <div className='filter-group'>
             <RangeSlider onValueChange={handleSliderChange} />
           </div>
         </div>
       </div>
-      <div className="market-list-items" >
-      {filteredItems.map((item: Item) => (
-        <MarketListItem key={item.item.id} item={item} />
-      ))}
+      <div className='market-list-items'>
+        {filteredItems.map((item: Item) => (
+          <MarketListItem key={item.item.id} item={item} />
+        ))}
       </div>
-      
     </div>
   );
 };

@@ -1,20 +1,89 @@
 .market-list {
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
- 
-  .market-list-items{
-    text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content:center;
+  // text-align: center;
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: center;
 
+  .filter-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+    .filter-group {
+      width: 300px;
+      display: grid;
+      margin-bottom: 0.3rem;
+
+      label {
+        margin-bottom: 0.2rem;
+      }
+    }
+  }
+
+  .filter-box {
+    // border: 1px solid black;
+    display: grid;
+    justify-content: center;
+    padding: 1rem;
+    padding-top: 0px;
+    position: relative;
+    height: 4rem;
+    transition: height 200ms ease;
+    margin: 1rem 0;
+    background: rgba($color: #3e4a61, $alpha: 0.6);
+    color: #f4f4f4;
+    box-shadow: 9px 9px 20px rgba($color: #3e4a61, $alpha: 0.4),
+      -9px -9px 20px rgba($color: #fafbf7, $alpha: 0.1);
+    border-radius: 8px;
+
+    .filter-settings {
+      visibility: hidden;
+    }
+  }
+
+  .filter-box.show {
+    height: 18rem;
+
+    .filter-settings {
+      visibility: visible;
+    }
+  }
+
+  .filter-header {
+    text-align: center;
+    width: 250px;
+    height: 2.5rem;
+    margin: 0px auto;
+
+    .hamburger {
+      i {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1.1rem 2rem;
+        color: #f4f4f4;
+        cursor: pointer;
+      }
+
+      i:hover {
+        color: #d9dad7;
+      }
+    }
+  }
+
+  .market-list-items {
+    background-color: #d9dad7;
+    opacity: 0.95;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
     .marketItem {
       background-color: #d9dad7;
       opacity: 0.9;
-      
+
       margin: 15px;
       padding: 10px;
       text-align: center;
@@ -22,42 +91,16 @@
       width: 200px;
       height: 300px;
       border-radius: 22px;
-      box-shadow:  8px 8px 12px #b4b5b2, 
-                  -8px -8px 12px #fefffc;
+      box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #fefffc;
       transition: box-shadow 30ms ease;
     }
 
     .marketItem:hover {
-      box-shadow:  10px 10px 15px #b4b5b2, 
-                  -10px -10px 15px #fefffc;
+      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #fefffc;
     }
 
     .marketItem:active {
-      box-shadow:  5px 5px 10px #b4b5b2, 
-                  -5px -5px 10px #fefffc;
+      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #fefffc;
     }
   }
-}
-
-.filter-box {
-//   }
-
-// .filter-box:hover {
-//   .filter-settings {
-//     display: flex;
-//     justify-content: space-evenly;
-//     align-items: center;
-//     padding: 1rem;
-//   }
-
-// .filter-settings {
-//   display: none;
-// }
-
-.filter-settings {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 1rem;
-}
 }
