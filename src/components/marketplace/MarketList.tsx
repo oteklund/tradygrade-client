@@ -186,13 +186,16 @@ const MarketList = ({ items }: Props) => {
           </div>
         </div>
         <div className={`filter-settings ${showMenu}`}>
-          <input
-            type='text'
-            placeholder='Filter by typing'
-            value={filterText}
-            onChange={handleTextFilterChange}
-          />
-          <div className='sort-by'>
+          <div className='filter-group'>
+            <label>Filter by input</label>
+            <input
+              type='text'
+              placeholder='Enter keyword...'
+              value={filterText}
+              onChange={handleTextFilterChange}
+            />
+          </div>
+          <div className='filter-group'>
             <label>Sort by </label>
             <select value={sortBy} onChange={handleSortChange}>
               <option value='new'>Newly listed</option>
@@ -201,7 +204,7 @@ const MarketList = ({ items }: Props) => {
               <option value='low'>Lowest price</option>
             </select>
           </div>
-          <div className='category-filter'>
+          <div className='filter-group'>
             <label>Category</label>
             <select value={category} onChange={handleCategoryChange}>
               <option value='all'>All</option>
@@ -220,7 +223,7 @@ const MarketList = ({ items }: Props) => {
               <option value='Other'>Others</option>
             </select>
           </div>
-          <div className='price-filter'>
+          <div className='filter-group'>
             <RangeSlider onValueChange={handleSliderChange} />
           </div>
         </div>

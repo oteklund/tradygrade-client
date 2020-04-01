@@ -3,9 +3,19 @@
 
   .filter-settings {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
     align-items: center;
     padding: 1rem;
+
+    .filter-group {
+      width: 300px;
+      display: grid;
+      margin-bottom: 0.3rem;
+
+      label {
+        margin-bottom: 0.2rem;
+      }
+    }
   }
 
   .filter-box {
@@ -30,7 +40,7 @@
   }
 
   .filter-box.show {
-    height: 13rem;
+    height: 18rem;
 
     .filter-settings {
       visibility: visible;
@@ -40,6 +50,7 @@
   .filter-header {
     text-align: center;
     width: 250px;
+    height: 2.5rem;
     margin: 0px auto;
 
     .hamburger {
