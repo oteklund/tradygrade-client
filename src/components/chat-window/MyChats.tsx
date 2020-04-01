@@ -20,7 +20,7 @@ const MyChats = (props: Props) => {
           <button className="MyChatButton" onClick={() => history.push(`/chat`)}>Go back to chat list</button>
           <p>You are currently chatting with:<i>{props.otherUserName}</i></p>
           <img src={props.otherUserPicture || icon} height="100rem"/>
-          <p>He seems like a good tradyuser!</p>
+          <p><b>{props.otherUserName}</b> seems like a good tradyuser!</p>
 
       </div>
     </div>
