@@ -12,20 +12,13 @@ body {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-
   margin-left: 5rem;
   background-image: url('./pictures/TradyGradeWatermarkBlue.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  background-color:#d9dad7;
+  background-color: #d9dad7;
   background-size: 1000px 1000px;
-  
-
 }
 
 body::-webkit-scrollbar {
@@ -51,25 +44,22 @@ body::-webkit-scrollbar-thumb {
 //   color: darkgrey;
 // }
 
-
 button {
-  border:none;
+  border: none;
   background-color: #fa4a19;
   box-shadow: 8px 8px 8px #828381;
   color: white;
-  font-size:20px;
-  margin:10px;
+  font-size: 20px;
+  margin: 10px;
   border-radius: 10px;
-  opacity:0.8;
+  opacity: 0.8;
 }
-
 
 button:hover {
-  color:#1a2639;
-
+  color: #1a2639;
 }
 
-button:active{
+button:active {
   box-shadow: 4px 4px 4px #828381;
-  opacity:0.9;
+  opacity: 0.9;
 }
