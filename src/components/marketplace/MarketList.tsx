@@ -173,7 +173,7 @@ const MarketList = ({ items }: Props) => {
             <span>Filters</span>
             <i
               className='fas fa-filter'
-              style={{ marginLeft: '10px', color: '#d9dad7' }}
+              style={{ marginLeft: '10px', color: '#f4f4f4' }}
             ></i>
           </h3>
 
@@ -228,12 +228,11 @@ const MarketList = ({ items }: Props) => {
           </div>
         </div>
       </div>
-      <div className="market-list-items" >
-      {filteredItems.map((item: Item) => (
-        <MarketListItem key={item.item.id} item={item} />
-      ))}
+      <div className='market-list-items'>
+        {filteredItems.map((item: Item) => (
+          <MarketListItem key={item.item.id} item={item} />
+        ))}
       </div>
-      
     </div>
   );
 };

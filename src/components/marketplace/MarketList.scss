@@ -1,9 +1,8 @@
 .market-list {
   // text-align: center;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: center;
 
   .filter-settings {
     display: flex;
@@ -33,7 +32,7 @@
     transition: height 200ms ease;
     margin: 1rem 0;
     background: rgba($color: #3e4a61, $alpha: 0.6);
-    color: #d9dad7;
+    color: #f4f4f4;
     box-shadow: 9px 9px 20px rgba($color: #3e4a61, $alpha: 0.4),
       -9px -9px 20px rgba($color: #fafbf7, $alpha: 0.1);
     border-radius: 8px;
@@ -63,13 +62,19 @@
         top: 0;
         right: 0;
         margin: 1.1rem 2rem;
-        color: #d9dad7;
+        color: #f4f4f4;
         cursor: pointer;
+      }
+
+      i:hover {
+        color: #d9dad7;
       }
     }
   }
 
   .market-list-items {
+    background-color: #d9dad7;
+    opacity: 0.95;
     text-align: center;
     display: flex;
     flex-wrap: wrap;
