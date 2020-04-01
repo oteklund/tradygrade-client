@@ -11,7 +11,7 @@
     padding: 1rem;
 
     .filter-group {
-      width: 300px;
+      width: 400px;
       display: grid;
       margin-bottom: 0.4rem;
 
@@ -117,6 +117,22 @@
 
     .marketItem:active {
       box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #fefffc;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .market-list {
+    .filter-settings {
+      .filter-group {
+        width: 200px;
+      }
+      input {
+        width: 200px;
+      }
+      .MuiSlider-root {
+        width: 200px;
+      }
     }
   }
 }
