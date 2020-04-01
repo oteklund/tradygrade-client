@@ -38,34 +38,34 @@ export function RefreshToken(user: User): IRefreshToken {
 
 export type AuthenticationAction = IAuthenticate | IUnauthenticate;
 
-export function register (data: Object) {
+export function register(data: Object) {
     return async (dispatch: ThunkDispatch<any, {}, any>) => {
-        
+
         //set headers including jwt token (if valid)
-        const headers: any = tokenAndHeaderConfig()
+        const headers: any = await tokenAndHeaderConfig()
         if (headers.error) throw headers.error
-        
+
         fetch(usersUrl, {
-                method: "POST",
-                headers: headers,
-                body: JSON.stringify(data)
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(data)
+        })
+            .then(res => {
+                return res.json()
             })
-                .then(res => {
-                    return res.json()
+            .then(data => {
+                handleErrors(data)
+                dispatch({
+                    type: constants.REGISTER_SUCCESS,
+                    payload: data
                 })
-                .then(data => {
-                    handleErrors(data)
-                    dispatch({
-                        type: constants.REGISTER_SUCCESS,
-                        payload: data
-                    })
+            })
+            .catch(error => {
+                dispatch(returnErrors(error))
+                dispatch({
+                    type: constants.REGISTER_FAIL,
                 })
-                .catch(error => {
-                    dispatch(returnErrors(error))
-                    dispatch({
-                        type: constants.REGISTER_FAIL,
-                    })
-                })
+            })
     }
 }
 
@@ -80,7 +80,7 @@ export function loadUser() {
         dispatch({ type: constants.USER_LOADING })
 
         const headers: any = await tokenAndHeaderConfig()
-        
+
         fetch(authUrl, {
             headers: headers
         })
@@ -95,8 +95,7 @@ export function loadUser() {
                 })
             })
             .catch(error => {
-                console.log(error)
-                dispatch(returnErrors({...error, id: "AUTH_ERROR"}))
+                dispatch(returnErrors({ ...error, id: "AUTH_ERROR" }))
                 dispatch({
                     type: constants.AUTH_ERROR
                 })
@@ -165,8 +164,6 @@ export function checkAuthentication() {
         })
             .then(res => res.json())
             .then(user => {
-                console.log("hello: " + user.token);
-                
                 if (!user.token) dispatch(unauthenticate())
                 else {
                     window.localStorage.setItem("token", user.token)

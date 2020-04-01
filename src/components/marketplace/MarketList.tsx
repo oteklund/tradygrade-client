@@ -3,6 +3,7 @@ import React, { useState, useEffect, SyntheticEvent } from 'react';
 import MarketListItem from './MarketListItem';
 import { Item } from '../../models/types';
 import RangeSlider from './RangeSlider';
+import { Select, InputLabel, MenuItem, TextField } from '@material-ui/core';
 
 interface Props {
   items: Item[];
@@ -185,43 +186,57 @@ const MarketList = ({ items }: Props) => {
             )}
           </div>
         </div>
-        <div className={`filter-settings ${showMenu}`}>
+        <div className='filter-settings'>
           <div className='filter-group'>
             <label>Filter by input</label>
             <input
               type='text'
-              placeholder='Enter keyword...'
+              className='input-filter'
               value={filterText}
               onChange={handleTextFilterChange}
             />
           </div>
           <div className='filter-group'>
-            <label>Sort by </label>
-            <select value={sortBy} onChange={handleSortChange}>
-              <option value='new'>Newly listed</option>
-              <option value='asc'>Alphabetical</option>
-              <option value='high'>Highest price</option>
-              <option value='low'>Lowest price</option>
-            </select>
+            <InputLabel id='sort-by' style={{ color: '#f4f4f4' }}>
+              Sort by{' '}
+            </InputLabel>
+            <Select
+              value={sortBy}
+              id='sort-by'
+              onChange={handleSortChange}
+              style={{ color: '#f4f4f4' }}
+            >
+              <MenuItem value='new'>Newly listed</MenuItem>
+              <MenuItem value='asc'>Alphabetical</MenuItem>
+              <MenuItem value='high'>Highest price</MenuItem>
+              <MenuItem value='low'>Lowest price</MenuItem>
+            </Select>
           </div>
           <div className='filter-group'>
-            <label>Category</label>
-            <select value={category} onChange={handleCategoryChange}>
-              <option value='all'>All</option>
-              <option value='Electronics'>Electronics</option>
-              <option value='Sports'>Sports</option>
-              <option value='Vehicles & Accessories'>
+            <InputLabel id='category' style={{ color: '#f4f4f4' }}>
+              Category
+            </InputLabel>
+            <Select
+              value={category}
+              id='category'
+              onChange={handleCategoryChange}
+              style={{ color: '#f4f4f4' }}
+            >
+              <MenuItem value='all'>All</MenuItem>
+              <MenuItem value='Electronics'>Electronics</MenuItem>
+              <MenuItem value='Sports'>Sports</MenuItem>
+              <MenuItem value='Vehicles & Accessories'>
                 Vehicles & Accessories
-              </option>
-              <option value='Fashion'>Fashion</option>
-              <option value='Books, Movies & Music'>
+              </MenuItem>
+              <MenuItem value='Fashion'>Fashion</MenuItem>
+              <MenuItem value='Books, Movies & Music'>
                 Books, Movies & Music
-              </option>
-              <option value='Collectibles'>Collectibles</option>
-              <option value='Home & Garden'>Home & Garden</option>
-              <option value='Health & Beauty'>Health & Beauty</option>
-              <option value='Other'>Others</option>
-            </select>
+              </MenuItem>
+              <MenuItem value='Collectibles'>Collectibles</MenuItem>
+              <MenuItem value='Home & Garden'>Home & Garden</MenuItem>
+              <MenuItem value='Health & Beauty'>Health & Beauty</MenuItem>
+              <MenuItem value='Other'>Others</MenuItem>
+            </Select>
           </div>
           <div className='filter-group'>
             <RangeSlider onValueChange={handleSliderChange} />
