@@ -5,15 +5,21 @@
   // }
 }
 
-.filter-box:hover {
-  .filter-settings {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 1rem;
-  }
-}
+// .filter-box:hover {
+//   .filter-settings {
+//     display: flex;
+//     justify-content: space-evenly;
+//     align-items: center;
+//     padding: 1rem;
+//   }
+
+// .filter-settings {
+//   display: none;
+// }
 
 .filter-settings {
-  display: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
 }

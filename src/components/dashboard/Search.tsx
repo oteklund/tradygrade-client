@@ -34,7 +34,7 @@ const Search = ({ history, users, items }: Props) => {
         user.name
           .toLowerCase()
           .trim()
-          .includes(e.target.value)
+          .includes(searchText.toLowerCase().trim())
       ) {
         return user;
       }
@@ -44,7 +44,7 @@ const Search = ({ history, users, items }: Props) => {
         item.item.name
           .toLowerCase()
           .trim()
-          .includes(e.target.value)
+          .includes(searchText.toLowerCase().trim())
       ) {
         return item;
       }

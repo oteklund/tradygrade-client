@@ -2,7 +2,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import * as constants from '../models/constants';
 import { User } from '../models/types'
 import { returnErrors } from "./errorActions"
-import { tokenAndHeaderConfig, handleErrors } from '../services/util';
+import { tokenAndHeaderConfig, handleErrors, utilizeRefreshToken } from '../services/util';
 
 const authUrl = "http://localhost:4000/api/auth"
 const usersUrl = "http://localhost:4000/api/users"
@@ -42,7 +42,8 @@ export function register (data: Object) {
     return async (dispatch: ThunkDispatch<any, {}, any>) => {
         
         //set headers including jwt token (if valid)
-        const headers = tokenAndHeaderConfig()
+        const headers: any = tokenAndHeaderConfig()
+        if (headers.error) throw headers.error
         
         fetch(usersUrl, {
                 method: "POST",
@@ -72,11 +73,13 @@ export function loadUser() {
     return async (dispatch: ThunkDispatch<any, {}, any>) => {
 
         const token = localStorage.getItem("token")
-        if (!token) return
+        const refreshToken = localStorage.getItem("refreshToken")
+        if (!token && !refreshToken) return
+        if (refreshToken && !token) await utilizeRefreshToken(refreshToken)
 
         dispatch({ type: constants.USER_LOADING })
 
-        const headers = tokenAndHeaderConfig()
+        const headers: any = await tokenAndHeaderConfig()
         
         fetch(authUrl, {
             headers: headers
@@ -86,7 +89,6 @@ export function loadUser() {
                 return res.json()
             })
             .then(data => {
-                console.log(data)
                 dispatch({
                     type: constants.USER_LOADED,
                     payload: data
@@ -128,7 +130,6 @@ export function logIn(name: string, password: string) {
                         isAuthenticated: null,
                         isLoading: false
                     }
-                    console.log(loggedInUser)
                     window.localStorage.setItem("token", data.token)
                     window.localStorage.setItem("refreshToken", data.refreshToken)
                     dispatch(authenticate(loggedInUser));

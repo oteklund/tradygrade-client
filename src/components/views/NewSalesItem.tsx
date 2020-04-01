@@ -18,7 +18,7 @@ interface Props {
 const NewSalesItem = ({ createItem, user }: Props) => {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
+  const [category, setCategory] = useState<string>('Electronics');
   const [price, setPrice] = useState<string>('');
   const [expiration, setExpiration] = useState<string>(
     moment(new Date()).format('YYYY-MM-DD')
@@ -40,6 +40,7 @@ const NewSalesItem = ({ createItem, user }: Props) => {
       condition,
       pictureURL: pictureUrl
     });
+    history.push('/home');
   };
   return (
     <div className='new-item'>
@@ -56,11 +57,17 @@ const NewSalesItem = ({ createItem, user }: Props) => {
           onChange={e => setDescription(e.target.value)}
         />
         <br />
-        <input
-          type='text'
-          placeholder='Enter category'
-          onChange={e => setCategory(e.target.value)}
-        />
+        <select value={category} onChange={e => setCategory(e.target.value)}>
+          <option value='Electronics'>Electronics</option>
+          <option value='Sports'>Sports</option>
+          <option value='Vehicles & Accessories'>Vehicles & Accessories</option>
+          <option value='Fashion'>Fashion</option>
+          <option value='Books, Movies & Music'>Books, Movies & Music</option>
+          <option value='Collectibles'>Collectibles</option>
+          <option value='Home & Garden'>Home & Garden</option>
+          <option value='Health & Beauty'>Health & Beauty</option>
+          <option value='Other'>Other</option>
+        </select>
         <br />
         <input
           type='number'
@@ -94,7 +101,7 @@ const NewSalesItem = ({ createItem, user }: Props) => {
         />
         <br />
         <button className='itemButton' type='submit'>
-          Add to DB
+          Submit
         </button>
         <button
           className='itemButton'

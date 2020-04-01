@@ -13,12 +13,17 @@ function valuetext(value: number) {
   return `${value} €`;
 }
 
-export default function RangeSlider() {
+interface Props {
+  onValueChange: any;
+}
+
+export default function RangeSlider({ onValueChange }: Props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState<number[]>([20, 37]);
+  const [value, setValue] = React.useState<number[]>([0, 1000]);
 
   const handleChange = (event: any, newValue: number | number[]) => {
     setValue(newValue as number[]);
+    onValueChange(value);
   };
 
   return (
@@ -32,6 +37,8 @@ export default function RangeSlider() {
         valueLabelDisplay='auto'
         aria-labelledby='range-slider'
         getAriaValueText={valuetext}
+        min={0}
+        max={300}
       />
     </div>
   );
