@@ -10,25 +10,27 @@ import { getChats, newChat } from "../../services/chat";
 import { User } from "../../models/types";
 import history from "../../history";
 import icon from "../../pictures/tradyheadorange.png";
+import renderIcon from "../../pictures/renderingChat.gif";
 import picture from "../../pictures/tradygradedarkblue.png";
-import { render } from "@testing-library/react";
-import { renderIntoDocument } from "react-dom/test-utils";
+import { render } from "react-dom";
 
 interface Props {
-  user: any;
+  user: User;
   history: History<LocationState>;
   users: User[];
 }
 
 const ChatList = (props: Props) => {
-  const [chatList, setChatList] = useState<any[]>([]);
-  const [userList, setUserList] = useState<any[]>([]);
-  const [selectedUser, setSelectedUser] = useState<any>();
+  const [chatList, setChatList] = useState<Array<any>>([]);
+  const [userList, setUserList] = useState<User[]>([]);
+  const [selectedUser, setSelectedUser] = useState<number>();
+  const [renderingYes, setRenderingYes] = useState<boolean>(true)
 
   const myLists = async () => {
     let chatList = await getChats(props.user.id);
     setChatList(chatList);
     setUserList(props.users);
+    setRenderingYes(false)
   };
 
   useEffect(() => {
@@ -55,7 +57,7 @@ const ChatList = (props: Props) => {
         <div>
           <select
             name="users"
-            onChange={(e: any) => setSelectedUser(parseInt(e.target.value))}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedUser(parseInt(e.target.value))}
           >
             <option value=""></option>
             {userList.map(user => (
@@ -63,7 +65,7 @@ const ChatList = (props: Props) => {
             ))}
           </select>
           <button onClick={() => createChat()}>Start a new conversation</button>
-          {chatList === undefined ? (
+          {renderingYes ? (<img src={renderIcon} height="50em" />) : (chatList === undefined ? (
             <div className="ChatBlock">
               <div id="noChats">
                 <p>
@@ -89,7 +91,7 @@ const ChatList = (props: Props) => {
                 </div>
               </div>
             ))
-          )}
+          ))}
         </div>
       </div>
       <div className="MyChatOutput">
