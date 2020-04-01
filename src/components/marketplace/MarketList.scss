@@ -43,12 +43,17 @@
         color: #f4f4f4;
         border: none;
         outline: none;
+        margin-bottom: 1px;
         border-bottom: 1px solid #444;
         background: rgba($color: #000000, $alpha: 0);
       }
-      .input-filter:hover,
-      .input-filter:focus {
+      .input-filter:hover {
+        margin-bottom: 0px;
         border-bottom: 2px solid #333;
+      }
+      .input-filter:focus {
+        margin-bottom: 0px;
+        border-bottom: 2px solid #3f51b5;
       }
     }
   }
