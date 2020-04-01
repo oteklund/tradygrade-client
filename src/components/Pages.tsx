@@ -20,43 +20,51 @@ import UserProfile from './views/UserProfile';
 
 const Pages = () => {
   return (
-    <Switch>
-      <LoggedOutRoute path='/' exact={true} component={Landing} />
-      <LoggedOutRoute path='/about' exact={true} component={About} />
-
-      <LoggedInRoute path='/home' exact={true} component={Dashboard} />
-      <LoggedInRoute
-        path='/account'
-        exact={true}
-        component={AccountManagement}
-      />
-      <LoggedInRoute path='/chat' exact={true} component={ChatList} />
-      <LoggedInRoute path='/chat/:chatid/:chatuser' exact={true} component={ChatWindow} />
-      <LoggedInRoute
-        path='/marketplace/search'
-        exact={true}
-        component={SearchResults}
-      />
-      <LoggedInRoute path='/marketplace' exact={true} component={Marketplace} />
-      <LoggedInRoute
-        path='/marketplace/new'
-        exact={true}
-        component={NewSalesItem}
-      />
-      <LoggedInRoute
-        path='/marketplace/:itemid'
-        exact={true}
-        component={SalesItem}
-      />
-      <LoggedInRoute
-        path='/marketplace/:itemid/review'
-        exact={true}
-        component={Review}
-      />
-      <LoggedInRoute path='/users/:name' exact={true} component={UserProfile} />
-      <Route exact path='/itemplayground' component={ItemPlayground} />
-      <Route path='**' component={NotFound} />
-    </Switch>
+    <>
+      {/* logged out routes */}
+      <Switch>
+        <LoggedOutRoute path='/' exact={true} component={Landing} />
+        <LoggedOutRoute path='/about' exact={true} component={About} />
+      </Switch>
+      {/* logged in routes */}
+      <Switch>
+        <LoggedInRoute path='/home' exact={true} component={Dashboard} />
+        <LoggedInRoute
+          path='/account'
+          exact={true}
+          component={AccountManagement}
+        />
+        <LoggedInRoute path='/chat' exact={true} component={ChatList} />
+        <LoggedInRoute path='/chat/:chatid/:chatuser' exact={true} component={ChatWindow} />
+        <LoggedInRoute
+          path='/marketplace/search'
+          exact={true}
+          component={SearchResults}
+        />
+        <LoggedInRoute path='/marketplace' exact={true} component={Marketplace} />
+        <LoggedInRoute
+          path='/marketplace/new'
+          exact={true}
+          component={NewSalesItem}
+        />
+        <LoggedInRoute
+          path='/marketplace/:itemid'
+          exact={true}
+          component={SalesItem}
+        />
+        <LoggedInRoute
+          path='/marketplace/:itemid/review'
+          exact={true}
+          component={Review}
+        />
+        <LoggedInRoute path='/users/:name' exact={true} component={UserProfile} />
+        <Route exact path='/itemplayground' component={ItemPlayground} />
+      </Switch>
+      {/* generic routes */}
+      <Switch>
+        <Route path='**' component={NotFound} />
+      </Switch>
+    </>
   );
 };
 
