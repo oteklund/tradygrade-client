@@ -17,7 +17,7 @@ const Marketplace = ({ items }: Props) => {
   };
   return (
     <div className='marketplace-container'>
-      <button className='loneButton' onClick={handleNewItemAddition}>
+      <button className='lone-button' onClick={handleNewItemAddition}>
         Add a new item to the marketplace
       </button>
       <MarketList items={items} />
