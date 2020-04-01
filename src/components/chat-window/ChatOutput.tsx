@@ -68,7 +68,7 @@ const ChatOutput = (props: Props) => {
     setChatIDField(props.chatID);
     setUserField(props.myName);
     getHistory();
-  }, [props.chatID]);
+  }, []);
 
   useEffect(() => {
     setNewMessages(newMessages => props.newMessage);
