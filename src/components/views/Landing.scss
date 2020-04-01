@@ -3,26 +3,83 @@ $bg-dark-light: #3e4a61;
 $bg-orange: #c24d2c;
 $bg-light: #d9dad7;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Comfortaa:400,700&display=swap");
 
 .landing-container {
+  header {
+    z-index: 2;
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 150px;
+    box-shadow: 9px 9px 20px #b8b9b7, -9px -9px 20px #fafbf7;
+    width: 100%;
+    background-color: $bg-light;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    #about {
+      position: relative;
+      text-align: center;
+      text-anchor: middle;
+      justify-self: flex-start;
+      font-family: "Roboto", sans-serif;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $bg-dark-light;
+      max-height: 70%;
+      padding: 20px;
+      margin: auto 50px;
+      width: 700px;
+      border-radius: 16px;
+      background: #b8b9b7;
+      box-shadow: inset 10px 10px 13px #999a98, inset -10px -10px 13px #d7d8d6;
+    }
+    #slogan {
+      justify-self: flex-start;
+      margin: 30px;
+      width: 140px;
+      text-align: center;
+      font-family: "comfortaa", "Roboto", sans-serif;
+      font-weight: bold;
+      font-size: 20px;
+      color: $bg-dark;
+    }
+  }
+
   #landing-title {
-    font-size: 6em;
+    font-size: 8em;
+    max-width: 100%;
     position: absolute;
-    left: 5%;
-    bottom: 0%;
-    font-family: 'comfortaa', 'Roboto', sans-serif;
+    left: 50%;
+    bottom: 50%;
+    transform: translateX(-50%);
+    font-family: "comfortaa", "Roboto", sans-serif;
     pointer-events: none;
     user-select: none;
   }
+  .notice {
+    padding: 20px;
+    background-color: $bg-orange;
+    color: $bg-light;
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    width: 250px;
+    height: 400px;
+    border-radius: 16px;
+    background: #c24d2c;
+    box-shadow: inset 10px 10px 13px #a14025, inset -10px -10px 13px #e35a33;
+  }
 
-  width: 80vw;
-  margin-top: 4rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  // width: 80vw;
+  // margin-top: 4rem;
+  // display: flex;
+  // flex-direction: row;
+  // align-items: center;
+  // justify-content: space-between;
 
   button {
     padding: 1rem;
@@ -30,7 +87,7 @@ $bg-light: #d9dad7;
     border-style: none;
     outline: none;
     font-size: 2rem;
-    font-family: 'comfortaa', 'Roboto', sans-serif;
+    font-family: "comfortaa", "Roboto", sans-serif;
 
     transition: all 0.1s ease-in-out;
     transition: color 0.3s;
@@ -50,7 +107,7 @@ $bg-light: #d9dad7;
   }
 }
 .modal {
-  font-family: 'comfortaa', 'Roboto', sans-serif;
+  font-family: "comfortaa", "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -92,7 +149,7 @@ $bg-light: #d9dad7;
     outline: none;
     font-size: 1rem;
     text-transform: capitalize;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 
     transition: all 0.1s ease-in-out;
     transition: color 0.3s;

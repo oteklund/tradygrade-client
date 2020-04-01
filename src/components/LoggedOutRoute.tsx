@@ -13,7 +13,7 @@ interface Props {
 const LoggedOutRoute = ({
   component: Component,
   user,
-  ...otherProps //why is this unused?
+  ...otherProps
 }: any) => {
 
   return (

@@ -109,6 +109,7 @@ const Register = ({ user, error, register, clearErrors }: any) => {
                 <Fade in={open}>
                     <div className="modal">
                         <form onSubmit={handleRegister}>
+                            <h3>Register</h3>
                             <input type="text" placeholder="username" onChange={onNameChange} />
                             <input type="text" placeholder="email" onChange={onEmailChange} />
                             <input type="password" placeholder="password" onChange={onPasswordChange} />
