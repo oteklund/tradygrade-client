@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { StoreState, Item, User } from '../../models/types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import history from '../../history';
 
 interface Props {
   user: User | undefined;
@@ -32,17 +33,21 @@ const Dashboard = ({ user, items }: Props) => {
           .map((item, index) => {
             if (index < 5) {
               return (
-                <div className='dashItem' key={item.item.id}>
+                <div
+                  className='dash-item'
+                  key={item.item.id}
+                  onClick={e => history.push(`/marketplace/${item.item.id}`)}
+                >
                   <p>
                     {item.item.name}/ {item.item.price}€
                   </p>
                   <img
-                    className='itemPicture'
+                    className='item-picture'
                     src={item.item.pictureURL}
                     height='100px'
                   />
                   <p>Listed By: {item.seller.name}</p>
-                  <p className='dashDate'>
+                  <p className='dash-date'>
                     {moment(item.item.listedAt).format('DD-MM-YYYY')}
                   </p>
                 </div>
