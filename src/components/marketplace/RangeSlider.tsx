@@ -5,7 +5,7 @@ import Slider from '@material-ui/core/Slider';
 
 const useStyles = makeStyles({
   root: {
-    width: 300
+    width: 400
   }
 });
 
@@ -38,7 +38,7 @@ export default function RangeSlider({ onValueChange }: Props) {
         aria-labelledby='range-slider'
         getAriaValueText={valuetext}
         min={0}
-        max={300}
+        max={500}
       />
     </div>
   );

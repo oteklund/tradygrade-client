@@ -92,6 +92,8 @@ const ChatWindow = (props: Props) => {
   return (
     <div className="ChatWindow">
       <MyChats otherUserName={otherUserName} otherUserPicture={otherUserPicture}/>
+
+      <div className="chatEdge">
       <ChatOutput
         chatID={chatID}
         myUserId={myUserId}
@@ -100,6 +102,7 @@ const ChatWindow = (props: Props) => {
         newMessage={messages}
         typingInfo={typingInfo}
       />
+      </div>
       <ComposeMessage
         chatID={chatID}
         myUserId={myUserId}
