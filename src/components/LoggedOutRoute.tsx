@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
-import history from '../history';
+import { Route, Redirect } from 'react-router-dom';
 import { User, StoreState } from '../models/types';
 
 interface Props {
@@ -16,14 +15,11 @@ const LoggedOutRoute = ({
   user,
   ...otherProps //why is this unused?
 }: any) => {
-  if (user.isAuthenticated) {
-    history.push('/home');
-    console.log(
-      'Attempted to access a route that is available only if you are logged out, redirecting to dashboard.'
-    );
-  }
 
   return (
+    user.isAuthenticated ?
+    <Redirect to="/home" />
+    :
     <>
       <Route
         render={otherProps => (
