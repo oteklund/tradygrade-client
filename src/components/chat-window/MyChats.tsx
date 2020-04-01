@@ -21,7 +21,7 @@ const MyChats = (props: Props) => {
     <div className="Chats">
       <h3>MyChats</h3>
       <div>
-          <button onClick={() => history.push(`/chat`)}>Go back to chat list</button>
+          <button className="MyChatButton" onClick={() => history.push(`/chat`)}>Go back to chat list</button>
           <p>You are currently chatting with:</p>
           <i>Other persons name</i>
           <br/>

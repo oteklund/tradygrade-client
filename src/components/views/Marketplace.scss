@@ -1,5 +1,6 @@
 .marketplace-container {
   margin: 1rem;
+
   .item-container {
     background-color: #d9dad7;
     max-width: 1100px;
@@ -8,28 +9,28 @@
     margin: 1rem 1.5rem;
   }
 
-  .marketItem {
-    background-color: white;
-    opacity: 0.8;
-    box-shadow: 10px 10px 10px #828381;
-    margin: 5px;
-    padding: 3px;
-    text-align: center;
-    float: left;
-    justify-items: center;
-    width: 200px;
-    height: 300px;
-    transition: width 100ms ease;
-  }
+  // .marketItem {
+  //   background-color: white;
+  //   opacity: 0.8;
+  //   box-shadow: 10px 10px 10px #828381;
+  //   margin: 5px;
+  //   padding: 3px;
+  //   text-align: center;
+  //   float: left;
+  //   justify-items: center;
+  //   width: 200px;
+  //   height: 300px;
+  //   transition: width 100ms ease;
+  // }
 
-  .marketItem:hover {
-    width: 250px;
-  }
+  // .marketItem:hover {
+  //   width: 250px;
+  // }
 
-  .marketItem:active {
-    opacity: 0.7;
-    box-shadow: 5px 5px 5px #737472;
-  }
+  // .marketItem:active {
+  //   opacity: 0.7;
+  //   box-shadow: 5px 5px 5px #737472;
+  // }
 
   .loneButton {
     border: none;
@@ -39,7 +40,16 @@
     font-size: 20px;
     margin: 10px;
     border-radius: 10px;
-    opacity: 0.8;
+    opacity: 0.7;
+  }
+
+  .loneButton:hover {
+    color: #1a2639;
+  }
+
+  .loneButton:active {
+    box-shadow: 4px 4px 4px #828381;
+    opacity: 0.6;
   }
 
   .itemButton {

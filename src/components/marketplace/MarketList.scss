@@ -79,6 +79,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding:10px;
 
     .marketItem {
       background-color: #d9dad7;
@@ -91,16 +92,16 @@
       width: 200px;
       height: 300px;
       border-radius: 22px;
-      box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #fefffc;
+      box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
       transition: box-shadow 30ms ease;
     }
 
     .marketItem:hover {
-      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #fefffc;
+      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #ececec;
     }
 
     .marketItem:active {
-      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #fefffc;
+      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #ececec;
     }
   }
 }

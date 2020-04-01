@@ -11,13 +11,13 @@
     background-color:#d9dad7;
     opacity:0.9;
     text-align:center;
-    box-shadow: 10px 10px 10px #828381;
+    box-shadow: 10px 10px 10px #b4b5b2;
     margin:10px;
     padding:10px;
     font-size:20px;
     border-radius:22px;
-    box-shadow:  8px 8px 16px #757674, 
-                  -8px -8px 16px #ffffff;
+    box-shadow:  8px 8px 16px #b4b5b2, 
+                  -8px -8px 16px #ececec;
     
   }
 
@@ -40,21 +40,21 @@
       height: 300px;
       border-radius: 22px;
       box-shadow:  8px 8px 12px #b4b5b2, 
-                  -8px -8px 12px #fefffc;
+                  -8px -8px 12px #ececec;
       transition: box-shadow 30ms ease;
 
       .itemPicture{
         border-radius: 22px;
         background: #d9dad7;
         box-shadow:  8px 8px 16px #757674, 
-                  -8px -8px 16px #ffffff;
+                  -8px -8px 16px #ececec;
       }
   
       .itemPicture:active {
         border-radius: 22px;
         background: #d9dad7;
         box-shadow:  4px 4px 8px #757674, 
-                  -4px -4px 8px #ffffff;
+                  -4px -4px 8px #ececec;
   
       }
 
@@ -62,13 +62,13 @@
 
     .dashItem:hover {
       box-shadow:  10px 10px 15px #b4b5b2, 
-                -10px -10px 15px #fefffc;
+                -10px -10px 15px #ececec;
 
     }
 
     .dashItem:active {
       box-shadow:  5px 5px 10px #b4b5b2, 
-                -5px -5px 10px #fefffc;
+                -5px -5px 10px #ececec;
 
     }
 
