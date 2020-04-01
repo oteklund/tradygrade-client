@@ -3,11 +3,13 @@ This component allows the user to log in.
 */
 import React, { useState } from 'react'
 import { logIn } from "../../actions/userActions"
+import { returnErrors, clearErrors } from "../../actions/errorActions"
 import { connect } from 'react-redux'
 import { makeStyles } from "@material-ui/core/styles"
 import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import Fade from "@material-ui/core/Fade"
+import { StoreState, Error } from '../../models/types'
 
 const useStyles = makeStyles(theme => ({
     modal: {
@@ -26,9 +28,12 @@ const useStyles = makeStyles(theme => ({
 
 interface Props {
     logInConnect: (name: string, password: string) => void
+    returnErrorsConnect: (error: Error) => void
+    clearErrorsConnect: () => void
+    errorState: Error
 }
 
-const LogIn = ({ logInConnect }: Props) => {
+const LogIn = ({ logInConnect, returnErrorsConnect, errorState }: Props) => {
 
     const classes = useStyles()
 
@@ -37,20 +42,22 @@ const LogIn = ({ logInConnect }: Props) => {
     }
     const handleClose = () => {
         setOpen(false)
+        setErrorMessage("")
     }
 
     const [open, setOpen] = useState<boolean>(false)
     const [name, setName] = useState<string>("")
     const [password, setPassword] = useState<string>("")
+    const [errorMessage, setErrorMessage] = useState("")
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
-        if (!name || !password) console.error("Please fill out the required fields.")
+        if (!name || !password) setErrorMessage("Please fill out the required fields.")
         else {
             try {
                 logInConnect(name, password)
             } catch (error) {
-                console.error(error.message)
+                returnErrorsConnect({...error, id: "LOGIN_FAIL"})
             }
         }
     }
@@ -81,9 +88,11 @@ const LogIn = ({ logInConnect }: Props) => {
                 <Fade in={open}>
                     <div className="modal">
                         <form onSubmit={handleSubmit}>
+                            <h3>Login</h3>
                             <input type="text" placeholder="username" onChange={onNameChange} />
                             <input type="password" placeholder="password" onChange={onPasswordChange} />
                             <button type="submit">log in</button>
+                            <p id="login-error-response">{errorMessage}</p>
                         </form>
                     </div>
                 </Fade>
@@ -92,11 +101,17 @@ const LogIn = ({ logInConnect }: Props) => {
     )
 }
 
+const mapStateToProps = (state: StoreState) => ({
+    errorState: state.error
+})
+
 const mapDispatchToProps = {
-    logInConnect: logIn
+    logInConnect: logIn,
+    returnErrorsConnect: returnErrors,
+    clearErrorsConnect: clearErrors
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 )(LogIn)
