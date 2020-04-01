@@ -59,21 +59,11 @@ const NewSalesItem = ({ createItem, user }: Props) => {
           <TextField
             id='product-name'
             label='Product Name'
-            error
-            helperText='Invalid'
+            // error
+            helperText='Helper'
             onChange={e => setName(e.target.value)}
           />
         </div>
-        {/* <input
-          type='text'
-          placeholder='Enter product name'
-          onChange={e => setName(e.target.value)}
-        /> */}
-        {/* <input
-          type='text'
-          placeholder='Enter description'
-          onChange={e => setDescription(e.target.value)}
-        /> */}
         <div className='input-group-new'>
           <TextField
             id='product-description'
@@ -110,13 +100,8 @@ const NewSalesItem = ({ createItem, user }: Props) => {
             onChange={e => setPrice(e.target.value)}
           />
         </div>
-        {/* <input
-          type='number'
-          placeholder='Enter price'
-          onChange={e => setPrice(e.target.value)}
-        /> */}
         <div className='input-group-new'>
-          Enter expiration date: <br />
+          <InputLabel>Expiration date</InputLabel>
           <TextField
             type='date'
             onChange={e =>
@@ -144,11 +129,6 @@ const NewSalesItem = ({ createItem, user }: Props) => {
             onChange={e => setPictureUrl(e.target.value)}
           />
         </div>
-        {/* <input
-          type='text'
-          placeholder='Enter picture URL'
-          onChange={e => setPictureUrl(e.target.value)}
-        /> */}
         <button className='itemButton' type='submit'>
           Submit
         </button>
