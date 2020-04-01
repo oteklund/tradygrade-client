@@ -33,7 +33,7 @@ export const getChatID = async (user1:number, user2:number) => {
     }
 }
 
-export const getChats = async (userid:number) => {
+export const getChats = async (userid?:number ) => {
     const response = await axios.get(`${ChatUrl}/my/${userid}`);
     if (response.status === 200  && response.data.length !== 0) {
         return (response.data)

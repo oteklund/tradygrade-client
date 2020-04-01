@@ -1,7 +1,6 @@
 /*
 This component contains the fields in which the user writes a message and submits the message.
 */
-import './styles.scss';
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import icon from '../chat-window/icon.png'
