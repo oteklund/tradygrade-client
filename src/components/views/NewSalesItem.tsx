@@ -24,24 +24,74 @@ const NewSalesItem = ({ createItem, user }: Props) => {
   const [expiration, setExpiration] = useState<string>(
     moment(new Date()).format('YYYY-MM-DD')
   );
-  const [condition, setCondition] = useState<string>('');
+  const [condition, setCondition] = useState<string>('New');
   const [pictureUrl, setPictureUrl] = useState<string>('');
+
+  //Errors! These values are used for displaying the errors in the UI!
+  const [nameError, setNameError] = useState<boolean>(false);
+  const [descriptionError, setDescriptionError] = useState<boolean>(false);
+  const [dateError, setDateError] = useState<boolean>(false);
+  const [priceError, setPriceError] = useState<boolean>(false);
+  const [conditionError, setConditionError] = useState<boolean>(false);
+
+  let today = new Date().valueOf();
+  let twoMonthsFromNow = new Date();
+  twoMonthsFromNow.setMonth(twoMonthsFromNow.getMonth() + 2);
+
+  //These values are used to assess the user input validity even before submit, so that we don't have to deal with asynchronicity issues!
+
+  let initialNameError: boolean = name.length < 2 || name.length > 50;
+  let initialDescriptionError: boolean = description.length === 0;
+  let initialDateError: boolean =
+    new Date(expiration).valueOf() < today ||
+    new Date(expiration).valueOf() > twoMonthsFromNow.valueOf();
+  let initialPriceError: boolean =
+    typeof parseInt(price) !== 'number' ||
+    parseInt(price) < 0 ||
+    parseInt(price) > 30000;
+  let initialConditionError: boolean = condition.length === 0;
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    createItem({
-      name,
-      description,
-      sold: false,
-      category,
-      sellerId: user.id,
-      price: parseFloat(price),
-      listedAt: new Date(),
-      expires: new Date(expiration),
-      condition,
-      pictureURL: pictureUrl
-    });
-    history.push('/home');
+    //Setting the error messages for the UI:
+    setNameError(name.length < 2 || name.length > 50);
+    setDescriptionError(description.length === 0);
+    setDateError(
+      new Date(expiration).valueOf() < today ||
+        new Date(expiration).valueOf() > twoMonthsFromNow.valueOf()
+    );
+    setPriceError(
+      typeof parseInt(price) !== 'number' ||
+        parseInt(price) < 0 ||
+        parseInt(price) > 30000
+    );
+    setConditionError(condition.length === 0);
+
+    //Checking if errors found:
+
+    if (
+      initialNameError ||
+      initialDescriptionError ||
+      initialPriceError ||
+      initialDateError ||
+      initialConditionError
+    ) {
+      return;
+    } else {
+      createItem({
+        name,
+        description,
+        sold: false,
+        category,
+        sellerId: user.id,
+        price: parseFloat(price),
+        listedAt: new Date(),
+        expires: new Date(expiration),
+        condition,
+        pictureURL: pictureUrl
+      });
+      history.push('/home');
+    }
   };
 
   const handleCategoryChange = (e: any): void => {
@@ -51,6 +101,7 @@ const NewSalesItem = ({ createItem, user }: Props) => {
   const handleConditionChange = (e: any): void => {
     setCondition(e.target.value);
   };
+
   return (
     <div className='new-item'>
       <form className='new-item-form' onSubmit={e => handleSubmit(e)}>
@@ -59,8 +110,10 @@ const NewSalesItem = ({ createItem, user }: Props) => {
           <TextField
             id='product-name'
             label='Product Name'
-            // error
-            helperText='Helper'
+            error={nameError}
+            helperText={
+              nameError ? 'Name needs to be 2-50 characters long!' : null
+            }
             onChange={e => setName(e.target.value)}
           />
         </div>
@@ -68,6 +121,10 @@ const NewSalesItem = ({ createItem, user }: Props) => {
           <TextField
             id='product-description'
             label='Description'
+            error={descriptionError}
+            helperText={
+              descriptionError ? 'Description cannot be blank!' : null
+            }
             onChange={e => setDescription(e.target.value)}
           />
         </div>
@@ -96,7 +153,11 @@ const NewSalesItem = ({ createItem, user }: Props) => {
         <div className='input-group-new'>
           <TextField
             id='product-price'
-            label='Price'
+            label='Price (€)'
+            error={priceError}
+            helperText={
+              priceError ? 'Price must be a number between 0-30000€!' : null
+            }
             onChange={e => setPrice(e.target.value)}
           />
         </div>
@@ -104,6 +165,12 @@ const NewSalesItem = ({ createItem, user }: Props) => {
           <InputLabel>Expiration date</InputLabel>
           <TextField
             type='date'
+            error={dateError}
+            helperText={
+              dateError
+                ? 'Date must be a date within the next two months'
+                : null
+            }
             onChange={e =>
               setExpiration(moment(e.target.value).format('YYYY-MM-DD'))
             }
@@ -113,12 +180,16 @@ const NewSalesItem = ({ createItem, user }: Props) => {
           <InputLabel id='item-condition'>Condition</InputLabel>
           <Select
             labelId='item-condition'
-            name='condition'
+            value={condition}
             id='condition'
             onChange={handleConditionChange}
+            error={conditionError}
           >
             <MenuItem value='New'>New</MenuItem>
+            <MenuItem value='Like new'>Like new</MenuItem>
             <MenuItem value='Very good'>Very good</MenuItem>
+            <MenuItem value='Good'>Good</MenuItem>
+            <MenuItem value='Acceptable'>Acceptable</MenuItem>
             <MenuItem value='Poor'>Poor</MenuItem>
           </Select>
         </div>
@@ -129,11 +200,11 @@ const NewSalesItem = ({ createItem, user }: Props) => {
             onChange={e => setPictureUrl(e.target.value)}
           />
         </div>
-        <button className='itemButton' type='submit'>
+        <button className='item-button' type='submit'>
           Submit
         </button>
         <button
-          className='itemButton'
+          className='item-button'
           onClick={e => {
             e.preventDefault();
             history.push('/marketplace');

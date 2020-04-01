@@ -97,7 +97,7 @@
     justify-content: center;
     padding:10px;
 
-    .marketItem {
+    .market-item {
       background-color: #d9dad7;
       opacity: 0.9;
 
@@ -112,12 +112,14 @@
       transition: box-shadow 30ms ease;
     }
 
-    .marketItem:hover {
-      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #ececec;
+
+    .market-item:hover {
+      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #fefffc;
+      cursor: pointer;
     }
 
-    .marketItem:active {
-      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #ececec;
+    .market-item:active {
+      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #fefffc;
     }
   }
 }
