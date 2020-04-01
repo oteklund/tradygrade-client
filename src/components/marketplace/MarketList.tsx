@@ -14,6 +14,7 @@ const MarketList = ({ items }: Props) => {
   const [sortBy, setSortBy] = useState<string>('new');
   const [filterText, setFilterText] = useState<string>('');
   const [sliderValues, setSliderValues] = useState<Array<any>>([0, 1000000]);
+  const [showFilter, setShowFilter] = useState<Boolean>(false);
 
   const handleCategoryChange = (e: any) => {
     setCategory(e.target.value);
@@ -88,6 +89,10 @@ const MarketList = ({ items }: Props) => {
     setFilteredItems(filteredByWord);
   };
 
+  const handleShowFilterChange = (e: any): void => {
+    setShowFilter(!showFilter);
+  };
+
   useEffect(() => {
     setFilteredItems(items);
     setSortBy('new');
@@ -158,17 +163,35 @@ const MarketList = ({ items }: Props) => {
     }
   }, [category]);
 
+  let showMenu = showFilter ? 'show' : 'hide';
+
   return (
     <div className='market-list'>
-      <div className='filter-box'>
-        <h3>Filters</h3>
-        <input
-          type='text'
-          placeholder='Filter by typing'
-          value={filterText}
-          onChange={handleTextFilterChange}
-        />
-        <div className='filter-settings'>
+      <div className={`filter-box ${showMenu}`}>
+        <div className='filter-header'>
+          <h3>
+            <span>Filters</span>
+            <i
+              className='fas fa-filter'
+              style={{ marginLeft: '10px', color: '#d9dad7' }}
+            ></i>
+          </h3>
+
+          <div className='hamburger' onClick={handleShowFilterChange}>
+            {!showFilter ? (
+              <i className='fas fa-bars'></i>
+            ) : (
+              <i className='fas fa-times'></i>
+            )}
+          </div>
+        </div>
+        <div className={`filter-settings ${showMenu}`}>
+          <input
+            type='text'
+            placeholder='Filter by typing'
+            value={filterText}
+            onChange={handleTextFilterChange}
+          />
           <div className='sort-by'>
             <label>Sort by </label>
             <select value={sortBy} onChange={handleSortChange}>
