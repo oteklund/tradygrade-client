@@ -228,9 +228,12 @@ const MarketList = ({ items }: Props) => {
           </div>
         </div>
       </div>
+      <div className="market-list-items" >
       {filteredItems.map((item: Item) => (
         <MarketListItem key={item.item.id} item={item} />
       ))}
+      </div>
+      
     </div>
   );
 };

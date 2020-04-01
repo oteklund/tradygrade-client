@@ -30,20 +30,26 @@ const ComposeMessage = (props: Props) => {
   }, [props.chatID]);
 
   // Sending an message
-  const sendMessage = () => {
-    props.emitMessage({
-      chat: chatID,
-      user: userField,
-      picture: userPicture,
-      message: messageField,
-      time: timeStamp
-    });
-    addNewMessage(props.chatID, {
-      user: props.myUserId,
-      message: messageField,
-      time: timeStamp
-    });
-    setMessageField("");
+  const sendMessage = (e:any) => {
+    e.preventDefault()
+    if (
+      messageField.trim() === '' 
+    ) { console.log('Cannot send empty message');
+    } else {
+      props.emitMessage({
+        chat: chatID,
+        user: userField,
+        picture: userPicture,
+        message: messageField,
+        time: timeStamp
+      });
+      addNewMessage(props.chatID, {
+        user: props.myUserId,
+        message: messageField,
+        time: timeStamp
+      });
+      setMessageField("");
+    }
   };
 
   const typingMessage = (e: any) => {
@@ -53,14 +59,17 @@ const ComposeMessage = (props: Props) => {
 
   return (
     <div className="ComposeMessage">
-      <textarea
+      <form autoComplete="off" onSubmit={sendMessage}>
+      <input
         id="message"
         placeholder="Message"
         value={messageField}
+        autoFocus
         onChange={typingMessage}
-      ></textarea>
+      ></input>
       <br></br>
-      <button onClick={sendMessage}>Send</button>
+      <input type='submit' value='Send'/>
+      </form>
     </div>
   );
 };

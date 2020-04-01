@@ -1,7 +1,24 @@
-form {
-  max-width: 400px;
+
+ .new-item {
+  background-color: white;
+  padding: 10px;
+  box-shadow: 10px 10px 10px #828381;
+  min-width: 300px;
+  opacity: 0.9;
+  max-width:400px;
   margin: auto;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  text-align: center;
+
+  .new-item-form {
+    min-width: 300px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+
 }
+
+

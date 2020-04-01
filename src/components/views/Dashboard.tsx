@@ -20,8 +20,8 @@ const Dashboard = ({ user, items }: Props) => {
       ) : (
         <div>WTF?</div>
       )}
+      <p>Latest 5 items added to the marketplace:</p>
       <div className='latest-items'>
-        <p>Latest 5 items added to the marketplace:</p>
         {items
           .sort((a, b) => {
             return (

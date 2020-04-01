@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Navigation from './Navigation';
-import history from '../history';
 import { StoreState, User } from '../models/types';
 import Search from './dashboard/Search';
 import SearchResults from './views/SearchResults';
@@ -15,23 +14,20 @@ interface Props {
 }
 
 const LoggedInRoute = ({ component: Component, user, ...otherProps }: any) => {
-  if (!user.isAuthenticated) {
-    history.push('/');
-    console.log(
-      'attempted to access a page that requires authorization, please log in to proceed.'
-    );
-  }
 
   return (
     <>
       <Route
         {...otherProps}
         render={otherProps => (
+          // check for auth status and redirect accordingly
+          user.isAuthenticated ?
           <>
             <Navigation />
             <Search {...otherProps} />
             <Component {...otherProps} />
           </>
+          : <Redirect to="/" />
         )}
       />
     </>

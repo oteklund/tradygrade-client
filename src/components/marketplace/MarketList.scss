@@ -1,5 +1,9 @@
 .market-list {
   // text-align: center;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   .filter-settings {
     display: flex;
@@ -62,6 +66,36 @@
         color: #d9dad7;
         cursor: pointer;
       }
+    }
+  }
+
+  .market-list-items {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .marketItem {
+      background-color: #d9dad7;
+      opacity: 0.9;
+
+      margin: 15px;
+      padding: 10px;
+      text-align: center;
+      justify-items: center;
+      width: 200px;
+      height: 300px;
+      border-radius: 22px;
+      box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #fefffc;
+      transition: box-shadow 30ms ease;
+    }
+
+    .marketItem:hover {
+      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #fefffc;
+    }
+
+    .marketItem:active {
+      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #fefffc;
     }
   }
 }
