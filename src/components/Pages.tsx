@@ -31,7 +31,7 @@ const Pages = () => {
         component={AccountManagement}
       />
       <LoggedInRoute path='/chat' exact={true} component={ChatList} />
-      <LoggedInRoute path='/chat/:chatid' exact={true} component={ChatWindow} />
+      <LoggedInRoute path='/chat/:chatid/:chatuser' exact={true} component={ChatWindow} />
       <LoggedInRoute
         path='/marketplace/search'
         exact={true}
