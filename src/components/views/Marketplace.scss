@@ -8,7 +8,7 @@
     margin: 1rem 1.5rem;
   }
 
-  .marketItem {
+  .market-item {
     background-color: white;
     opacity: 0.8;
     box-shadow: 10px 10px 10px #828381;
@@ -22,16 +22,16 @@
     transition: width 100ms ease;
   }
 
-  .marketItem:hover {
+  .market-item:hover {
     width: 250px;
   }
 
-  .marketItem:active {
+  .market-item:active {
     opacity: 0.7;
     box-shadow: 5px 5px 5px #737472;
   }
 
-  .loneButton {
+  .lone-button {
     border: none;
     background-color: #fa4a19;
     box-shadow: 8px 8px 8px #828381;
@@ -42,7 +42,7 @@
     opacity: 0.8;
   }
 
-  .itemButton {
+  .item-button {
     border: none;
     background-color: #fa4a19;
     box-shadow: 8px 8px 8px #828381;
@@ -52,11 +52,11 @@
     border-radius: 10px;
   }
 
-  .itemButton:hover {
+  .item-button:hover {
     color: #1a2639;
   }
 
-  .itemButton:active {
+  .item-button:active {
     box-shadow: 4px 4px 4px #828381;
     opacity: 0.9;
   }
@@ -76,5 +76,17 @@
     box-shadow: 10px 10px 10px #828381;
     min-width: 300px;
     opacity: 0.8;
+  }
+
+  .item-picture {
+    border-radius: 22px;
+    background: #d9dad7;
+    box-shadow: 8px 8px 16px #757674, -8px -8px 16px #ffffff;
+  }
+
+  .item-picture:active {
+    border-radius: 22px;
+    background: #d9dad7;
+    box-shadow: 4px 4px 8px #757674, -4px -4px 8px #ffffff;
   }
 }

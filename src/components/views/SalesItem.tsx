@@ -19,11 +19,12 @@ const SalesItem = ({ items, match }: Props) => {
   const [item, setItem] = useState<Item | undefined>();
 
   useEffect(() => {
-    let matchingItem = items.find((item: Item) => {
-      return item.item.id === match.params.id, 10;
-    });
+    let matchingItem = items.find(
+      (item: Item) => item.item.id == String(match.params.itemid)
+    );
     setItem(matchingItem);
-  });
+    //eslint-disable-next-line
+  }, [match.params.id]);
 
   const handleProfileClick = (e: any): void => {
     if (item) {

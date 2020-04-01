@@ -200,11 +200,11 @@ const NewSalesItem = ({ createItem, user }: Props) => {
             onChange={e => setPictureUrl(e.target.value)}
           />
         </div>
-        <button className='itemButton' type='submit'>
+        <button className='item-button' type='submit'>
           Submit
         </button>
         <button
-          className='itemButton'
+          className='item-button'
           onClick={e => {
             e.preventDefault();
             history.push('/marketplace');
