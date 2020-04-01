@@ -44,7 +44,8 @@ const NewSalesItem = ({ createItem, user }: Props) => {
   };
   return (
     <div className='new-item'>
-      <form onSubmit={e => handleSubmit(e)}>
+      <form className="new-item-form" onSubmit={e => handleSubmit(e)}>
+        <h2>Add a new product</h2>
         <input
           type='text'
           placeholder='Enter product name'
