@@ -14,6 +14,7 @@ import renderIcon from "../../pictures/renderingChat.gif";
 import picture from "../../pictures/tradygradedarkblue.png";
 import { render } from "react-dom";
 
+
 interface Props {
   user: User;
   history: History<LocationState>;
@@ -103,7 +104,10 @@ const ChatList = (props: Props) => {
         </div>
       </div>
       <div className="MyChatOutput">
-        <img src={picture} alt="tradygradedarkblue" />
+        
+        <img className="trady-image" src={picture} alt="tradygradedarkblue" />
+        
+        
       </div>
     </div>
   );
