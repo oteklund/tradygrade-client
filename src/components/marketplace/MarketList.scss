@@ -95,7 +95,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding:10px;
+    padding: 10px;
 
     .market-item {
       background-color: #d9dad7;
@@ -112,14 +112,13 @@
       transition: box-shadow 30ms ease;
     }
 
-
     .market-item:hover {
-      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #fefffc;
+      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #ececec;
       cursor: pointer;
     }
 
     .market-item:active {
-      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #fefffc;
+      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #ececec;
     }
   }
 }
