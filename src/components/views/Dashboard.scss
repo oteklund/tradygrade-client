@@ -1,3 +1,11 @@
+$bg-dark: #1a2639;
+$bg-dark-light: #3e4a61;
+$bg-orange: #c24d2c;
+$bg-light: #d9dad7;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Comfortaa:400,700&display=swap");
+
 * {
   box-sizing: border-box;
 }
@@ -10,22 +18,44 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
-  .welcome{
-    background-color:#d9dad7;
-    opacity:0.9;
-    text-align:center;
-    margin: 10px;
-    padding: 10px;
-    font-size: 20px;
-    border-radius: 22px;
-    box-shadow: 8px 8px 16px #b4b5b2, -8px -8px 16px #ececec;
-  }
 
+  .welcome {
+    text-align: center;
+    margin: 10px;
+    padding-bottom: 30px;
+    font-size: 30px;
+    font-family: "comfortaa", "Roboto", sans-serif;
+  }
+  .dashboard-collapsible-button {
+    cursor: pointer;
+    padding: 18px;
+    width: 70vw;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 8px;
+    background: #d9dad7;
+    box-shadow: 9px 9px 20px #b8b9b7, -9px -9px 20px #fafbf7;
+    font-family: "comfortaa", "Roboto", sans-serif;
+    transition: all 0.1s ease-in-out;
+    transition: color 0.3s;
+    &:active {
+      border-radius: 8px;
+      background: linear-gradient(145deg, #c3c4c2, #e8e9e6);
+      box-shadow: 9px 9px 20px #b8b9b7, -9px -9px 20px #fafbf7;
+    }
+    &:hover {
+      color: $bg-orange;
+    }
+  }
   .latest-items {
+    max-height: none;
     display: flex;
+    overflow: hidden;
     text-align: center;
     justify-content: center;
+    transition: max-height 0.2s ease-out;
     .dash-item {
       background-color: #d9dad7;
       opacity: 0.9;
@@ -63,5 +93,9 @@
     .dash-date {
       font-size: 10px;
     }
+  }
+  .dashboard-hidden {
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
   }
 }
