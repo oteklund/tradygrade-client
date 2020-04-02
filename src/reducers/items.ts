@@ -15,7 +15,7 @@ export const itemsReducer = (state: Item[] = [], action: any) => {
       return state.filter(item => item.item.id !== action.payload);
     case ActionTypes.updateItem:
       return state.map(item =>
-        item.item.id === action.payload.id ? action.payload : item
+        item.item.id === action.payload.item.id ? action.payload : item
       );
     default:
       return state;
