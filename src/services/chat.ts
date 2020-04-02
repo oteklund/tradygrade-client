@@ -1,10 +1,12 @@
 import axios from 'axios';
+import {tokenAndHeaderConfig} from "./util"
 
 // GET message history from DB. Simple way for testing
 const MessageUrl = 'http://localhost:4000/api/chat/message';
 
 export const getMessageHistory = async (chatID: number) => {
-  const response = await axios.get(`${MessageUrl}s/${chatID}`);
+  let headers = await tokenAndHeaderConfig()
+  const response = await axios.get(`${MessageUrl}s/${chatID}`, {headers: headers});
   if (response.status === 200) {
     return response.data;
   } else {
@@ -13,7 +15,8 @@ export const getMessageHistory = async (chatID: number) => {
 };
 
 export const addNewMessage = async (chatID: number, body: object) => {
-  const response = await axios.post(`${MessageUrl}s/${chatID}`, body);
+  let headers = await tokenAndHeaderConfig()
+  const response = await axios.post(`${MessageUrl}s/${chatID}`, body, {headers});
   if (response.status === 200) {
     return response.data;
   } else {
@@ -25,7 +28,8 @@ export const addNewMessage = async (chatID: number, body: object) => {
 const ChatUrl = 'http://localhost:4000/api/chat';
 
 export const getChatID = async (user1: number, user2: number) => {
-  const response = await axios.get(`${ChatUrl}/our/${user1}/${user2}`);
+  let headers = await tokenAndHeaderConfig()
+  const response = await axios.get(`${ChatUrl}/our/${user1}/${user2}`, {headers});
   if (response.status === 200 && response.data.length !== 0) {
     return response.data[0].chat_id;
   } else {
@@ -34,7 +38,8 @@ export const getChatID = async (user1: number, user2: number) => {
 };
 
 export const getChats = async (userid?: number) => {
-  const response = await axios.get(`${ChatUrl}/my/${userid}`);
+  let headers = await tokenAndHeaderConfig()
+  const response = await axios.get(`${ChatUrl}/my/${userid}`, {headers});
   if (response.status === 200 && response.data.length !== 0) {
     return response.data;
   } else {
@@ -43,7 +48,8 @@ export const getChats = async (userid?: number) => {
 };
 
 export const newChat = async (userids: object) => {
-  const response = await axios.post(`${ChatUrl}/new`, { userids });
+  let headers = await tokenAndHeaderConfig()
+  const response = await axios.post(`${ChatUrl}/new`, { userids, headers });
   if (response.status === 200 && response.data.length !== 0) {
     return response.data;
   } else {
@@ -55,7 +61,8 @@ export const newChat = async (userids: object) => {
 const UsersUrl = 'http://localhost:4000/api/users';
 
 export const getUsers = async () => {
-  const response = await axios.get(`${UsersUrl}`);
+  let headers = await tokenAndHeaderConfig()
+  const response = await axios.get(`${UsersUrl}`, {headers});
   if (response.status === 200) {
     return response.data;
   } else {
