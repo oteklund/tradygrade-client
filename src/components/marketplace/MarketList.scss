@@ -69,15 +69,18 @@
   .filter-header {
     text-align: center;
     width: 250px;
-    height: 2.5rem;
+    height: 4rem;
     margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .hamburger {
       i {
         position: absolute;
         top: 0;
         right: 0;
-        margin: 1.1rem 2rem;
+        margin: 0.54rem 1.5rem;
         color: #f4f4f4;
         cursor: pointer;
       }
@@ -121,42 +124,36 @@
       box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #ececec;
     }
 
-    .item-name-display{
+    .item-name-display {
       font-size: 20px;
     }
 
-    .item-price-display{
+    .item-price-display {
       font-size: 20px;
       font-weight: 900;
     }
 
-    .market-item-picture-div{
-      overflow:hidden;
+    .market-item-picture-div {
+      overflow: hidden;
       border-radius: 22px;
       background: #d9dad7;
       box-shadow: 8px 8px 16px #757674, -8px -8px 16px #ececec;
-      margin:10px;
+      margin: 10px;
       text-align: center;
-        display: block;
-        
-      
+      display: block;
 
-    .market-item-picture {
-      background: #d9dad7;
-      height: 200px;
-      border-radius:22px;
-      
-
+      .market-item-picture {
+        background: #d9dad7;
+        height: 200px;
+        border-radius: 22px;
+      }
     }
 
-    
-  }
-
-  .market-item-picture-div:active {
-    border-radius: 22px;
-    background: #d9dad7;
-    box-shadow: 4px 4px 8px #757674, -4px -4px 8px #ececec;
-  }
+    .market-item-picture-div:active {
+      border-radius: 22px;
+      background: #d9dad7;
+      box-shadow: 4px 4px 8px #757674, -4px -4px 8px #ececec;
+    }
   }
 }
 
