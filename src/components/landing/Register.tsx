@@ -44,6 +44,7 @@ const Register = ({ user, error, register, clearErrors }: any) => {
         setPassword("")
         setConfirmPassword("")
         setEmail("")
+        setErrorMessage("")
         setOpen(false)
     }
 
@@ -61,11 +62,14 @@ const Register = ({ user, error, register, clearErrors }: any) => {
             password: password,
             email: email
         }
-        if (password !== confirmPassword) setErrorMessage("Passwords do not match, please try again.")
+        if (!name || !password || !email || !confirmPassword) setErrorMessage("Please fill out all the fields.")
+        
+        if (password !== confirmPassword || !password || !confirmPassword) setErrorMessage("Passwords do not match, please try again.")
         else {
             try {
-                await register(data)
+                await register(data)                
                 handleClose()
+                setErrorMessage("")
             } catch (err) {
                 console.log(err)
                 console.log(err.message)
