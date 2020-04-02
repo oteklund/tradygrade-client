@@ -22,18 +22,22 @@ const Pages = () => {
   return (
     <>
       {/* logged out routes */}
-      <Switch>
+      {/* <Switch>
         <LoggedOutRoute path='/' exact={true} component={Landing} />
         <LoggedOutRoute path='/about' exact={true} component={About} />
-      </Switch>
+      </Switch> */}
       {/* logged in routes */}
       <Switch>
+      <LoggedOutRoute path='/' exact={true} component={Landing} />
+        <LoggedOutRoute path='/about' exact={true} component={About} />
+        
         <LoggedInRoute path='/home' exact={true} component={Dashboard} />
         <LoggedInRoute
           path='/account'
           exact={true}
           component={AccountManagement}
         />
+        <Route path='/404' exact={true} component={NotFound} />
         <LoggedInRoute path='/chat' exact={true} component={ChatList} />
         <LoggedInRoute path='/chat/:chatid/:chatuser' exact={true} component={ChatWindow} />
         <LoggedInRoute
@@ -59,11 +63,10 @@ const Pages = () => {
         />
         <LoggedInRoute path='/users/:name' exact={true} component={UserProfile} />
         <Route exact path='/itemplayground' component={ItemPlayground} />
+        <Route path='*' component={NotFound} />
       </Switch>
       {/* generic routes */}
-      <Switch>
-        <Route path='**' component={NotFound} />
-      </Switch>
+     
     </>
   );
 };

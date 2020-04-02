@@ -1,0 +1,224 @@
+ 
+.error-faces{
+
+.error-trady {
+        /* trady trady */
+        width: 200px;
+        height: 200px;
+        display: block;
+        position: absolute;
+        z-index: +1000;
+        animation: rotation 8s infinite linear;
+        box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 100px;
+        
+        
+        -webkit-animation: moveX 10s linear 0s infinite alternate, moveY 10.3s linear 0s infinite alternate;
+        -moz-animation: moveX 10s linear 0s infinite alternate, moveY 10.3s linear 0s infinite alternate;
+        -o-animation: moveX 10s linear 0s infinite alternate, moveY 10.3s linear 0s infinite alternate;
+        animation: moveX 10s linear 0s infinite alternate, moveY 10.3s linear 0s infinite alternate ;
+      }
+      
+      @-webkit-keyframes moveX {
+        /* screen width - width of image */
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-moz-keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-o-keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-webkit-keyframes moveY {
+        /* screen height - height of image */
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @-moz-keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @-o-keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+
+      .errormessage-trady {
+        /* trady trady */
+        width: 200px;
+        height: 200px;
+        display: block;
+        position: absolute;
+        z-index: +1000;
+        animation: rotation 8s infinite linear;
+        box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 100px;
+        
+        -webkit-animation: moveX 8s linear 0s infinite alternate, moveY 9.3s linear 0s infinite alternate;
+        -moz-animation: moveX 8s linear 0s infinite alternate, moveY 9.3s linear 0s infinite alternate;
+        -o-animation: moveX 8s linear 0s infinite alternate, moveY 9.3s linear 0s infinite alternate;
+        animation: moveX 8s linear 0s infinite alternate, moveY 9.3s linear 0s infinite alternate ;
+      }
+      
+      @-webkit-keyframes moveX {
+        /* screen width - width of image */
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-moz-keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-o-keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-webkit-keyframes moveY {
+        /* screen height - height of image */
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @-moz-keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @-o-keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+
+      .error4vol2-trady {
+        /* trady trady */
+        width: 200px;
+        height: 200px;
+        display: block;
+        position: absolute;
+        z-index: +1000;
+        animation: rotation 8s infinite linear;
+        box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 100px;
+        
+        -webkit-animation: moveX 5s linear 0s infinite alternate, moveY 8.3s linear 0s infinite alternate;
+        -moz-animation: moveX 5s linear 0s infinite alternate, moveY 8.3s linear 0s infinite alternate;
+        -o-animation: moveX 5s linear 0s infinite alternate, moveY 8.3s linear 0s infinite alternate;
+        animation: moveX 5s linear 0s infinite alternate, moveY 8.3s linear 0s infinite alternate ;
+      }
+      
+      @-webkit-keyframes moveX {
+        /* screen width - width of image */
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-moz-keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-o-keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-webkit-keyframes moveY {
+        /* screen height - height of image */
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @-moz-keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @-o-keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+
+      .error4-trady {
+        /* trady trady */
+        width: 200px;
+        height: 200px;
+        display: block;
+        position: absolute;
+        z-index: +1000;
+        animation: rotation 8s infinite linear;
+        box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 100px;
+        
+        -webkit-animation: moveX 8s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate;
+        -moz-animation: moveX 8s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate;
+        -o-animation: moveX 8s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate;
+        animation: moveX 8s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate ;
+      }
+      
+      @-webkit-keyframes moveX {
+        /* screen width - width of image */
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-moz-keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-o-keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-webkit-keyframes moveY {
+        /* screen height - height of image */
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @-moz-keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @-o-keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+
+      .error0-trady {
+        /* trady trady */
+        width: 200px;
+        height: 200px;
+        display: block;
+        position: absolute;
+        z-index: +1000;
+        animation: rotation 8s infinite linear;
+        box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 100px;
+        
+        -webkit-animation: moveX 6s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate;
+        -moz-animation: moveX 6s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate;
+        -o-animation: moveX 6s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate;
+        animation: moveX 6s linear 0s infinite alternate, moveY 6.3s linear 0s infinite alternate ;
+      }
+      
+      @-webkit-keyframes moveX {
+        /* screen width - width of image */
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-moz-keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-o-keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @keyframes moveX {
+        from { left: 0; } to { left: calc(100% - 200px); }
+      }
+      @-webkit-keyframes moveY {
+        /* screen height - height of image */
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @-moz-keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @-o-keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+      @keyframes moveY {
+        from { top: calc(100% - 200px); } to { top: 0; }
+      }
+    }
