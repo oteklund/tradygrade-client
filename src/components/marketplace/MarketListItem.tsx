@@ -14,10 +14,14 @@ const MarketListItem = ({ item }: Props) => {
   };
   return (
     <div className='market-item' onClick={handlePush}>
-      <p>
-        {item.item.name}/ {item.item.price}€
+      <p className="item-name-display">
+        {item.item.name}
       </p>
-      <img className='item-picture' src={item.item.pictureURL} height='100px' />
+      <p className="item-price-display"> {item.item.price}€</p>
+      <div className="market-item-picture-div">
+      <img className='market-item-picture' src={item.item.pictureURL} />
+      <div className="market-item-shadow"></div>
+      </div>
       <p>Listed By: {item.seller.name}</p>
       <p className='dash-date'>
         {moment(item.item.listedAt).format('DD-MM-YYYY')}
