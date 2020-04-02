@@ -15,6 +15,13 @@ interface Props {
 }
 
 const Dashboard = ({ user, items }: Props) => {
+
+  const [recentItemsShow, setRecentItemsShow] = useState(false)
+
+  const handleCollapsible = (): void => {
+    setRecentItemsShow(!recentItemsShow)
+  }
+
   return (
     <div className='dashboard'>
       {user ? (
@@ -22,8 +29,18 @@ const Dashboard = ({ user, items }: Props) => {
       ) : (
         <div>How are you here? Who are you?</div>
       )}
-      <p>Latest 5 items added to the marketplace:</p>
-      <div className='latest-items'>
+      <button 
+      type="button" 
+      className="dashboard-collapsible-button"
+      onClick={handleCollapsible}
+      >Latest 5 items added to the marketplace</button>
+      <div 
+      className=
+      {recentItemsShow ?
+        'latest-items'
+        : 'latest-items dashboard-hidden'
+      }
+      >
         {items
           .sort((a, b) => {
             return (
