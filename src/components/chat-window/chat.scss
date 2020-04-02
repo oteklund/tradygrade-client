@@ -238,6 +238,13 @@
       outline: none;
     }
   }
+
+
+  .Chats::-webkit-scrollbar {
+    display: none;
+  }
+
+  
 }
 
 .MyChatWindow {
@@ -398,7 +405,7 @@
     
     min-width: 180px;
     max-width: 250px;
-    min-height:550px;
+    height:550px;
     background: #d9dad7;
     box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
     transition: box-shadow 30ms ease;
@@ -442,6 +449,7 @@
         box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
         padding:5px;
         margin:5px;
+        width:90%;
       }
 
     
@@ -469,4 +477,7 @@
   .MyChats::-webkit-scrollbar {
     display: none;
   }
+
+  
+
 }
