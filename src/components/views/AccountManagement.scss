@@ -82,7 +82,6 @@ $bg-light: #d9dad7;
 
   @media only screen and (max-width: 600px) {
     .account-management-container {
-      
       display: grid;
       width: min-content;
       margin: auto;
@@ -104,7 +103,7 @@ $bg-light: #d9dad7;
   h1 {
     text-align: center;
   }
-  
+
   .my-item-list {
     background-color: #d9dad7;
     opacity: 0.95;
@@ -126,6 +125,18 @@ $bg-light: #d9dad7;
       border-radius: 22px;
       box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
       transition: box-shadow 30ms ease;
+
+      .my-item-picture {
+        border-radius: 22px;
+        background: #d9dad7;
+        box-shadow: 8px 8px 16px #757674, -8px -8px 16px #ffffff;
+      }
+
+      .my-item-picture :active {
+        border-radius: 22px;
+        background: #d9dad7;
+        box-shadow: 4px 4px 8px #757674, -4px -4px 8px #ffffff;
+      }
     }
     .my-item:hover {
       box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #ececec;
@@ -135,11 +146,8 @@ $bg-light: #d9dad7;
       box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #ececec;
     }
 
-    // .mt-item-picture {
-    // }
-
-    // .ash-date {
-    // }
+    .dash-date {
+    }
   }
 
   @media only screen and (max-width: 600px) {

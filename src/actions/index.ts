@@ -86,9 +86,9 @@ export const createItem = (item: Item2) => {
     }
   };
 };
-export const updateItem = (item: Item2) => {
+export const updateItem = (item: any) => {
   return async (dispatch: Dispatch) => {
-    const response = await axios.put(`${ItemUrl}/${item.id}`, item);
+    const response = await axios.put(`${ItemUrl}/${item.itemId}`, item);
     if (response.status === 200) {
       dispatch<IUpdateItemActions>({
         type: ActionTypes.updateItem,
