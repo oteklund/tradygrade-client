@@ -11,9 +11,9 @@ import history from '../../history';
 import { start } from 'repl';
 import { usersReducer } from '../../reducers/users';
 import { newChat, getChatID } from '../../services/chat';
+import { getUser } from '../../services/users';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-// import { RouteProps } from 'react-router';
 
 interface Props {
   match: any;
@@ -33,41 +33,43 @@ const SalesItem = ({ items, match, user }: Props) => {
   }, [match.params.id]);
 
   const handleBuy = async (e: SyntheticEvent) => {
-    let response = await axios.get(
-      `http://localhost:4000/api/users/${item?.seller.id}`
-    );
-    let sellerEmail = response.data.email;
-    console.log(sellerEmail);
-    Swal.fire({
-      title: 'Are you sure you really want to purchase this product?',
-      text:
-        'Seller will be informed via email with your contact details included',
-      icon: 'info',
-      showCancelButton: true
-    }).then(result => {
-      if (result.value) {
-        (window as any).Email.send({
-          Host: process.env.REACT_APP_TRADY_HOST,
-          Username: process.env.REACT_APP_TRADY_EMAIL,
-          Password: process.env.REACT_APP_TRADY_PASSWORD,
-          To: `${sellerEmail}`,
-          From: 'tradygrade@gmail.com',
-          Subject: `${user.name} wants to buy ${item?.item.name}!`,
-          Body: `Hello, ${item?.seller.name}! \n \n
-          ${user.name} has told us he wants to buy your ${item?.item.name}. \n
-          His email is ${user.email}, please contact him as soon as possible! \n \n
-          Best Regards, \n
-          TradyGrade Team`
+    if (item?.seller.id) {
+      let response: User | null = await getUser(item?.seller.id);
+      if (response) {
+        let sellerEmail = response.email;
+        console.log(sellerEmail);
+        Swal.fire({
+          title: 'Are you sure you really want to purchase this product?',
+          text:
+            'Seller will be informed via email with your contact details included',
+          icon: 'info',
+          showCancelButton: true
+        }).then(result => {
+          if (result.value) {
+            (window as any).Email.send({
+              Host: process.env.REACT_APP_TRADY_HOST,
+              Username: process.env.REACT_APP_TRADY_EMAIL,
+              Password: process.env.REACT_APP_TRADY_PASSWORD,
+              To: `${sellerEmail}`,
+              From: 'tradygrade@gmail.com',
+              Subject: `${user.name} wants to buy ${item?.item.name}!`,
+              Body: `Hello, ${item?.seller.name}! \n \n
+              ${user.name} has told us he wants to buy your ${item?.item.name}. \n
+              His email is ${user.email}, please contact him as soon as possible! \n \n
+              Best Regards, \n
+              TradyGrade Team`
+            });
+            Swal.fire(
+              'Email sent!',
+              'Seller will get back to you as soon as possible!',
+              'success'
+            );
+          } else {
+            Swal.fire('Cancelled', 'No email was sent!', 'error');
+          }
         });
-        Swal.fire(
-          'Email sent!',
-          'Seller will get back to you as soon as possible!',
-          'success'
-        );
-      } else {
-        Swal.fire('Cancelled', 'No email was sent!', 'error');
       }
-    });
+    }
   };
 
   const handleChat = async (e: SyntheticEvent) => {
