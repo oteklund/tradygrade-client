@@ -5,13 +5,16 @@
 .dashboard {
   padding: 1rem;
   background-color: #d9dad7;
-  opacity: 0.95;
-
-  .welcome {
-    background-color: #d9dad7;
-    opacity: 0.9;
-    text-align: center;
-    box-shadow: 10px 10px 10px #b4b5b2;
+  opacity:0.95;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .welcome{
+    background-color:#d9dad7;
+    opacity:0.9;
+    text-align:center;
+    box-shadow: 10px 10px 10px #828381;
     margin: 10px;
     padding: 10px;
     font-size: 20px;

@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { StoreState, Item, User } from '../../models/types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import NewsFeed from '../dashboard/NewsFeed';
 import history from '../../history';
 
 interface Props {
@@ -55,6 +56,7 @@ const Dashboard = ({ user, items }: Props) => {
             }
           })}
       </div>
+      <NewsFeed />
     </div>
   );
 };
