@@ -19,8 +19,8 @@ const Navigation = ({ user, logOutConnect }: any) => {
   return (
     <div className='nav'>
       <ul className='main-navigation'>
-        <li>
-        <img src={logo} className="App-logo" alt="logo" height="40px" />
+        <li className='app-list-item'>
+          <img src={logo} className='App-logo' alt='logo' height='40px' />
         </li>
         <li>
           <NavLink to='/home' style={{ textDecoration: 'none' }}>

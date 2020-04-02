@@ -19,7 +19,7 @@ const Dashboard = ({ user, items }: Props) => {
       {user ? (
         <div className='welcome'>{`Welcome, ${user.name}!`}</div>
       ) : (
-        <div>WTF?</div>
+        <div>How are you here? Who are you?</div>
       )}
       <p>Latest 5 items added to the marketplace:</p>
       <div className='latest-items'>

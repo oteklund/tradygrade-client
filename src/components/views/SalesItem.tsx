@@ -2,20 +2,23 @@
 This component is for viewing and buying an existing item. The owner of the item may also edit item details. For posting a new item see component NewSalesItem.
 */
 
-import './SalesItem.scss';
-import React, { useState, useEffect } from 'react';
-import { StoreState, Item } from '../../models/types';
-import { connect } from 'react-redux';
-import moment from 'moment';
-import history from '../../history';
+import "./SalesItem.scss";
+import React, { useState, useEffect } from "react";
+import { StoreState, Item, User } from "../../models/types";
+import { connect } from "react-redux";
+import moment from "moment";
+import history from "../../history";
+import { start } from "repl";
+import { usersReducer } from "../../reducers/users";
 // import { RouteProps } from 'react-router';
 
 interface Props {
   match: any;
   items: Item[];
+  user: any;
 }
 
-const SalesItem = ({ items, match }: Props) => {
+const SalesItem = ({ items, match, user }: Props) => {
   const [item, setItem] = useState<Item | undefined>();
 
   useEffect(() => {
@@ -28,7 +31,7 @@ const SalesItem = ({ items, match }: Props) => {
 
   const handleProfileClick = (e: any): void => {
     if (item) {
-      let userUrlParam = item.seller.name.replace(/\s/, '');
+      let userUrlParam = item.seller.name.replace(/\s/, "");
       history.push({
         pathname: `/users/${userUrlParam}`,
         state: { name: item.seller.name }
@@ -41,9 +44,9 @@ const SalesItem = ({ items, match }: Props) => {
   };
   if (item) {
     return (
-      <div className='item-container'>
+      <div className="item-container">
         <h3>{item.item.name}</h3>
-        <div className='item-content'>
+        <div className="item-content">
           <p>Seller</p>
           <div>
             {item.seller.name}
@@ -54,15 +57,27 @@ const SalesItem = ({ items, match }: Props) => {
           <p>Condition</p>
           <div>{item.item.condition}</div>
           <p>Listed at</p>
-          <div>{moment(item.item.listedAt).format('DD-MM-YYYY')}</div>
+          <div>{moment(item.item.listedAt).format("DD-MM-YYYY")}</div>
           <p>Price</p>
           {/* <img className="itemPicture" src={item.item.pictureURL} height="200px" /> */}
           <div>
             <b>{`${item.item.price} €`}</b>
           </div>
-          <button>Buy Item</button>
-          <button>Chat With Seller</button> <br />
-          <button onClick={goBack}>Go Back</button>
+          {item.seller.name !== user.name ? (
+            <div className="sales-item-buttons-for-buyer">
+              <button>Buy Item</button>
+              <button>Chat With Seller</button>
+              <br />
+              <button onClick={goBack}>Go Back</button>
+            </div>
+          ) : (
+            <div className="sales-item-buttons-for-seller">
+              <button>Edit</button>
+              <button>Delete</button>
+              <br />
+              <button onClick={goBack}>Go Back</button>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -72,7 +87,8 @@ const SalesItem = ({ items, match }: Props) => {
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  items: state.items
+  items: state.items,
+  user: state.user
 });
 
 export default connect(mapStateToProps)(SalesItem);
