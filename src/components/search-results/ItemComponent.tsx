@@ -12,8 +12,10 @@ const ItemComponent = ({ item }: Props) => {
   };
   return (
     <React.Fragment>
+      <div className="product-list-item">
       <div>{item.item.name}</div>
       <button onClick={e => goToItem(e)}>View Item</button>
+      </div>
     </React.Fragment>
   );
 };

@@ -9,7 +9,7 @@ interface Props {
 
 const ItemsList = ({ items }: Props) => {
   return (
-    <div>
+    <div className="items-search-list">
       <h3>Matching products</h3>
       {items.map((item: Item) => (
         <ItemComponent key={item.item.id} item={item} />

@@ -219,6 +219,13 @@
       outline: none;
     }
   }
+
+
+  .Chats::-webkit-scrollbar {
+    display: none;
+  }
+
+  
 }
 
 .MyChatWindow {
@@ -370,7 +377,11 @@
 
     min-width: 180px;
     max-width: 250px;
+<<<<<<< HEAD
     min-height: 550px;
+=======
+    height:550px;
+>>>>>>> f702e43d9149c0f98b08c89c607ccd7602d3041f
     background: #d9dad7;
     box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
     transition: box-shadow 30ms ease;
@@ -401,6 +412,7 @@
       box-shadow: 4px 4px 8px #b4b5b2, -4px -4px 8px #ececec;
     }
 
+<<<<<<< HEAD
     .MyChatButton:focus {
       outline: none;
     }
@@ -414,6 +426,18 @@
       padding: 5px;
       margin: 5px;
     }
+=======
+      .select-chat-user {
+       
+        border:none;
+        background-color: #d9dad7;
+        border-radius:22px;
+        box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
+        padding:5px;
+        margin:5px;
+        width:90%;
+      }
+>>>>>>> f702e43d9149c0f98b08c89c607ccd7602d3041f
 
     #userDiv {
       padding: 0.7rem;
@@ -440,6 +464,9 @@
   .MyChats::-webkit-scrollbar {
     display: none;
   }
+
+  
+
 }
 
 @media only screen and (max-width: 790px) {
