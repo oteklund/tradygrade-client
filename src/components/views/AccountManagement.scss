@@ -3,9 +3,154 @@ $bg-dark-light: #3e4a61;
 $bg-orange: #c24d2c;
 $bg-light: #d9dad7;
 
-.account-management-container {
-    width: 80%;
-    background-color: #3e4a6144;
+.my-account {
+  .account-management-container {
+    display: inline-flex;
+    background-color: #d9dad7;
     border-radius: 8px;
-    padding: 20px;
+    margin: auto;
+    padding: 2em;
+    margin-bottom: 2em;
+
+    .account-management-user-picture {
+      grid-area: p;
+      width: 13em;
+      margin-right: 2em;
+      align-content: center;
+
+      img {
+        max-width: 100%;
+        max-height: 20vh;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      margin-right: 0em;
+      text-align: center;
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .account-management-user-info {
+      align-self: center;
+      font-size: large;
+
+      #div1 {
+        display: inline-flex;
+        width: 5.5em;
+        color: $bg-dark;
+      }
+
+      #div2 {
+        display: inline-flex;
+        color: $bg-orange;
+        margin: 0;
+        padding: 0em;
+
+        h3 {
+          margin: 0;
+          padding: 0em;
+        }
+      }
+
+      @media only screen and (max-width: 600px) {
+        grid-area: i;
+        align-self: none;
+
+        #div1 {
+          // display: inline-flex;
+          width: 5.5em;
+          color: $bg-dark;
+        }
+
+        #div2 {
+          // display: inline-flex;
+          color: $bg-orange;
+          margin: 0;
+          padding: 0em;
+
+          h3 {
+            margin: 0;
+            padding: 0em;
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .account-management-container {
+      
+      display: grid;
+      width: min-content;
+      margin: auto;
+      margin-bottom: 2em;
+      grid-template-areas: "p" "i";
+      background-color: #d9dad7;
+      border-radius: 8px;
+      padding: 45px;
+    }
+  }
+}
+.item-management-container {
+  background-color: #d9dad7;
+  border-radius: 8px;
+  margin: auto;
+  max-width: 80%;
+  padding: 2em;
+
+  h1 {
+    text-align: center;
+  }
+  
+  .my-item-list {
+    background-color: #d9dad7;
+    opacity: 0.95;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+
+    .my-item {
+      background-color: #d9dad7;
+      opacity: 0.9;
+      margin: 15px;
+      padding: 10px;
+      text-align: center;
+      justify-items: center;
+      width: 200px;
+      height: 300px;
+      border-radius: 22px;
+      box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
+      transition: box-shadow 30ms ease;
+    }
+    .my-item:hover {
+      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #ececec;
+    }
+
+    .my-item:active {
+      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #ececec;
+    }
+
+    // .mt-item-picture {
+    // }
+
+    // .ash-date {
+    // }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .item-management-container {
+      display: grid;
+      height: 80vh;
+      width: min-content;
+      grid-template-areas: "p" "i";
+      background-color: #d9dad7;
+      border-radius: 8px;
+      padding: 20px;
+    }
+  }
 }

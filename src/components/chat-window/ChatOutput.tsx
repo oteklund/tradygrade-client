@@ -119,7 +119,6 @@ const ChatOutput = (props: Props) => {
 
   return (
     <div className="ChatOutput">
-      <h3>ChatOutput</h3>
       <div id="chatWindow">
         <ul id="output"></ul>
         <div id="feedback"></div>

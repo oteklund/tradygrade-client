@@ -7,6 +7,7 @@ import { StoreState, Item, User } from '../../models/types';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import NewsFeed from '../dashboard/NewsFeed';
+import history from '../../history';
 
 interface Props {
   user: User | undefined;
@@ -19,8 +20,8 @@ const Dashboard = ({ user, items }: Props) => {
       {user ? (
         <div className='welcome'>{`Welcome, ${user.name}!`}</div>
       ) : (
-          <div>WTF?</div>
-        )}
+        <div>How are you here? Who are you?</div>
+      )}
       <p>Latest 5 items added to the marketplace:</p>
       <div className='latest-items'>
         {items
@@ -33,17 +34,21 @@ const Dashboard = ({ user, items }: Props) => {
           .map((item, index) => {
             if (index < 5) {
               return (
-                <div className='dashItem' key={item.item.id}>
+                <div
+                  className='dash-item'
+                  key={item.item.id}
+                  onClick={e => history.push(`/marketplace/${item.item.id}`)}
+                >
                   <p>
                     {item.item.name}/ {item.item.price}€
                   </p>
                   <img
-                    className='itemPicture'
+                    className='item-picture'
                     src={item.item.pictureURL}
                     height='100px'
                   />
                   <p>Listed By: {item.seller.name}</p>
-                  <p className='dashDate'>
+                  <p className='dash-date'>
                     {moment(item.item.listedAt).format('DD-MM-YYYY')}
                   </p>
                 </div>

@@ -14,6 +14,7 @@ import renderIcon from "../../pictures/renderingChat.gif";
 import picture from "../../pictures/tradygradedarkblue.png";
 import { render } from "react-dom";
 
+
 interface Props {
   user: User;
   history: History<LocationState>;
@@ -24,13 +25,13 @@ const ChatList = (props: Props) => {
   const [chatList, setChatList] = useState<Array<any>>([]);
   const [userList, setUserList] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<number>();
-  const [renderingYes, setRenderingYes] = useState<boolean>(true)
+  const [renderingYes, setRenderingYes] = useState<boolean>(true);
 
   const myLists = async () => {
     let chatList = await getChats(props.user.id);
     setChatList(chatList);
     setUserList(props.users);
-    setRenderingYes(false)
+    setRenderingYes(false);
   };
 
   useEffect(() => {
@@ -38,16 +39,16 @@ const ChatList = (props: Props) => {
   }, [props.user]);
 
   const createChat = async () => {
-    let newChatID;  
+    let newChatID;
     try {
-          newChatID = await newChat({
-            user1: props.user.id,
-            user2: selectedUser
-          })
-      } catch (err) {
-          throw err
-      }
-    history.push(`/chat/${newChatID}`)
+      newChatID = await newChat({
+        user1: props.user.id,
+        user2: selectedUser
+      });
+    } catch (err) {
+      throw err;
+    }
+    history.push(`/chat/${newChatID.id}/${newChatID.name}`);
   };
 
   return (
@@ -56,16 +57,23 @@ const ChatList = (props: Props) => {
         <h3>MyChats</h3>
         <div>
           <select
+          className="select-chat-user"
             name="users"
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedUser(parseInt(e.target.value))}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setSelectedUser(parseInt(e.target.value))
+            }
           >
-            <option value=""></option>
+            <option placeholder="Select user..." value="" color="white">
+              Select user...
+            </option>
             {userList.map(user => (
               <option value={user.id}>{user.name}</option>
             ))}
           </select>
-          <button onClick={() => createChat()}>Start a new conversation</button>
-          {renderingYes ? (<img src={renderIcon} height="50em" />) : (chatList === undefined ? (
+          <button className="MyChatButton" onClick={() => createChat()}>Start a new conversation</button>
+          {renderingYes ? (
+            <img src={renderIcon} height="50em" />
+          ) : chatList === undefined ? (
             <div className="ChatBlock">
               <div id="noChats">
                 <p>
@@ -81,7 +89,9 @@ const ChatList = (props: Props) => {
               <div
                 key={chat.chatid}
                 style={{ textDecoration: "none" }}
-                onClick={() => history.push(`/chat/${chat.chatid}`)}
+                onClick={() =>
+                  history.push(`/chat/${chat.chatid}/${chat.name}`)
+                }
               >
                 <div className="ChatBlock">
                   <div id="userDiv">
@@ -91,11 +101,13 @@ const ChatList = (props: Props) => {
                 </div>
               </div>
             ))
-          ))}
+          )}
         </div>
       </div>
-      <div className="MyChatOutput">
-        <img src={picture} alt="tradygradedarkblue" />
+      <div className="chatEdge">
+        <div className="MyChatOutput">
+          <img className="trady-image" src={picture} alt="tradygradedarkblue" />
+        </div>
       </div>
     </div>
   );

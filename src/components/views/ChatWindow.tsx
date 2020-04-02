@@ -7,28 +7,33 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import ChatOutput from "../chat-window/ChatOutput";
 import ComposeMessage from "../chat-window/ComposeMessage";
+import { User } from "../../models/types";
 import { ChatMessage } from "../chat-window/types";
 import MyChats from "../chat-window/MyChats";
 import io from "socket.io-client";
 
 interface Props {
-  user: any;
+  user: User;
+  users: Array<any>;
   match: any;
 }
 
 const ChatWindow = (props: Props) => {
   const [chatID] = useState<number>(props.match.params.chatid);
   const [messages, setMessages] = useState<ChatMessage>();
-  const [typingInfo, setTypingInfo] = useState<any>();
-  const [myUserId, setMyUsedID] = useState<number>(props.user.id);
+  const [typingInfo, setTypingInfo] = useState<string>();
+  const [myUserId, setMyUsedID] = useState<any>(props.user.id);
   const [myName, setMyName] = useState<string>(props.user.name);
-  const [myPicture, setMyPicture] = useState<string>(props.user.image_url);
+  const [myPicture, setMyPicture] = useState<any>(props.user.image_url);
+  const [otherUserName, setOtherUserName] = useState<any>();
+  const [otherUserPicture, setOtherUserPicture] = useState<any>();
   const [socket, setSocket] = useState<any>();
 
   useEffect(() => {
     setMyUsedID(props.user.id);
     setMyName(props.user.name);
     setMyPicture(props.user.image_url);
+    getOtherChatUser()
     // myChats();
   }, [props.user.id]);
 
@@ -75,10 +80,20 @@ const ChatWindow = (props: Props) => {
   const typingMessage = (username: string, id: number) => {
     socket.emit("typing", myName, chatID);
   };
+  
+  const getOtherChatUser = () => {
+    let other = props.users.find(
+      user => user.name === props.match.params.chatuser
+    );
+    setOtherUserName(other.name);
+    setOtherUserPicture(other.picture)
+  };
 
   return (
     <div className="ChatWindow">
-      <MyChats />
+      <MyChats otherUserName={otherUserName} otherUserPicture={otherUserPicture}/>
+
+      <div className="chatEdge">
       <ChatOutput
         chatID={chatID}
         myUserId={myUserId}
@@ -87,6 +102,7 @@ const ChatWindow = (props: Props) => {
         newMessage={messages}
         typingInfo={typingInfo}
       />
+      </div>
       <ComposeMessage
         chatID={chatID}
         myUserId={myUserId}
@@ -102,7 +118,8 @@ const ChatWindow = (props: Props) => {
 // export default ChatWindow;
 
 const mapStateToProps = (state: any) => ({
-  user: state.user
+  user: state.user,
+  users: state.users
 });
 
 export default connect(mapStateToProps)(ChatWindow);

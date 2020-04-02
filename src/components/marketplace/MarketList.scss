@@ -11,7 +11,7 @@
     padding: 1rem;
 
     .filter-group {
-      width: 300px;
+      width: 400px;
       display: grid;
       margin-bottom: 0.4rem;
 
@@ -43,12 +43,17 @@
         color: #f4f4f4;
         border: none;
         outline: none;
+        margin-bottom: 1px;
         border-bottom: 1px solid #444;
         background: rgba($color: #000000, $alpha: 0);
       }
-      .input-filter:hover,
-      .input-filter:focus {
+      .input-filter:hover {
+        margin-bottom: 0px;
         border-bottom: 2px solid #333;
+      }
+      .input-filter:focus {
+        margin-bottom: 0px;
+        border-bottom: 2px solid #3f51b5;
       }
     }
   }
@@ -90,8 +95,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 10px;
 
-    .marketItem {
+    .market-item {
       background-color: #d9dad7;
       opacity: 0.9;
 
@@ -102,16 +108,33 @@
       width: 200px;
       height: 300px;
       border-radius: 22px;
-      box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #fefffc;
+      box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
       transition: box-shadow 30ms ease;
     }
 
-    .marketItem:hover {
-      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #fefffc;
+    .market-item:hover {
+      box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #ececec;
+      cursor: pointer;
     }
 
-    .marketItem:active {
-      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #fefffc;
+    .market-item:active {
+      box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #ececec;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .market-list {
+    .filter-settings {
+      .filter-group {
+        width: 200px;
+      }
+      input {
+        width: 200px;
+      }
+      .MuiSlider-root {
+        width: 200px;
+      }
     }
   }
 }
