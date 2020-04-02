@@ -116,7 +116,7 @@ export function logIn(name: string, password: string) {
         })
             .then(res => res.json())
             .then(data => {
-                if (!data.token) dispatch(unauthenticate())
+                if (!data.token) dispatch({type: constants.LOGIN_FAIL})
                 if (data.token) {
                     const loggedInUser: User = {
                         id: data.id,
