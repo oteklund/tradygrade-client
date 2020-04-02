@@ -57,6 +57,7 @@ const ChatList = (props: Props) => {
         <h3>MyChats</h3>
         <div>
           <select
+          className="select-chat-user"
             name="users"
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               setSelectedUser(parseInt(e.target.value))
@@ -69,7 +70,7 @@ const ChatList = (props: Props) => {
               <option value={user.id}>{user.name}</option>
             ))}
           </select>
-          <button onClick={() => createChat()}>Start a new conversation</button>
+          <button className="MyChatButton" onClick={() => createChat()}>Start a new conversation</button>
           {renderingYes ? (
             <img src={renderIcon} height="50em" />
           ) : chatList === undefined ? (
@@ -103,11 +104,10 @@ const ChatList = (props: Props) => {
           )}
         </div>
       </div>
-      <div className="MyChatOutput">
-        
-        <img className="trady-image" src={picture} alt="tradygradedarkblue" />
-        
-        
+      <div className="chatEdge">
+        <div className="MyChatOutput">
+          <img className="trady-image" src={picture} alt="tradygradedarkblue" />
+        </div>
       </div>
     </div>
   );
