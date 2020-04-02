@@ -33,7 +33,9 @@ const Dashboard = ({ user, items }: Props) => {
       type="button" 
       className="dashboard-collapsible-button"
       onClick={handleCollapsible}
-      >Latest 5 items added to the marketplace</button>
+      >Latest 5 items added to the marketplace
+      <span className="dashboard-click-me">click me!</span>
+      </button>
       <div 
       className=
       {recentItemsShow ?
