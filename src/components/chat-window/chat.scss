@@ -255,9 +255,11 @@
     border-radius: 22px;
 
     .MyChatOutput {
-      display: flexbox;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       min-width: 300px;
-      max-height: 400px;
+      height: 490px;
       grid-area: m;
       border-radius: 1rem;
       margin: 0.5rem 1rem;

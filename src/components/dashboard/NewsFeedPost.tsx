@@ -1,23 +1,25 @@
 import React from 'react'
 
 interface Props {
-
+    image: string
+    title: string
+    author: string
 }
 
 const NewsFeedPost = (props: Props) => {
     return (
         <div className="newsfeed-post-container">
             <div className="newsfeed-grid-header">
-                <h4 className="newsfeed-header">Green values are radical, world leader says</h4>
-                <span className="newsfeed-subtitle">written by: Göran Österholm / Druids of Finland</span>
+                <h4 className="newsfeed-header">{props.title}</h4>
+                <span className="newsfeed-subtitle">written by: {props.author}</span>
             </div>
             <div className="newsfeed-share">
-                <a href="#" className="fa fa-facebook"></a>
-                <a href="#" className="fa fa-twitter"></a>
-                <a href="#" className="fa fa-google"></a>
-                <a href="#" className="fa fa-reddit"></a>
-                <a href="#" className="fa fa-instagram"></a>
-                <a href="#" className="fa fa-pinterest"></a>
+                <span className='fa fa-facebook'></span>
+                <span className="fa fa-twitter"></span>
+                <span className="fa fa-google"></span>
+                <span className="fa fa-reddit"></span>
+                <span className="fa fa-instagram"></span>
+                <span className="fa fa-pinterest"></span>
             </div>
             <article>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam laboriosam maxime, odio rerum qui atque veniam aspernatur iure optio non! Nostrum sed fugiat possimus tenetur similique. Temporibus soluta voluptatibus ratione id molestias! Quis assumenda officia quisquam nesciunt odit, iste, deserunt ut veniam, enim doloribus nisi commodi animi error distinctio debitis.</p>
@@ -27,7 +29,7 @@ const NewsFeedPost = (props: Props) => {
             <aside>
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum neque deleniti totam veritatis ratione suscipit quae minima illo odit quis?"
             </aside>
-            <img src="https://cdn.pixabay.com/photo/2020/03/30/12/54/triberg-4984171_960_720.jpg" alt="a beautiful forest landscape"></img>
+            <img src={props.image} alt="a beautiful landscape"></img>
         </div>
     )
 }
