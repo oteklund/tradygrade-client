@@ -105,8 +105,8 @@
       padding: 10px;
       text-align: center;
       justify-items: center;
-      width: 200px;
-      height: 300px;
+      width: 300px;
+      height: 400px;
       border-radius: 22px;
       box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
       transition: box-shadow 30ms ease;
@@ -120,6 +120,43 @@
     .market-item:active {
       box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #ececec;
     }
+
+    .item-name-display{
+      font-size: 20px;
+    }
+
+    .item-price-display{
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .market-item-picture-div{
+      overflow:hidden;
+      border-radius: 22px;
+      background: #d9dad7;
+      box-shadow: 8px 8px 16px #757674, -8px -8px 16px #ececec;
+      margin:10px;
+      text-align: center;
+        display: block;
+        
+      
+
+    .market-item-picture {
+      background: #d9dad7;
+      height: 200px;
+      border-radius:22px;
+      
+
+    }
+
+    
+  }
+
+  .market-item-picture-div:active {
+    border-radius: 22px;
+    background: #d9dad7;
+    box-shadow: 4px 4px 8px #757674, -4px -4px 8px #ececec;
+  }
   }
 }
 

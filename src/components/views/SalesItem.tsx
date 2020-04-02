@@ -2,7 +2,7 @@
 This component is for viewing and buying an existing item. The owner of the item may also edit item details. For posting a new item see component NewSalesItem.
 */
 
-import { updateItem } from "../../actions/";
+import { updateItem, deleteItem } from "../../actions/";
 import { TextField, Select, MenuItem, InputLabel } from "@material-ui/core";
 import "./SalesItem.scss";
 import React, { useState, useEffect, SyntheticEvent } from "react";
@@ -21,10 +21,11 @@ interface Props {
   match: any;
   items: Item[];
   updateItem: (item: any) => Promise<void>;
+  deleteItem: (id: string) => Promise<void>;
   user: User | any;
 }
 
-const SalesItem = ({ items, match, user, updateItem }: Props) => {
+const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
   const [item, setItem] = useState<Item | undefined>();
   const [editing, setEditing] = useState<boolean>(false);
 
@@ -131,6 +132,11 @@ const SalesItem = ({ items, match, user, updateItem }: Props) => {
     editing ? setEditing(false) : setEditing(true);
   };
 
+  const deleteThisItem = (id: string) => {
+    deleteItem(id)
+    history.goBack();
+  }
+
   const goBack = (e: any): void => {
     history.goBack();
   };
@@ -192,7 +198,7 @@ const SalesItem = ({ items, match, user, updateItem }: Props) => {
               ) : (
                 <div className="sales-item-buttons-for-seller">
                   <button onClick={editItem}>Edit</button>
-                  <button>Delete</button>
+                  <button onClick={() => deleteThisItem(item.item.id)}>Delete</button>
                   <br />
                   <button onClick={goBack}>Go Back</button>
                 </div>
@@ -302,7 +308,7 @@ const SalesItem = ({ items, match, user, updateItem }: Props) => {
                         history.push("/marketplace");
                       }}
                     >
-                      Go Back
+                      Go Back to Market Place
                     </button>
                   </form>
                 </div>
@@ -322,4 +328,4 @@ const mapStateToProps = (state: StoreState) => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { updateItem })(SalesItem);
+export default connect(mapStateToProps, { updateItem, deleteItem})(SalesItem);
