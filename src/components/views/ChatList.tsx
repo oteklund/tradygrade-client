@@ -14,7 +14,6 @@ import renderIcon from "../../pictures/renderingChat.gif";
 import picture from "../../pictures/tradygradedarkblue.png";
 import { render } from "react-dom";
 
-
 interface Props {
   user: User;
   history: History<LocationState>;
@@ -24,14 +23,30 @@ interface Props {
 const ChatList = (props: Props) => {
   const [chatList, setChatList] = useState<Array<any>>([]);
   const [userList, setUserList] = useState<User[]>([]);
+  const [filteredUserList, setFilteredUserList] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<number>();
   const [renderingYes, setRenderingYes] = useState<boolean>(true);
 
+  const filterUserList = (myChatList: any[]) => {
+    let userArray: any[] = props.users.map(user => ({
+      name: user.name,
+      id: user.id
+    }));
+    let targetArray: any[] = myChatList.map(user => ({
+      name: user.name,
+      id: user.chatid
+    }));
+
+    console.log(userArray)
+    console.log(targetArray)
+  };
+
   const myLists = async () => {
-    let chatList = await getChats(props.user.id);
-    setChatList(chatList);
-    setUserList(props.users);
+    let myChatList = await getChats(props.user.id);
+    await setChatList(myChatList);
+    await setUserList(props.users);
     setRenderingYes(false);
+    filterUserList(myChatList);
   };
 
   useEffect(() => {
@@ -54,10 +69,10 @@ const ChatList = (props: Props) => {
   return (
     <div className="MyChatWindow">
       <div className="MyChats">
-        <h3>MyChats</h3>
+        <h3>My Chats</h3>
         <div>
           <select
-          className="select-chat-user"
+            className="select-chat-user"
             name="users"
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               setSelectedUser(parseInt(e.target.value))
@@ -67,10 +82,14 @@ const ChatList = (props: Props) => {
               Select user...
             </option>
             {userList.map(user => (
-              <option value={user.id}>{user.name}</option>
+              <option key={user.id} value={user.id}>
+                {user.name}
+              </option>
             ))}
           </select>
-          <button className="MyChatButton" onClick={() => createChat()}>Start a new conversation</button>
+          <button className="MyChatButton" onClick={() => createChat()}>
+            Start a new conversation
+          </button>
           {renderingYes ? (
             <img src={renderIcon} height="50em" />
           ) : chatList === undefined ? (
