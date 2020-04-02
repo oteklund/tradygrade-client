@@ -23,15 +23,12 @@
   }
 
   .latest-items {
-    text-align: center;
     display: flex;
-    flex-wrap: wrap;
+    text-align: center;
     justify-content: center;
-
     .dash-item {
       background-color: #d9dad7;
       opacity: 0.9;
-
       margin: 15px;
       padding: 10px;
       text-align: center;

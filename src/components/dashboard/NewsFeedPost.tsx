@@ -12,12 +12,12 @@ const NewsFeedPost = (props: Props) => {
                 <span className="newsfeed-subtitle">written by: Göran Österholm / Druids of Finland</span>
             </div>
             <div className="newsfeed-share">
-                <a href="#" className="fa fa-facebook"></a>
-                <a href="#" className="fa fa-twitter"></a>
-                <a href="#" className="fa fa-google"></a>
-                <a href="#" className="fa fa-reddit"></a>
-                <a href="#" className="fa fa-instagram"></a>
-                <a href="#" className="fa fa-pinterest"></a>
+                <i className='fa fa-facebook'></i>
+                <i className="fa fa-twitter"></i>
+                <i className="fa fa-google"></i>
+                <i className="fa fa-reddit"></i>
+                <i className="fa fa-instagram"></i>
+                <i className="fa fa-pinterest"></i>
             </div>
             <article>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam laboriosam maxime, odio rerum qui atque veniam aspernatur iure optio non! Nostrum sed fugiat possimus tenetur similique. Temporibus soluta voluptatibus ratione id molestias! Quis assumenda officia quisquam nesciunt odit, iste, deserunt ut veniam, enim doloribus nisi commodi animi error distinctio debitis.</p>
