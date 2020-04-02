@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { StoreState, Item, User } from '../../models/types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import NewsFeed from '../dashboard/NewsFeed';
 
 interface Props {
   user: User | undefined;
@@ -18,8 +19,8 @@ const Dashboard = ({ user, items }: Props) => {
       {user ? (
         <div className='welcome'>{`Welcome, ${user.name}!`}</div>
       ) : (
-        <div>WTF?</div>
-      )}
+          <div>WTF?</div>
+        )}
       <p>Latest 5 items added to the marketplace:</p>
       <div className='latest-items'>
         {items
@@ -50,6 +51,7 @@ const Dashboard = ({ user, items }: Props) => {
             }
           })}
       </div>
+      <NewsFeed />
     </div>
   );
 };

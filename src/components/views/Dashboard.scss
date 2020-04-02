@@ -6,7 +6,10 @@
   padding: 1rem;
   background-color: #d9dad7;
   opacity:0.95;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   .welcome{
     background-color:#d9dad7;
     opacity:0.9;
