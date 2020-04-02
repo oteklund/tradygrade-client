@@ -11,6 +11,8 @@ import history from '../../history';
 import { start } from 'repl';
 import { usersReducer } from '../../reducers/users';
 import { newChat, getChatID } from '../../services/chat';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 // import { RouteProps } from 'react-router';
 
 interface Props {
@@ -30,7 +32,45 @@ const SalesItem = ({ items, match, user }: Props) => {
     //eslint-disable-next-line
   }, [match.params.id]);
 
-  const handleChat = async (e: any) => {
+  const handleBuy = async (e: SyntheticEvent) => {
+    let response = await axios.get(
+      `http://localhost:4000/api/users/${item?.seller.id}`
+    );
+    let sellerEmail = response.data.email;
+    console.log(sellerEmail);
+    Swal.fire({
+      title: 'Are you sure you really want to purchase this product?',
+      text:
+        'Seller will be informed via email with your contact details included',
+      icon: 'info',
+      showCancelButton: true
+    }).then(result => {
+      if (result.value) {
+        (window as any).Email.send({
+          Host: process.env.REACT_APP_TRADY_HOST,
+          Username: process.env.REACT_APP_TRADY_EMAIL,
+          Password: process.env.REACT_APP_TRADY_PASSWORD,
+          To: `${sellerEmail}`,
+          From: 'tradygrade@gmail.com',
+          Subject: `${user.name} wants to buy ${item?.item.name}!`,
+          Body: `Hello, ${item?.seller.name}! \n \n
+          ${user.name} has told us he wants to buy your ${item?.item.name}. \n
+          His email is ${user.email}, please contact him as soon as possible! \n \n
+          Best Regards, \n
+          TradyGrade Team`
+        });
+        Swal.fire(
+          'Email sent!',
+          'Seller will get back to you as soon as possible!',
+          'success'
+        );
+      } else {
+        Swal.fire('Cancelled', 'No email was sent!', 'error');
+      }
+    });
+  };
+
+  const handleChat = async (e: SyntheticEvent) => {
     if (item && user.id) {
       try {
         let chatExists = await getChatID(user.id, item.seller.id);
@@ -51,7 +91,7 @@ const SalesItem = ({ items, match, user }: Props) => {
     }
   };
 
-  const handleProfileClick = (e: any): void => {
+  const handleProfileClick = (e: SyntheticEvent): void => {
     if (item) {
       let userUrlParam = item.seller.name.replace(/\s/, '');
       history.push({
@@ -61,7 +101,7 @@ const SalesItem = ({ items, match, user }: Props) => {
     }
   };
 
-  const goBack = (e: any): void => {
+  const goBack = (e: SyntheticEvent): void => {
     history.goBack();
   };
 
@@ -88,7 +128,7 @@ const SalesItem = ({ items, match, user }: Props) => {
           </div>
           {item.seller.name !== user.name ? (
             <div className='sales-item-buttons-for-buyer'>
-              <button>Buy Item</button>
+              <button onClick={handleBuy}>Buy Item</button>
               <button onClick={handleChat}>Chat With Seller</button>
               <br />
               <button onClick={goBack}>Go Back</button>
