@@ -40,6 +40,7 @@ const SearchResults = ({ location }: Props) => {
       <button className='filter-button' onClick={e => handleFilter(e)}>
         Users
       </button>
+      <div className="users-and-items">
       {showProductsOnly && <ItemsList items={location.state.filteredItems} />}
       {showUsersOnly && <UsersList users={location.state.filteredUsers} />}
       {!showUsersOnly && !showProductsOnly && (
@@ -48,6 +49,7 @@ const SearchResults = ({ location }: Props) => {
           <UsersList users={location.state.filteredUsers} />
         </React.Fragment>
       )}
+      </div>
     </div>
   );
 };
