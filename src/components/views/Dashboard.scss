@@ -31,7 +31,7 @@ $bg-light: #d9dad7;
     padding: 18px;
     width: 70vw;
     border: none;
-    text-align: left;
+    text-align: center;
     outline: none;
     font-size: 15px;
     border-radius: 8px;
@@ -51,7 +51,9 @@ $bg-light: #d9dad7;
   }
   .latest-items {
     max-height: none;
+    margin-top: 19px;
     display: flex;
+    flex-wrap: wrap;
     overflow: hidden;
     text-align: center;
     justify-content: center;
@@ -98,4 +100,11 @@ $bg-light: #d9dad7;
     max-height: 0;
     transition: max-height 0.2s ease-out;
   }
+  .dashboard-click-me {
+    float: right;
+    color: $bg-orange;
+    font-size: 16px;
+    font-weight: bolder;
+  }
 }
+

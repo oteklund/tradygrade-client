@@ -6,6 +6,16 @@ $bg-light: #d9dad7;
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Comfortaa:400,700&display=swap");
 
+.landing-background {
+  height: 100vh;
+  width: auto;
+  background-image: url('../../pictures/TradyGradeWatermarkBlue.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #d9dad7;
+  background-size: 1000px 1000px;
+}
 .landing-container {
   header {
     z-index: 2;
