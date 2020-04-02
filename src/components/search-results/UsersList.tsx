@@ -10,7 +10,7 @@ interface Props {
 
 const UsersList = ({ users }: Props) => {
   return (
-    <div>
+    <div className="users-search-list">
       <h3>Matching users</h3>
       {users.map((user: User) => (
         <UserComponent user={user} />
