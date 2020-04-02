@@ -43,3 +43,9 @@ body::-webkit-scrollbar-thumb {
 //   font-size: calc(10px + 2vmin);
 //   color: darkgrey;
 // }
+
+@media only screen and (max-width: 600px) {
+  body {
+    margin: 0;
+  }
+}
