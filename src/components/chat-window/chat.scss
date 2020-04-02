@@ -28,6 +28,11 @@
     flex-wrap: wrap;
     overflow: scroll;
 
+    i {
+      padding-left: 0.2em;
+      color: #c24d2c;
+    }
+
     img {
       height: 60px;
       box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;

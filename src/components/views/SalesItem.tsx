@@ -133,9 +133,9 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
   };
 
   const deleteThisItem = (id: string) => {
-    deleteItem(id)
+    deleteItem(id);
     history.goBack();
-  }
+  };
 
   const goBack = (e: any): void => {
     history.goBack();
@@ -164,7 +164,7 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
       condition,
       pictureURL: pictureUrl
     });
-    history.push(`/marketplace/${itemId}`);
+    history.push(`/marketplace/`);
   };
 
   if (item) {
@@ -172,35 +172,63 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
       <div className="item-item-container">
         <div className="item-info-edit-container">
           <div className="item-content">
-            <img className="item-picture" src={item.item.pictureURL} />
-            <h3>{item.item.name}</h3>
-            <p>Seller</p>
             <div>
-              {item.seller.name}
-              <button onClick={e => handleProfileClick(e)}>View Profile</button>
-            </div>
-            <p>Description</p>
-            <div>{item.item.description}</div>
-            <p>Condition</p>
-            <div>{item.item.condition}</div>
-            <p>Listed at</p>
-            <div>{moment(item.item.listedAt).format("DD-MM-YYYY")}</div>
-            <p>Price</p>
-            <div>
-              <b>{`${item.item.price} €`}</b>
+              <div className="item-text-content">
+                <img className="item-picture" src={item.item.pictureURL} />
+                <br/>
+                <div className="item-price-and-title">
+                <h3 className="item-title">{item.item.name}</h3>
+                <h3 className="item-price">{`${item.item.price} €`}</h3>
+                </div>
+                {item.seller.name !== user.name ? (
+                  <div>
+                    <div
+                      className="seller"
+                      onClick={e => handleProfileClick(e)}
+                      title="Go to user profile"
+                    >
+                      {item.seller.name}
+                    </div>
+                  </div>
+                ) : null}
+                <div>{item.item.description}</div>
+                <p>Condition: {item.item.condition}</p>
+                <p>Listed: {moment(item.item.listedAt).format("DD-MM-YYYY")}</p>
+                <p>
+                  Expiring: {moment(item.item.expires).format("DD-MM-YYYY")}
+                </p> 
+                  
+              </div>
               {item.seller.name !== user.name ? (
                 <div className="sales-item-buttons-for-buyer">
-                  <button onClick={handleBuy}>Buy Item</button>
-                  <button onClick={handleChat}>Chat With Seller</button>
+                  <button className="item-button" onClick={handleBuy}>
+                    Buy Item
+                  </button>
                   <br />
-                  <button onClick={goBack}>Go Back</button>
+                  <button className="item-button" onClick={handleChat}>
+                    Chat With Seller
+                  </button>
+                  <br />
+                  <button className="item-button" onClick={goBack}>
+                    Go Back
+                  </button>
                 </div>
               ) : (
                 <div className="sales-item-buttons-for-seller">
-                  <button onClick={editItem}>Edit</button>
-                  <button onClick={() => deleteThisItem(item.item.id)}>Delete</button>
+                  <button className="item-button" onClick={editItem}>
+                    Edit
+                  </button>
                   <br />
-                  <button onClick={goBack}>Go Back</button>
+                  <button
+                    className="item-button"
+                    onClick={() => deleteThisItem(item.item.id)}
+                  >
+                    Delete
+                  </button>
+                  <br />
+                  <button className="item-button" onClick={goBack}>
+                    Go Back
+                  </button>
                 </div>
               )}
             </div>
@@ -208,13 +236,13 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
           <div className="edit-item">
             {editing ? (
               <div className="edit-item-block">
-                <div className="new-item">
+                <div className="edit-item">
                   <form
-                    className="new-item-form"
+                    className="edit-item-form"
                     onSubmit={e => handleSubmit(e)}
                   >
                     <h2>Edit {item.item.name}</h2>
-                    <div className="input-group-new">
+                    <div className="input-group-edit">
                       <TextField
                         value={name}
                         id="product-name"
@@ -222,7 +250,7 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
                         onChange={e => setName(e.target.value)}
                       />
                     </div>
-                    <div className="input-group-new">
+                    <div className="input-group-edit">
                       <TextField
                         value={description}
                         id="product-description"
@@ -230,7 +258,7 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
                         onChange={e => setDescription(e.target.value)}
                       />
                     </div>
-                    <div className="input-group-new">
+                    <div className="input-group-edit">
                       <InputLabel id="category-label">Category</InputLabel>
                       <Select
                         value={category}
@@ -254,7 +282,7 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
                         <MenuItem value="Other">Other</MenuItem>
                       </Select>
                     </div>
-                    <div className="input-group-new">
+                    <div className="input-group-edit">
                       <TextField
                         value={price}
                         id="product-price"
@@ -262,7 +290,7 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
                         onChange={e => setPrice(parseInt(e.target.value))}
                       />
                     </div>
-                    <div className="input-group-new">
+                    <div className="input-group-edit">
                       <InputLabel>Expiration date</InputLabel>
                       <TextField
                         value={expiration}
@@ -274,7 +302,7 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
                         }
                       />
                     </div>
-                    <div className="input-group-new">
+                    <div className="input-group-edit">
                       <InputLabel id="item-condition">Condition</InputLabel>
                       <Select
                         labelId="item-condition"
@@ -290,7 +318,7 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
                         <MenuItem value="Poor">Poor</MenuItem>
                       </Select>
                     </div>
-                    <div className="input-group-new">
+                    <div className="input-group-edit">
                       <TextField
                         value={pictureUrl}
                         id="product-picture"
@@ -328,4 +356,4 @@ const mapStateToProps = (state: StoreState) => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { updateItem, deleteItem})(SalesItem);
+export default connect(mapStateToProps, { updateItem, deleteItem })(SalesItem);
