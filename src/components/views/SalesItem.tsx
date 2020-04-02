@@ -53,10 +53,10 @@ const SalesItem = ({ items, match, user }: Props) => {
               To: `${sellerEmail}`,
               From: 'tradygrade@gmail.com',
               Subject: `${user.name} wants to buy ${item?.item.name}!`,
-              Body: `Hello, ${item?.seller.name}! \n \n
-              ${user.name} has told us he wants to buy your ${item?.item.name}. \n
-              His email is ${user.email}, please contact him as soon as possible! \n \n
-              Best Regards, \n
+              Body: `Hello, ${item?.seller.name}! <br> <br>
+              ${user.name} has told us he/she wants to buy your ${item?.item.name}. <br>
+              His/her email is ${user.email}, please contact him as soon as possible! <br> <br>
+              Best Regards, <br>
               TradyGrade Team`
             });
             Swal.fire(
