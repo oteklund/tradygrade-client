@@ -1,25 +1,13 @@
 .result-container {
+  font-family: 'comfortaa', 'Roboto', sans-serif;
   background-color: #d9dad7;
 
-  color:  #1a2639;
-    opacity: 1;
-    padding: 10px;
-    margin:10px;
-    text-align: center;
-    justify-content: center;
-
-    .users-and-items{
-
-      .users-search-list{
-        text-align: center;
-      justify-content: center;
-    }
-
-    .items-search-list {
-      text-align: center;
-      justify-content: center;
-    }
-  }
+  color: #1a2639;
+  opacity: 1;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  justify-content: center;
 
   .filter-button {
     border: none;
@@ -44,13 +32,14 @@
     display: grid;
     margin: 0.5em;
     grid-template-columns: 5fr repeat(2, 1fr);
+    align-items: center;
   }
 
   .product-list-item {
     max-width: 800px;
     display: grid;
     margin: 0.5em;
-    grid-template-columns: 5fr repeat(2, 1fr);
+    grid-template-columns: 6fr 1fr;
   }
 
   button {
@@ -60,13 +49,15 @@
     color: #1a2639;
     font-size: 16px;
     margin: 0.3rem;
-    padding: 0.1rem;
+    padding: 0.5rem;
     border-radius: 22px;
     box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
   }
 
   button:hover {
     box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #ececec;
+    background: #c3c4c1;
+    cursor: pointer;
   }
 
   .button:active {
@@ -75,5 +66,25 @@
 
   .button:focus {
     outline: none;
+  }
+
+  .users-search-list {
+    display: grid;
+    margin: 1rem;
+    text-align: center;
+    justify-content: center;
+    border-radius: 30px;
+    margin-top: 2.5rem;
+    box-shadow: 9px 9px 20px #b8b9b7, -9px -9px 20px #fafbf7;
+  }
+
+  .items-search-list {
+    display: grid;
+    margin: 1rem;
+    text-align: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-top: 2.5rem;
+    box-shadow: 9px 9px 20px #b8b9b7, -9px -9px 20px #fafbf7;
   }
 }

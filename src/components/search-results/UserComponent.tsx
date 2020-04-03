@@ -18,8 +18,10 @@ const UserComponent = ({ user }: Props) => {
   return (
     <div id='user-list-item' key={user.id}>
       <span>{user.name}</span>
-      <button>Chat</button>
-      <button onClick={e => handleProfileClick(e)}>View Profile</button>
+      <button className='result-button'>Chat</button>
+      <button className='result-button' onClick={e => handleProfileClick(e)}>
+        View Profile
+      </button>
     </div>
   );
 };
