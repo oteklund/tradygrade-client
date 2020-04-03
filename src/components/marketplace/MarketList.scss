@@ -103,6 +103,8 @@
     .market-item {
       background-color: #d9dad7;
       opacity: 0.9;
+      display: flex;
+      flex-direction: column;
 
       margin: 15px;
       padding: 10px;
@@ -130,7 +132,12 @@
 
     .item-price-display {
       font-size: 20px;
+      margin: 0;
       font-weight: 900;
+    }
+
+    .market-item-listedby {
+      margin: 0;
     }
 
     .market-item-picture-div {
