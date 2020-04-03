@@ -31,9 +31,9 @@
     height: 4rem;
     transition: height 200ms ease;
     margin: 1rem 0;
-    background: rgba($color: #3e4a61, $alpha: 0.6);
+    background: rgba($color: #3e4a61, $alpha: 0.7);
     color: #f4f4f4;
-    box-shadow: 9px 9px 20px rgba($color: #3e4a61, $alpha: 0.4),
+    box-shadow: 9px 9px 20px rgba($color: #3e4a61, $alpha: 0.7),
       -9px -9px 20px rgba($color: #fafbf7, $alpha: 0.1);
     border-radius: 8px;
 
@@ -59,7 +59,7 @@
   }
 
   .filter-box.show {
-    height: 19rem;
+    height: 21rem;
 
     .filter-settings {
       visibility: visible;
