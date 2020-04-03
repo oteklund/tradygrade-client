@@ -31,9 +31,9 @@
     height: 4rem;
     transition: height 200ms ease;
     margin: 1rem 0;
-    background: rgba($color: #3e4a61, $alpha: 0.6);
+    background: rgba($color: #3e4a61, $alpha: 0.7);
     color: #f4f4f4;
-    box-shadow: 9px 9px 20px rgba($color: #3e4a61, $alpha: 0.4),
+    box-shadow: 9px 9px 20px rgba($color: #3e4a61, $alpha: 0.7),
       -9px -9px 20px rgba($color: #fafbf7, $alpha: 0.1);
     border-radius: 8px;
 
@@ -59,7 +59,7 @@
   }
 
   .filter-box.show {
-    height: 19rem;
+    height: 21rem;
 
     .filter-settings {
       visibility: visible;
@@ -69,15 +69,18 @@
   .filter-header {
     text-align: center;
     width: 250px;
-    height: 2.5rem;
+    height: 4rem;
     margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .hamburger {
       i {
         position: absolute;
         top: 0;
         right: 0;
-        margin: 1.1rem 2rem;
+        margin: 0.54rem 1.5rem;
         color: #f4f4f4;
         cursor: pointer;
       }
@@ -100,6 +103,8 @@
     .market-item {
       background-color: #d9dad7;
       opacity: 0.9;
+      display: flex;
+      flex-direction: column;
 
       margin: 15px;
       padding: 10px;
@@ -121,42 +126,42 @@
       box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #ececec;
     }
 
-    .item-name-display{
+    .item-name-display {
       font-size: 20px;
     }
 
-    .item-price-display{
+    .item-price-display {
       font-size: 20px;
+      margin: 0;
       font-weight: 900;
     }
 
-    .market-item-picture-div{
-      overflow:hidden;
+    .market-item-listedby {
+      margin: 0;
+    }
+
+    .market-item-picture-div {
+      overflow: hidden;
       border-radius: 22px;
       background: #d9dad7;
       box-shadow: 8px 8px 16px #757674, -8px -8px 16px #ececec;
-      margin:10px;
-      text-align: center;
-        display: block;
-        
-      
-
-    .market-item-picture {
-      background: #d9dad7;
       height: 200px;
-      border-radius:22px;
-      
+      margin: 10px;
+      text-align: center;
+      display: block;
 
+      .market-item-picture {
+        background: #d9dad7;
+        height: 100%;
+        border-radius: 22px;
+      }
     }
 
-    
-  }
-
-  .market-item-picture-div:active {
-    border-radius: 22px;
-    background: #d9dad7;
-    box-shadow: 4px 4px 8px #757674, -4px -4px 8px #ececec;
-  }
+    .market-item-picture-div:active {
+      border-radius: 22px;
+      background: #d9dad7;
+      box-shadow: 4px 4px 8px #757674, -4px -4px 8px #ececec;
+    }
   }
 }
 

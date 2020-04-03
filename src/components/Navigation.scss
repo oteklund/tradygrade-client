@@ -1,5 +1,5 @@
 .nav {
-  width: 5.2rem;
+  width: 6rem;
   height: 100vh;
   margin: 0;
   padding: 3rem 0;
@@ -39,11 +39,15 @@
     }
   }
 }
-i {
-  color: #d9dad7;
-  font-size: 1.5rem;
-}
 
+.fa-home,
+.fa-shopping-cart,
+.fa-comments,
+.fa-user-circle,
+.fa-sign-out-alt {
+  color: #d9dad7;
+  padding: 0;
+}
 .nav-text {
   display: none;
   color: #d9dad7;

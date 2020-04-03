@@ -174,7 +174,7 @@ const MarketList = ({ items }: Props) => {
             <span>Filters</span>
             <i
               className='fas fa-filter'
-              style={{ marginLeft: '10px', color: '#f4f4f4' }}
+              style={{ marginLeft: '2px', color: '#f4f4f4' }}
             ></i>
           </h3>
 

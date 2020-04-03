@@ -5,12 +5,13 @@ $bg-light: #d9dad7;
 
 .my-account {
   .account-management-container {
+    max-width: 1100px;
     display: inline-flex;
     background-color: #d9dad7;
     border-radius: 8px;
     margin: auto;
-    padding: 2em;
-    margin-bottom: 2em;
+    padding-left: 2em;
+    // margin-bottom: 2em;
 
     .account-management-user-picture {
       grid-area: p;
@@ -20,7 +21,7 @@ $bg-light: #d9dad7;
 
       img {
         max-width: 100%;
-        max-height: 20vh;
+        max-height: 12em;
       }
     }
 
@@ -56,22 +57,24 @@ $bg-light: #d9dad7;
       }
 
       @media only screen and (max-width: 600px) {
+        margin-top: 2em;
         grid-area: i;
         align-self: none;
 
         #div1 {
-          // display: inline-flex;
+          margin-top: 0.5em;
+          display: flex;
           width: 5.5em;
           color: $bg-dark;
         }
 
         #div2 {
-          // display: inline-flex;
+          display: flex;
           color: $bg-orange;
           margin: 0;
           padding: 0em;
 
-          h3 {
+          h3, p {
             margin: 0;
             padding: 0em;
           }
@@ -85,11 +88,11 @@ $bg-light: #d9dad7;
       display: grid;
       width: min-content;
       margin: auto;
-      margin-bottom: 2em;
+      // margin-bottom: 2em;
       grid-template-areas: "p" "i";
       background-color: #d9dad7;
       border-radius: 8px;
-      padding: 45px;
+      // padding: 45px;
     }
   }
 }
@@ -97,7 +100,7 @@ $bg-light: #d9dad7;
   background-color: #d9dad7;
   border-radius: 8px;
   margin: auto;
-  max-width: 80%;
+  max-width: 90vw;
   padding: 2em;
 
   h1 {
@@ -140,25 +143,43 @@ $bg-light: #d9dad7;
     }
     .my-item:hover {
       box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #ececec;
+      cursor: pointer;
     }
 
     .my-item:active {
       box-shadow: 5px 5px 10px #b4b5b2, -5px -5px 10px #ececec;
-    }
-
-    .dash-date {
     }
   }
 
   @media only screen and (max-width: 600px) {
     .item-management-container {
       display: grid;
-      height: 80vh;
+      height: 95vh;
       width: min-content;
       grid-template-areas: "p" "i";
       background-color: #d9dad7;
       border-radius: 8px;
-      padding: 20px;
+      // padding: 20px;
     }
+  }
+  .go-back-button {
+    width: 100%;
+    border: none;
+    background-color: $bg-orange;
+    box-shadow: 8px 8px 8px #828381;
+    color: white;
+    font-size: 20px;
+    margin: 10px;
+    border-radius: 10px;
+  }
+
+  .go-back-button:hover {
+    color: #1a2639;
+    cursor: pointer;
+  }
+
+  .go-back-button:active {
+    box-shadow: 4px 4px 4px #828381;
+    opacity: 0.9;
   }
 }
