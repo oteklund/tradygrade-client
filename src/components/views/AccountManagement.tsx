@@ -24,25 +24,8 @@ const AccountManagement = ({ user, items }: any) => {
   });
   const [myItems, setMyItems] = useState<Array<any>>([]);
 
-  const getUserData = async () => {
-    return await fetch(`http://localhost:4000/api/users/${user.id}`, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + user.token
-      }
-    })
-      .then((res: any) => res.json())
-      .then((data: any) => setUserData(data));
-  };
-
-  const openEditUserData = () => {
-    //logic
-  };
-
   useEffect(() => {
     getMyStuff();
-    //   getUserData()
-    //eslint-disable-next-line
   }, []);
 
   const getMyStuff = () => {
@@ -51,6 +34,10 @@ const AccountManagement = ({ user, items }: any) => {
         ? setMyItems(myItems => [...myItems, item])
         : null
     );
+  };
+
+  const goBack = (e: any): void => {
+    history.goBack();
   };
 
   return (
@@ -73,24 +60,31 @@ const AccountManagement = ({ user, items }: any) => {
         </div>
       </div>
       <div className="item-management-container">
+          <button className="go-back-button" onClick={goBack}>
+            Go back
+          </button>
         <h1>My stuff</h1>
         <div className="my-item-list">
-        {myItems.map(item => (
-              <div className="my-item" key={item.item.id} onClick={() => history.push(`/marketplace/${item.item.id}`)}>
-                <p>
-                  {item.item.name} / {item.item.price}€
-                </p>
-                <img
-                  className="my-item-picture"
-                  src={item.item.pictureURL}
-                  height="100px"
-                />
-                <p>Listed By: {item.seller.name}</p>
-                <p className="dash-date">
-                  {moment(item.item.listedAt).format("DD-MM-YYYY")}
-                </p>
+          {myItems.map(item => (
+            <div
+              className="my-item"
+              key={item.item.id}
+              onClick={() => history.push(`/marketplace/${item.item.id}`)}
+            >
+              <p>
+                {item.item.name} / {item.item.price}€
+              </p>
+              <img
+                className="my-item-picture"
+                src={item.item.pictureURL}
+                height="100px"
+              />
+              <p>Listed By: {item.seller.name}</p>
+              <p className="dash-date">
+                {moment(item.item.listedAt).format("DD-MM-YYYY")}
+              </p>
             </div>
-        ))}
+          ))}
         </div>
       </div>
     </div>
