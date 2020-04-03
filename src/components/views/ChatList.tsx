@@ -27,11 +27,26 @@ const ChatList = (props: Props) => {
   const [selectedUser, setSelectedUser] = useState<number>();
   const [renderingYes, setRenderingYes] = useState<boolean>(true);
 
+  // const filterUserList = (myChatList: any[]) => {
+  //   let userArray: any[] = props.users.map(user => ({
+  //     name: user.name,
+  //     id: user.id
+  //   }));
+  //   let targetArray: any[] = myChatList.map(user => ({
+  //     name: user.name,
+  //     id: user.chatid
+  //   }));
+
+  //   console.log(userArray)
+  //   console.log(targetArray)
+  // };
+
   const myLists = async () => {
     let myChatList = await getChats(props.user.id);
     await setChatList(myChatList);
     await setUserList(props.users);
     setRenderingYes(false);
+    // filterUserList(myChatList);
   };
 
   useEffect(() => {
