@@ -63,11 +63,11 @@ const Register = ({ user, error, register, clearErrors }: any) => {
             email: email
         }
         if (!name || !password || !email || !confirmPassword) setErrorMessage("Please fill out all the fields.")
+        else if (password !== confirmPassword || !password || !confirmPassword) setErrorMessage("Passwords do not match, please try again.")
         
-        if (password !== confirmPassword || !password || !confirmPassword) setErrorMessage("Passwords do not match, please try again.")
         else {
             try {
-                await register(data)                
+                await register(data)
                 handleClose()
                 setErrorMessage("")
             } catch (err) {
@@ -112,7 +112,7 @@ const Register = ({ user, error, register, clearErrors }: any) => {
             >
                 <Fade in={open}>
                     <div className="modal">
-                        <form onSubmit={handleRegister}>
+                        <form onSubmit={handleRegister} autoComplete="off">
                             <h3>Register</h3>
                             <input type="text" placeholder="username" onChange={onNameChange} />
                             <input type="text" placeholder="email" onChange={onEmailChange} />

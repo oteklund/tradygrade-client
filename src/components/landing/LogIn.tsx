@@ -87,7 +87,7 @@ const LogIn = ({ logInConnect, returnErrorsConnect, errorState }: Props) => {
             >
                 <Fade in={open}>
                     <div className="modal">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit} autoComplete="off">
                             <h3>Login</h3>
                             <input type="text" placeholder="username" onChange={onNameChange} />
                             <input type="password" placeholder="password" onChange={onPasswordChange} />
