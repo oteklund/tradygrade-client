@@ -1,3 +1,8 @@
+$bg-dark: #1a2639;
+$bg-dark-light: #3e4a61;
+$bg-orange: #c24d2c;
+$bg-light: #d9dad7;
+
 .item-item-container {
   max-width: 50em;
   margin: 10px;
@@ -12,14 +17,14 @@
     border-radius: 22px;
     box-shadow: 8px 8px 12px #b4b5b2, -8px -8px 12px #ececec;
     transition: box-shadow 30ms ease;
-    background-color: white;
+    background-color: $bg-light;
 
     .item-content {
       min-width: 300px;
       max-width: 25em;
       margin: auto;
       border-radius: 22px 0px 0px 22px;
-      background-color: white;
+      background-color: $bg-light;
       padding: 15px;
 
       .item-text-content {
@@ -56,6 +61,7 @@
         .seller:hover {
           color: #828381;
           font-weight: 900;
+          cursor: pointer;
         }
       }
 
@@ -128,6 +134,7 @@
     }
 
     .item-button:hover {
+      cursor: pointer;
       color: #1a2639;
     }
 
@@ -147,7 +154,7 @@
     justify-content: center;
     opacity: none;
     border-radius: 22px;
-    
+
     .item-info-edit-container {
       display: grid;
       grid-template-areas: "c" "e";

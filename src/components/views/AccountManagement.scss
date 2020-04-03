@@ -143,6 +143,7 @@ $bg-light: #d9dad7;
     }
     .my-item:hover {
       box-shadow: 10px 10px 15px #b4b5b2, -10px -10px 15px #ececec;
+      cursor: pointer;
     }
 
     .my-item:active {
@@ -174,6 +175,7 @@ $bg-light: #d9dad7;
 
   .go-back-button:hover {
     color: #1a2639;
+    cursor: pointer;
   }
 
   .go-back-button:active {
