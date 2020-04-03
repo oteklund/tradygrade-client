@@ -104,7 +104,7 @@ const NewSalesItem = ({ createItem, user }: Props) => {
 
   return (
     <div className='new-item'>
-      <form className='new-item-form' onSubmit={e => handleSubmit(e)}>
+      <form className='new-item-form' onSubmit={e => handleSubmit(e)} autoComplete="off">
         <h2>Add a new product</h2>
         <div className='input-group-new'>
           <TextField

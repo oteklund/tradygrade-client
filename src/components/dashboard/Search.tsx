@@ -54,7 +54,7 @@ const Search = ({ history, users, items }: Props) => {
   };
   return (
     <div className='search-container'>
-      <form onSubmit={e => handleSearch(e)}>
+      <form onSubmit={e => handleSearch(e)} autoComplete="off">
         <input
           type='text'
           name='searchbar'
