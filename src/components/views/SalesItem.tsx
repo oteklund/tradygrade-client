@@ -134,7 +134,7 @@ const SalesItem = ({ items, match, user, updateItem, deleteItem }: Props) => {
 
   const deleteThisItem = (id: string) => {
     deleteItem(id);
-    history.goBack();
+    history.push(`/marketplace/`);
   };
 
   const goBack = (e: any): void => {
